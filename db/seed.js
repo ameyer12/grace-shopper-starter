@@ -7,7 +7,9 @@ async function dropTables() {
     console.log('Dropping Tables')
     // add code here
     await client.query(`
-      DROP TABLE IF EXISTS reviews; 
+      DROP TABLE IF EXISTS reviews;
+      DROP TABLE IF EXISTS "orderItems";
+      DROP TABLE IF EXISTS orders;
       DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS users;
     `)
@@ -22,14 +24,20 @@ async function dropTables() {
 async function createTables() {
   try {
     console.log('Creating Tables')
-    // add code here
+    // add code here 
+
+    
     await client.query(`
       CREATE TABLE products (
         id SERIAL PRIMARY KEY,
         title VARCHAR(255),
-        description VARCHAR(255)
+        description VARCHAR(255),
+        price INTEGER,
+        inventory INTEGER
       );
     `)
+        // products needs, categories with 1 required, and photo with placeholder
+
     await client.query(`
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
@@ -37,6 +45,8 @@ async function createTables() {
       password varchar(255) NOT NULL
     );  
     `)
+    // users needs, check for valid email
+
     await client.query(`
       CREATE TABLE reviews (
         id SERIAL PRIMARY KEY,
@@ -45,7 +55,26 @@ async function createTables() {
         content VARCHAR(255) NOT NULL
       );
     `)
-    
+    // should be ok
+    await client.query(`
+      CREATE TABLE orders (
+        id SERIAL PRIMARY KEY,
+        "isGuest" BOOLEAN DEFAULT false,
+        "customerId" INTEGER REFERENCES users( id ),
+        date DATE NOT NULL
+      );
+    `)
+  // should be ok
+    await client.query(`
+      CREATE TABLE "orderItems" (
+        id SERIAL PRIMARY KEY,
+        "orderId" INTEGER REFERENCES orders ( id ),
+        "productId" INTEGER REFERENCES products ( id ),
+        quantity INTEGER,
+        price INTEGER
+      );
+    `)
+    // should be ok
     console.log('Finished Creating Tables')
   } 
   catch(ex) {
