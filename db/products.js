@@ -1,21 +1,36 @@
 const { client } = require('./');
 
-async function createProduct({title, description}) {
+async function createProduct({title, description, price, category, inventory, image}) {
   try {
     const { rows: [product]} = await client.query(`
-      INSERT INTO products (title, description)
-      VALUES ($1, $2)
+      INSERT INTO products (title, description, price, category, inventory, image)
+      VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *;
-    `, [title, description])
+    `, [title, description, price, category, inventory, image])
     
     return product;
   }
-  catch(ex) {
-    console.log('error in creatPruduct adapter function')
+  catch(error) {
+    console.log('error in createProduct adapter function')
+    console.log(error)
   }
 }
 
+async function getAllProducts() {
+  try {
+      const { rows: products } = await client.query(`
+        SELECT *
+        FROM products
+      `);
+
+      return products;
+
+  } catch(error) {
+      throw error;
+  }  
+}
 
 module.exports = {
-  createProduct
+  createProduct,
+  getAllProducts
 }

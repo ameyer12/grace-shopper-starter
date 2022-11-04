@@ -1,6 +1,10 @@
 const { client } = require('./')
 
-const { createProduct } = require('./products')
+const { createProduct, getAllProducts } = require('./products')
+const { createUser, getAllUsers } = require('./users')
+const { createReview, getAllReviews } = require('./reviews')
+const { createOrder, getAllOrders } = require('./orders')
+const { createOrderItem, getAllOrderItems } = require('./orderItems')
 
 async function dropTables() {
   try {
@@ -26,14 +30,16 @@ async function createTables() {
     console.log('Creating Tables')
     // add code here 
 
-    
+    // added category and image to products table
     await client.query(`
       CREATE TABLE products (
         id SERIAL PRIMARY KEY,
         title VARCHAR(255),
         description VARCHAR(255),
         price INTEGER,
-        inventory INTEGER
+        category VARCHAR(255) NOT NULL,
+        inventory INTEGER,
+        image TEXT
       );
     `)
         // products needs, categories with 1 required, and photo with placeholder
@@ -42,7 +48,7 @@ async function createTables() {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       email VARCHAR(255) UNIQUE NOT NULL,
-      password varchar(255) NOT NULL
+      password VARCHAR(255) NOT NULL
     );  
     `)
     // users needs, check for valid email
@@ -89,27 +95,203 @@ async function createInitialProducts() {
       title:
         "The first most amazing product",
       description:
-        "Description for the first most amazing product ever...."
+        "Description for the first most amazing product ever....",
+      price:
+        1,
+      category:
+        "Example category",
+      inventory:
+        2,
+      image:
+        "Example image"
     });
     
     await createProduct({
       title:
         "The second most amazing product",
       description:
-        "Description for the second most amazing product ever...."
+        "Description for the second most amazing product ever....",
+      price:
+        1,
+      category:
+        "Example category",
+      inventory:
+        2,
+      image:
+        "Example image"
     });
     
     await createProduct({
       title:
         "The third most amazing product",
       description:
-        "Description for the third most amazing product ever...."
+        "Description for the third most amazing product ever....",
+      price:
+        1,
+      category:
+        "Example category",
+      inventory:
+        2,
+      image:
+        "Example image"
     });
-    
+
     console.log('Finished creating Products')
   } 
   catch(ex) {
     console.log('error creating Products')
+  }
+}
+
+async function createInitialUsers() {
+  try {
+    console.log('Creating Users')
+    await createUser({
+      email:
+        "First User",
+      password:
+        "Password1"
+    });
+    
+    await createUser({
+      email:
+        "Second user",
+      password:
+        "Password2"
+    });
+    
+    await createUser({
+      email:
+        "Third user",
+      password:
+        "Password3"
+    });
+
+    console.log('Finished creating Users')
+  } 
+  catch(ex) {
+    console.log('error creating Users')
+    console.log(ex)
+  }
+}
+
+async function createInitialReviews() {
+  try {
+    console.log('Creating Reviews')
+    await createReview({
+      productId: 
+        1,
+      userId:
+        1,
+      content: 
+        "This is the first review"
+    });
+    
+    await createReview({
+      productId: 
+        2,
+      userId:
+        2,
+      content: 
+        "This is the second review"
+    });
+    
+    await createReview({
+      productId: 
+        3,
+      userId:
+        3,
+      content: 
+        "This is the third review"
+    });
+
+    console.log('Finished creating Reviews')
+  } 
+  catch(ex) {
+    console.log('error creating Reviews')
+    console.log(ex)
+  }
+}
+
+async function createInitialOrders() {
+  try {
+    console.log('Creating Orders')
+    await createOrder({
+      isGuest: 
+        true,
+      customerId:
+        1,
+      date: 
+        20221102
+    });
+    
+    await createOrder({
+      isGuest: 
+        false,
+      customerId:
+        2,
+      date: 
+        20221103
+    });
+    
+    await createOrder({
+      isGuest: 
+        true,
+      customerId:
+        3,
+      date: 
+        20221104
+    });
+
+    console.log('Finished creating Orders')
+  } 
+  catch(ex) {
+    console.log('error creating Orders')
+    console.log(ex)
+  }
+}
+
+async function createInitialOrderItems() {
+  try {
+    console.log('Creating Orders')
+    await createOrderItem({
+      orderId: 
+        1,
+      productId:
+        1,
+      quantity: 
+        1,
+      price:
+        1
+    });
+    
+    await createOrderItem({
+      orderId: 
+        2,
+      productId:
+        2,
+      quantity: 
+        2,
+      price:
+        2
+    });
+    
+    await createOrderItem({
+      orderId: 
+        3,
+      productId:
+        3,
+      quantity: 
+        3,
+      price:
+        3
+    });
+
+    console.log('Finished creating orderItems')
+  } 
+  catch(ex) {
+    console.log('error creating orderItems')
+    console.log(ex)
   }
 }
 
@@ -120,6 +302,11 @@ async function buildDB() {
     await dropTables();
     await createTables();
     await createInitialProducts();
+    await createInitialUsers();
+    await createInitialReviews();
+    await createInitialOrders();
+    await createInitialOrderItems();
+    await getAllOrderItems();
   }
   catch(ex) {
     console.log('Error building the DB')
