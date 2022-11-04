@@ -7,7 +7,7 @@ async function dropTables() {
     console.log('Dropping Tables')
     // add code here
     await client.query(`
-      DROP TABLE IF EXISTS reviews;
+      DROP TABLE IF EXISTS reviews; 
       DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS users;
     `)
@@ -33,7 +33,7 @@ async function createTables() {
     await client.query(`
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
-      email varchar(255) UNIQUE NOT NULL,
+      email VARCHAR(255) UNIQUE NOT NULL,
       password varchar(255) NOT NULL
     );  
     `)
