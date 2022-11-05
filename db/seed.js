@@ -4,7 +4,7 @@ const { createProduct, getAllProducts } = require('./products')
 const { createUser, getAllUsers } = require('./users')
 const { createReview, getAllReviews } = require('./reviews')
 const { createOrder, getAllOrders } = require('./orders')
-const { createOrderItem, getAllOrderItems } = require('./orderItems')
+const { createOrderItem, getAllOrderItems, getOrderItemsByOrder } = require('./orderItems')
 
 async function dropTables() {
   try {

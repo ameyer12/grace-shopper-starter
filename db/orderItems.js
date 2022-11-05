@@ -22,7 +22,6 @@ async function createOrderItem({orderId, productId, quantity, price}) {
           SELECT *
           FROM "orderItems"
         `);
-
         return orderItems;
   
     } catch(error) {
@@ -36,7 +35,6 @@ async function createOrderItem({orderId, productId, quantity, price}) {
     FROM "orderItems"
     where "orderId"=${id};
     `);
-
     return rows;
   }
 
