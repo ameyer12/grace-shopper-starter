@@ -30,6 +30,22 @@ async function createOrder({isGuest, customerId, date}) {
     }  
   }
 
+  async function attachItemsToOrders(orders) {
+    await Promise.all(orders.map(async (order) => {
+      const { rows: orders } = await client.query(`
+      SELECT DISTINCT "orderItems".*, products.image
+      FROM "orderItems"
+      JOIN products
+      ON "orderItems"."productId"=products.id
+      WHERE "orderItems"."orderId"=$1;
+      `, [order.id])
+      order.items = orders
+    }))
+
+    return orders
+  }
+
+
   module.exports = {
     createOrder,
     getAllOrders
