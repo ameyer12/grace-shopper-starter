@@ -307,6 +307,7 @@ async function buildDB() {
     await createInitialOrders();
     await createInitialOrderItems();
     await getAllOrderItems();
+    await getAllOrders()
   }
   catch(ex) {
     console.log('Error building the DB')

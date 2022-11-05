@@ -22,8 +22,8 @@ async function createOrder({isGuest, customerId, date}) {
           SELECT *
           FROM orders
         `);
-
-        return orders;
+        const attachedOrders = await attachItemsToOrders(orders)
+        return attachedOrders
   
     } catch(error) {
         throw error;
