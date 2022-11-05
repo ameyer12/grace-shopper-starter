@@ -30,6 +30,16 @@ async function createOrderItem({orderId, productId, quantity, price}) {
     }  
   }
 
+  async function getOrderItemsByOrder(id) {
+    const { rows } = await client.query(`
+    SELECT *
+    FROM "orderItems"
+    where "orderId"=${id};
+    `);
+
+    return rows;
+  }
+
 //   CREATE TABLE "orderItems" (
 //     id SERIAL PRIMARY KEY,
 //     "orderId" INTEGER REFERENCES orders ( id ),
@@ -40,5 +50,6 @@ async function createOrderItem({orderId, productId, quantity, price}) {
 
   module.exports = {
     createOrderItem,
-    getAllOrderItems
+    getAllOrderItems,
+    getOrderItemsByOrder
   }

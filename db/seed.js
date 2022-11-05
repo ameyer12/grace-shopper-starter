@@ -220,7 +220,7 @@ async function createInitialOrders() {
       isGuest: 
         true,
       customerId:
-        1,
+        null,
       date: 
         20221102
     });
@@ -238,7 +238,7 @@ async function createInitialOrders() {
       isGuest: 
         true,
       customerId:
-        3,
+        null,
       date: 
         20221104
     });
