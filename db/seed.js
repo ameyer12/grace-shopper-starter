@@ -1,7 +1,7 @@
 const { client } = require('./')
 
 const { createProduct, getAllProducts } = require('./products')
-const { createUser, getAllUsers } = require('./users')
+const { createUser, getAllUsers, getUserById, getUserByEmail } = require('./users')
 const { createReview, getAllReviews } = require('./reviews')
 const { createOrder, getAllOrders } = require('./orders')
 const { createOrderItem, getAllOrderItems, getOrderItemsByOrder } = require('./orderItems')
@@ -166,7 +166,7 @@ async function createInitialUsers() {
       password:
         "Password3"
     });
-
+    
     console.log('Finished creating Users')
   } 
   catch(ex) {
