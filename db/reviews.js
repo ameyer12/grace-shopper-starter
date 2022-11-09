@@ -1,6 +1,6 @@
 const { client } = require('./');
 
-async function createReview({productId, userId, content}) {
+  async function createReview({productId, userId, content}) {
     try {
       const { rows: [review]} = await client.query(`
         INSERT INTO reviews ("productId", "userId", content)
@@ -30,7 +30,87 @@ async function createReview({productId, userId, content}) {
     }  
   }
 
+  async function getReviewById(id) {
+    try {
+      const {rows: reviews } = await client.query(`
+        SELECT *
+        FROM reviews
+        WHERE id = $1
+      `, [id])
+
+      return reviews
+
+    } catch (error) {
+      throw error
+    }
+  }
+
+async function getReviewByUser(id) {
+  try {
+    const {rows: reviews } = await client.query(`
+      SELECT *
+      FROM reviews
+      WHERE "userId" = $1
+    `, [id])
+
+    return reviews
+
+  } catch (error) {
+    throw error
+  }
+}
+
+async function getReviewByProduct(id) {
+  try {
+    const {rows: reviews } = await client.query(`
+      SELECT *
+      FROM reviews
+      WHERE "productId" = $1
+    `, [id])
+
+    return reviews
+
+  } catch (error) {
+    throw error
+  }
+}
+
+async function getReviewByProduct(id) {
+  try {
+    const {rows: reviews } = await client.query(`
+      SELECT *
+      FROM reviews
+      WHERE "productId" = $1
+    `, [id])
+
+    return reviews
+
+  } catch (error) {
+    throw error
+  }
+}
+
+async function deleteProduct(id) {
+  try {
+    const {rows: reviews } = await client.query(`
+      DELETE
+      FROM reviews
+      WHERE "id" = $1
+      RETURNING reviews
+    `, [id])
+
+    return reviews
+
+  } catch (error) {
+    throw error
+  }
+}
+
   module.exports = {
     createReview,
-    getAllReviews
+    getAllReviews,
+    getReviewById,
+    getReviewByUser,
+    getReviewByProduct,
+    deleteProduct
   }

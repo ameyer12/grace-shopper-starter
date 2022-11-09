@@ -1,8 +1,8 @@
 const { client } = require('./')
 
-const { createProduct, getAllProducts } = require('./products')
+const { createProduct, getAllProducts, getProductById, getProductByTitle } = require('./products')
 const { createUser, getAllUsers, getUserById, getUserByEmail } = require('./users')
-const { createReview, getAllReviews } = require('./reviews')
+const { createReview, getAllReviews, getReviewById, getReviewByUser, getReviewByProduct, deleteProduct } = require('./reviews')
 const { createOrder, getAllOrders } = require('./orders')
 const { createOrderItem, getAllOrderItems, getOrderItemsByOrder } = require('./orderItems')
 
@@ -166,7 +166,7 @@ async function createInitialUsers() {
       password:
         "Password3"
     });
-    
+
     console.log('Finished creating Users')
   } 
   catch(ex) {
@@ -204,7 +204,7 @@ async function createInitialReviews() {
       content: 
         "This is the third review"
     });
-
+    
     console.log('Finished creating Reviews')
   } 
   catch(ex) {
