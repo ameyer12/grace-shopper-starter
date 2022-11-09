@@ -2,13 +2,8 @@ const { client } = require('./')
 
 const { createProduct, getAllProducts, getProductById, getProductByTitle } = require('./products')
 const { createUser, getAllUsers, getUserById, getUserByEmail } = require('./users')
-<<<<<<< HEAD
-const { createReview, getAllReviews, getReviewById, getReviewByUser, getReviewByProduct, deleteProduct } = require('./reviews')
-const { createOrder, getAllOrders } = require('./orders')
-=======
-const { createReview, getAllReviews } = require('./reviews')
+const { createReview, getAllReviews, deleteReview } = require('./reviews')
 const { createOrder, getAllOrders, getOrdersByUserId } = require('./orders')
->>>>>>> 6ea44ab98ae0c9c797932e4f379003f72cf47a1c
 const { createOrderItem, getAllOrderItems, getOrderItemsByOrder } = require('./orderItems')
 
 async function dropTables() {

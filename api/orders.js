@@ -20,6 +20,4 @@ ordersRouter.get('/user/:id', async (req, res) => {
 
 })
 
-
-
 module.exports = ordersRouter;

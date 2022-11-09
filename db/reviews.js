@@ -75,22 +75,8 @@ async function getReviewByProduct(id) {
   }
 }
 
-async function getReviewByProduct(id) {
-  try {
-    const {rows: reviews } = await client.query(`
-      SELECT *
-      FROM reviews
-      WHERE "productId" = $1
-    `, [id])
 
-    return reviews
-
-  } catch (error) {
-    throw error
-  }
-}
-
-async function deleteProduct(id) {
+async function deleteReview(id) {
   try {
     const {rows: reviews } = await client.query(`
       DELETE
@@ -112,5 +98,5 @@ async function deleteProduct(id) {
     getReviewById,
     getReviewByUser,
     getReviewByProduct,
-    deleteProduct
+    deleteReview
   }
