@@ -7,7 +7,7 @@ async function createOrder({isGuest, customerId, date}) {
         VALUES ($1, $2, $3)
         RETURNING *;
       `, [isGuest, customerId, date])
-      
+      console.log(order)
       return order;
     }
     catch(error) {
@@ -30,6 +30,26 @@ async function createOrder({isGuest, customerId, date}) {
     }  
   }
 
+
+  async function getOrdersByUserId(id) {
+    try {
+
+      const { rows: orders } = await client.query(`
+        SELECT *
+        FROM orders
+        WHERE "customerId"=$1;
+      `,[id]);
+      const attachedOrders = await attachItemsToOrders(orders)
+      console.log(attachedOrders)
+      return attachedOrders
+
+  } catch(error) {
+      console.log(error)
+      throw error;
+  }  
+  }
+
+
   async function attachItemsToOrders(orders) {
     await Promise.all(orders.map(async (order) => {
       const { rows: orders } = await client.query(`
@@ -48,5 +68,6 @@ async function createOrder({isGuest, customerId, date}) {
 
   module.exports = {
     createOrder,
-    getAllOrders
+    getAllOrders,
+    getOrdersByUserId
   }

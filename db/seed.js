@@ -3,7 +3,7 @@ const { client } = require('./')
 const { createProduct, getAllProducts } = require('./products')
 const { createUser, getAllUsers, getUserById, getUserByEmail } = require('./users')
 const { createReview, getAllReviews } = require('./reviews')
-const { createOrder, getAllOrders } = require('./orders')
+const { createOrder, getAllOrders, getOrdersByUserId } = require('./orders')
 const { createOrderItem, getAllOrderItems, getOrderItemsByOrder } = require('./orderItems')
 
 async function dropTables() {
@@ -308,6 +308,7 @@ async function buildDB() {
     await createInitialOrderItems();
     await getAllOrderItems();
     await getAllOrders()
+    await getOrdersByUserId(2)
   }
   catch(ex) {
     console.log('Error building the DB')
