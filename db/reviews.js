@@ -76,6 +76,7 @@ async function getReviewByProduct(id) {
 }
 
 
+
 async function deleteReview(id) {
   try {
     const {rows: reviews } = await client.query(`

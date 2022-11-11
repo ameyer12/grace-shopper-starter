@@ -60,9 +60,28 @@ async function getProductByTitle(id) {
   }
 }
 
+
+
+async function deleteProduct(id) {
+    try {
+        const {rows: products } = await client.query(`
+          DELETE
+          FROM products
+          WHERE "id" = $1
+          RETURNING products
+        `, [id])
+    
+        return products
+    
+    } catch (error) {
+        throw error
+    }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
   getProductById,
-  getProductByTitle
+  getProductByTitle,
+  deleteProduct
 }
