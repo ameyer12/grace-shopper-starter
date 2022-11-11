@@ -33,7 +33,6 @@ async function createOrder({isGuest, customerId, date}) {
 
   async function getOrdersByUserId(id) {
     try {
-
       const { rows: orders } = await client.query(`
         SELECT *
         FROM orders
@@ -44,8 +43,7 @@ async function createOrder({isGuest, customerId, date}) {
       return attachedOrders
 
   } catch(error) {
-      console.log(error)
-      throw error;
+      console.log('failed')
   }  
   }
 
