@@ -14,8 +14,8 @@ function createDate() {
 }
 
 ordersRouter.post('/neworder', async (req, res, next) => {
-    const { itemArray } = req.body
-    const { id } = req.user
+    const { itemArray } = req.body // requires item array in body [{id, qty}]
+    const { id } = req.user // will need logged in user
     const date = createDate()
     customerId = id
     try {
