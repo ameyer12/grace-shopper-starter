@@ -18,6 +18,7 @@ ordersRouter.post('/neworder', async (req, res, next) => {
     const { id } = req.user // will need logged in user
     const date = createDate()
     customerId = id
+    const isGuest = !id
     try {
         const order = await createOrder({isGuest, customerId, date})
         const orderId = order.id
