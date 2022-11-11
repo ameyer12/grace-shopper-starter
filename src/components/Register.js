@@ -8,7 +8,7 @@ const Register = ({ setToken, navigate, setUsername, username, setPassword, pass
 
     const handleSubmit = async () => {
         const passwordRequirements = new RegExp ("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$")
-        // Lowercase, Capital, number, special character  //
+        //Lowercase, Capital, number, special character //
 
         if ((password.length >= 6) && (passwordRequirements.test(password))) {
             
