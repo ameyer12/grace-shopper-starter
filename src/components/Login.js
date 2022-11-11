@@ -50,7 +50,6 @@ const Login = ({setUsername, username, setPassword, password, navigate, setToken
             onChange={(event) => setPassword(event.target.value) }>
             </input>
 
-
             <button type='submit'>Submit</button>
             </div>
         </form>
