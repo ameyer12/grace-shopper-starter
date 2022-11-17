@@ -1,0 +1,56 @@
+.navbar-brand {
+    margin-left: 5%;
+    flex-grow: 3;
+}
+
+
+@media screen and (max-width: 992px) {
+    .nav-link{
+        margin-left: 1%
+    }
+}
+
+@media screen and (min-width: 991px) {
+    #home-link {
+        position: absolute;
+        padding-right: 0.4%;
+        right: 54%;
+        bottom: 10%;
+    }
+    
+    #shop-link {
+        position: absolute;
+        padding-left: 1%;
+        right: 50%;
+        bottom: 10%;
+    }
+
+    #blog-link {
+        position: absolute;
+        padding-left: 1%;
+        right: 46%;
+        bottom: 10%;
+    }
+
+    
+    #about-link {
+        position: absolute;
+        padding-left: 1%;
+        right: 41%;
+        bottom: 10%;
+    }
+
+    #profile-link {
+        position: absolute;
+        right: 9%;
+        bottom: 10%;
+    }
+
+    #cart-link {
+        position: absolute;
+        padding-left: 1%;
+        right: 5%;
+        bottom: 10%;
+    }
+}
+
