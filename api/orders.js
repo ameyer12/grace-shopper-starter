@@ -1,7 +1,8 @@
 const express = require('express');
-const { getOrdersByUserId, getAllOrders, createOrder } = require('../db/orders');
+const { getOrdersByUserId, getAllOrders, createOrder, getOrderByOrderId, deleteOrder } = require('../db/orders');
 const { createOrderItem } = require('../db/orderItems')
 const {getProductById} = require('../db/products')
+const { requireUser } = require('./utils');
 const ordersRouter = express.Router()
 
 function createDate() {
@@ -49,7 +50,7 @@ ordersRouter.get('/', async (req, res, next) => {
     
 })
 
-ordersRouter.get('/user/:id', async (req, res) => {
+ordersRouter.get('/user/:id', requireUser, async (req, res, next) => {
     const id = req.params.id * 1
     console.log(id)
     try {
@@ -60,6 +61,21 @@ ordersRouter.get('/user/:id', async (req, res) => {
         next({name, message})
     }
 
+})
+
+ordersRouter.delete('/:orderId', requireUser, async (req, res, next) => {
+    const { orderId } = req.params;
+    try {
+        const deleteOrder = await getOrderByOrderId(orderId)
+        if(deleteOrder.creatorId === req.user.id) {
+            const deletedOrder = await deleteOrder( orderId )
+
+            res.send(deletedOrder[0])
+        }
+
+    } catch ({name, message}) {
+        next({name, message})
+    }
 })
 
 ordersRouter.use((error, req, res, next) => {
