@@ -66,9 +66,9 @@ ordersRouter.get('/user/:id', requireUser, async (req, res, next) => {
 ordersRouter.delete('/:orderId', requireUser, async (req, res, next) => {
     const { orderId } = req.params;
     try {
-        const deleteOrder = await getOrderByOrderId(orderId)
-        if(deleteOrder.creatorId === req.user.id) {
-            const deletedOrder = await deleteOrder( orderId )
+        const selectedOrder = await getOrderByOrderId(orderId)
+        if(selectedOrder.customerId === req.user.id) {
+            const deletedOrder = await deleteOrder(orderId)
 
             res.send(deletedOrder[0])
         }

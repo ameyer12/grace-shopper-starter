@@ -91,7 +91,7 @@ async function deleteOrder(id) {
       RETURNING *;
       `, [id])
     deletedOrder.items = items;
-
+    
     return deletedOrder
   } catch (err) {
     console.log('error deleting order')
