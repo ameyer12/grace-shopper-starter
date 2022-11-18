@@ -15,7 +15,7 @@ usersRouter.get('/', (req, res, next) => {
 
 //POST /api/users/register
 usersRouter.post('/register', async (req, res, next) => {
-    console.log(users)
+
     try{
         const { email, password } = req.body;
         const registeringUser = await getUserByEmail(email);
@@ -45,9 +45,18 @@ usersRouter.post('/register', async (req, res, next) => {
             }
         }
  
-    } catch (error) {
-        next(error)
+    } catch ({name, message}) {
+        next({name, message})
     }
 })
+
+usersRouter.use((error, req, res, next) => { // error handler
+    console.log('error occurred')
+    res.send({
+      name: error.name,
+      message: error.message
+    });
+  });
+
 
 module.exports = usersRouter;
