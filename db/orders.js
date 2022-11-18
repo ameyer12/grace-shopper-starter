@@ -51,7 +51,7 @@ async function createOrder({isGuest=true, customerId=null, date}) {
   async function attachItemsToOrders(orders) {
     await Promise.all(orders.map(async (order) => {
       const { rows: orders } = await client.query(`
-      SELECT DISTINCT "orderItems".*, products.image
+      SELECT DISTINCT "orderItems".*, products.image, products.title
       FROM "orderItems"
       JOIN products
       ON "orderItems"."productId"=products.id
@@ -61,6 +61,14 @@ async function createOrder({isGuest=true, customerId=null, date}) {
     }))
 
     return orders
+  }
+
+  async function deleteOrder() {
+    try {
+      
+    } catch(err) {
+      console.log('error deleting order')
+    }
   }
 
 
