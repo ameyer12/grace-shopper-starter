@@ -7,7 +7,7 @@ import './navbar.css'
 const Navbar = ({ logout, token }) => {
   return (
     <nav class="navbar navbar-expand-lg navbar-light" style={{background: "white"}}>
-      <a class="navbar-brand" href="#">Company Name</a>
+      <a class="navbar-brand" href="/">Company Name</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,10 +26,10 @@ const Navbar = ({ logout, token }) => {
             <a id="about-link" class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item">
-            <a id="profile-link" class="nav-link" href="#">Profile</a>
+            <a id="profile-link" class="nav-link" href="#"><i class="material-icons">person</i></a>
           </li>
           <li class="nav-item">
-            <a id="cart-link"class="nav-link" href="#">Cart</a>
+            <a id="cart-link"class="nav-link" href="#"><i class="material-icons">shopping_cart</i></a>
           </li>
         </ul>
       </div>

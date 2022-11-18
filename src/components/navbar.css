@@ -1,5 +1,6 @@
 .navbar-brand {
-    margin-left: 5%;
+    color: #BC4639;
+    margin-left: 5.5%;
     flex-grow: 3;
 }
 
@@ -42,15 +43,24 @@
 
     #profile-link {
         position: absolute;
+        color: #BC4639;
         right: 9%;
-        bottom: 10%;
+        bottom: 0.1%;
     }
 
     #cart-link {
         position: absolute;
+        color: #BC4639;
         padding-left: 1%;
         right: 5%;
-        bottom: 10%;
+        bottom: 0.1%;
     }
 }
 
+ul.navbar-nav a:hover { 
+    color: #BC4639; 
+}
+
+ul.navbar-nav a:active { 
+    color: #BC4639 !important; 
+}
