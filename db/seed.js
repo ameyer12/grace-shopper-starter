@@ -65,7 +65,6 @@ async function createTables() {
     await client.query(`
       CREATE TABLE orders (
         id SERIAL PRIMARY KEY,
-        "isGuest" BOOLEAN DEFAULT false,
         "customerId" INTEGER REFERENCES users( id ),
         date DATE NOT NULL
       );
@@ -217,8 +216,6 @@ async function createInitialOrders() {
   try {
     console.log('Creating Orders')
     await createOrder({
-      isGuest: 
-        true,
       customerId:
         null,
       date: 
@@ -226,8 +223,6 @@ async function createInitialOrders() {
     });
     
     await createOrder({
-      isGuest: 
-        false,
       customerId:
         2,
       date: 
@@ -235,8 +230,6 @@ async function createInitialOrders() {
     });
     
     await createOrder({
-      isGuest: 
-        true,
       customerId:
         null,
       date: 
