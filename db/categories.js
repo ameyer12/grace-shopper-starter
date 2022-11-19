@@ -55,9 +55,15 @@ async function addCategoryToProduct({categoryId, productId}) {
     }
 }
 
-async function getProductsByCategoryId(category) {
+async function getProductsByCategoryId(categoryId) {
     try {
-     
+     const {rows: products} = await client.query(`
+     SELECT DISTINCT products.*
+     FROM products
+     JOIN product_categories AS pc
+     ON products.id = pc."productId"
+     WHERE pc."categoryId"=$1;
+     `,[categoryId])
     } catch(err) {
         console.log('error occurred getting products by categoryId')
     }
@@ -71,6 +77,7 @@ module.exports = {
     getAllCategories,
     getCategoryByCategoryName,
     addCategoryToProduct,
+    getProductsByCategoryId
 }
 
 

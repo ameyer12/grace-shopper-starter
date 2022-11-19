@@ -1,6 +1,8 @@
 const { client } = require('./');
+const {addCategoryToProduct} = require('./categories')
 
-async function createProduct({title, description, price, inventory, image}) {
+
+async function createProduct({title, description, price, inventory, image, categories = []}) {
   try {
     const { rows: [product]} = await client.query(`
       INSERT INTO products (title, description, price, inventory, image)
@@ -8,6 +10,14 @@ async function createProduct({title, description, price, inventory, image}) {
       RETURNING *;
     `, [title, description, price, inventory, image])
     
+    categories.map(async (cat) => {
+      const categoryFields = {
+        productId: product.id,
+        categoryId: cat
+      }
+      return await addCategoryToProduct(categoryFields)
+    })
+    product.categories = categories
     return product;
   }
   catch(error) {

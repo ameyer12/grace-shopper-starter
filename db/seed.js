@@ -225,7 +225,7 @@ async function createInitialReviews() {
 async function createInitialCategories() {
   try {
     console.log('creating categories')
-    const categoriesToAdd = [
+    const categoriesToAdd = [ // add more strings to this array to make more categories
       'Featured',
       'Shirts',
       'Pants',
