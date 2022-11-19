@@ -5,6 +5,7 @@ const { createUser, getAllUsers, getUserById, getUserByEmail } = require('./user
 const { createReview, getAllReviews, deleteReview } = require('./reviews')
 const { createOrder, getAllOrders, getOrdersByUserId } = require('./orders')
 const { createOrderItem, getAllOrderItems, getOrderItemsByOrder } = require('./orderItems')
+const { createCategory } = require('./categories')
 
 async function dropTables() {
   try {
@@ -221,6 +222,25 @@ async function createInitialReviews() {
   }
 }
 
+async function createInitialCategories() {
+  try {
+    console.log('creating categories')
+    const categoriesToAdd = [
+      'Featured',
+      'Shirts',
+      'Pants',
+      'Shoes'
+    ]
+    categoriesToAdd.map(async (cat) => {
+      await createCategory(cat)
+    })
+    console.log('finished creating categories')
+  } catch (ex) {
+    console.log('error creating categories')
+    console.log(ex)
+  }
+}
+
 async function createInitialOrders() {
   try {
     console.log('Creating Orders')
@@ -305,12 +325,10 @@ async function buildDB() {
     await createTables();
     await createInitialProducts();
     await createInitialUsers();
+    await createInitialCategories();
     await createInitialReviews();
     await createInitialOrders();
     await createInitialOrderItems();
-    await getAllOrderItems();
-    await getAllOrders()
-    await getOrdersByUserId(2)
   }
   catch (ex) {
     console.log('Error building the DB')

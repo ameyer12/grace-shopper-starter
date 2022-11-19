@@ -7,7 +7,7 @@ async function createOrder({customerId = null, date }) {
         VALUES ($1, $2)
         RETURNING *;
       `, [customerId, date])
-    console.log(order)
+      
     return order;
   }
   catch (error) {

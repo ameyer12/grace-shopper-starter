@@ -6,50 +6,71 @@ async function createCategory(cat) {
         const { rows: category} = await client.query(`
         INSERT INTO categories(category)
         VALUES ($1)
-        RETURNING *
-    `[cat])
+    `,[cat])
         return category
     } catch(err) {
         console.log(`error creating category ${cat}`)
+        console.log(err)
     }
     
 }
 
 async function getAllCategories() {
-    const {rows: categories} = await client.query(`
-    SELECT *
-    FROM categories
-    `)
-    return categories
+    try {
+        const {rows: categories} = await client.query(`
+        SELECT *
+        FROM categories
+        `)
+        return categories
+    } catch(err) {
+        console.log('error getting all categories')
+    }
 }
 
 async function getCategoryByCategoryName(cat) {
-    const {rows: [category]} = await client.query(`
-    SELECT *
-    FROM categories
-    WHERE category=$1;
-    `,[cat])
-
-    return category
+    try {
+        const {rows: [category]} = await client.query(`
+        SELECT *
+        FROM categories
+        WHERE category=$1;
+        `,[cat])
+    
+        return category
+    } catch(err) {
+        console.log('getCategoryByCategoryName')
+    }
 }
 
-async function addCategoryToProduct(category) {
-    const {rows: categories} = await client.query(`
-    INSERT INTO product_categories("categoryId", "productId")
-    VALUES($1, $2)
-    RETURNING *;
-    `)
-
-    return category
+async function addCategoryToProduct({categoryId, productId}) {
+    try{
+        const {rows: category} = await client.query(`
+        INSERT INTO product_categories("categoryId", "productId")
+        VALUES($1, $2)
+        RETURNING *;
+        `,[categoryId, productId])
+    
+        return category
+    } catch(err) {
+        console.log('error adding category to product')
+    }
 }
 
+async function getProductsByCategoryId(category) {
+    try {
+     
+    } catch(err) {
+        console.log('error occurred getting products by categoryId')
+    }
+}
 
 
 
 
 module.exports = {
     createCategory,
-    getAllCategories
+    getAllCategories,
+    getCategoryByCategoryName,
+    addCategoryToProduct,
 }
 
 
