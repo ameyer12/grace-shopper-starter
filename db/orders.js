@@ -65,13 +65,13 @@ async function attachItemsToOrders(orders) {
 
 async function getOrderByOrderId(id) {
   try {
-    const { rows: [order] } = await client.query(`
+    const { rows: order } = await client.query(`
     SELECT *
     FROM orders
     WHERE id=$1;
     `, [id])
-
-    return order
+    
+    return await attachItemsToOrders(order)
   } catch(err) {
     console.log('error getting order by id')
   }

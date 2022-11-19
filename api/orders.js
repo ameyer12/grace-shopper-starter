@@ -35,7 +35,7 @@ ordersRouter.post('/neworder', async (req, res, next) => {
         }))
 
         order.items = newItems
-        res.send(order)
+        res.send(await getOrderByOrderId(orderId))
     } catch({name, message}) {
         next({name, message})
     }
