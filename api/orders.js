@@ -40,7 +40,6 @@ ordersRouter.post('/neworder', async (req, res, next) => {
 })
 
 ordersRouter.get('/', async (req, res, next) => {
-    console.log(createDate())
     try {
         const orders = await getAllOrders()
         res.send(orders)
