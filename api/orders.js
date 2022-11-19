@@ -16,23 +16,25 @@ function createDate() {
 
 ordersRouter.post('/neworder', async (req, res, next) => {
     const { itemArray } = req.body // requires item array in body [{id, qty}]
-    const { id } = req.user // will need logged in user
+    const customerId = null
+    if(req.user) {
+        customerId = req.user.id // will need logged in user
+    }
     const date = createDate()
-    customerId = id
-    const isGuest = !id
     try {
-        const order = await createOrder({isGuest, customerId, date})
+        const order = await createOrder({customerId, date})
         const orderId = order.id
-        itemArray.map( async (item) => {
+        const newItems = await Promise.all(itemArray.map( async (item) => {
             const product = await getProductById(item.id)
-            const productId = product.id
-            const price = product.price
+            const productId = product[0].id
+            const price = product[0].price
             const quantity = item.qty
             const newItem = await createOrderItem({orderId, productId, quantity, price})
 
             return newItem
-        })
-        order.items = itemArray
+        }))
+
+        order.items = newItems
         res.send(order)
     } catch({name, message}) {
         next({name, message})
