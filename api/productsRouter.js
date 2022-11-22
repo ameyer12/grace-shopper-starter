@@ -1,5 +1,5 @@
 const express = require('express');
-
+const { getAllCategories, getProductsByCategoryId } = require('../db/categories')
 const { getAllProducts, createProduct, getProductById, deleteProduct } = require('../db/products')
 
 const productsRouter = express.Router();
@@ -18,7 +18,7 @@ productsRouter.get('/', async (req, res, next) => {
 
 productsRouter.post('/', async (req, res, next) => {
 
-  const { title, description, price, category, inventory, image } = req.body;
+  const { title, description, price, categories, inventory, image } = req.body;
 
     try {
       console.log("attempting function")
@@ -41,6 +41,31 @@ productsRouter.delete('/:productId', async (req, res, next) => {
       const product = await getProductById(req.params.productId);
 
       await deleteProduct(req.params.productId)
+
+  } catch ({ name, message }) {
+      res.send({name, message})
+  }
+});
+
+productsRouter.get('/category/:catId', async (req, res, next) => { //getting products by category
+  try {
+    const catId = req.params.catId
+
+    const products = await getProductsByCategoryId(catId)
+
+    res.send(products)
+
+  } catch ({ name, message }) {
+      res.send({name, message})
+  }
+});
+
+productsRouter.get('/categories/data', async (req, res, next) => { //getting products by category
+  try {
+
+    const categories = await getAllCategories()
+
+    res.send(categories)
 
   } catch ({ name, message }) {
       res.send({name, message})

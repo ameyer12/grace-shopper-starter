@@ -43,11 +43,12 @@ async function getCategoryByCategoryName(cat) {
 
 async function addCategoryToProduct({categoryId, productId}) {
     try{
+        console.log(categoryId, productId)
         const {rows: category} = await client.query(`
-        INSERT INTO product_categories("categoryId", "productId")
-        VALUES($1, $2)
+        INSERT INTO product_categories ("categoryId", "productId")
+        VALUES ($1, $2)
         RETURNING *;
-        `,[categoryId, productId])
+        `, [categoryId, productId])
     
         return category
     } catch(err) {
@@ -64,6 +65,8 @@ async function getProductsByCategoryId(categoryId) {
      ON products.id = pc."productId"
      WHERE pc."categoryId"=$1;
      `,[categoryId])
+
+     return products
     } catch(err) {
         console.log('error occurred getting products by categoryId')
     }

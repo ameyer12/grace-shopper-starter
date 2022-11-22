@@ -116,7 +116,8 @@ async function createInitialProducts() {
       inventory:
         2,
       image:
-        "Example image"
+        "Example image",
+      categories: [1 , 2 , 3]
     });
 
     await createProduct({
@@ -129,7 +130,8 @@ async function createInitialProducts() {
       inventory:
         2,
       image:
-        "Example image"
+        "Example image",
+      categories: [ 2, 3]
     });
 
     await createProduct({
@@ -142,7 +144,8 @@ async function createInitialProducts() {
       inventory:
         2,
       image:
-        "Example image"
+        "Example image",
+      categories: [4]
     });
 
     console.log('Finished creating Products')
@@ -221,7 +224,6 @@ async function createInitialReviews() {
     console.log(ex)
   }
 }
-
 async function createInitialCategories() {
   try {
     console.log('creating categories')
@@ -240,6 +242,7 @@ async function createInitialCategories() {
     console.log(ex)
   }
 }
+
 
 async function createInitialOrders() {
   try {
@@ -323,9 +326,9 @@ async function buildDB() {
     client.connect();
     await dropTables();
     await createTables();
+    await createInitialCategories();
     await createInitialProducts();
     await createInitialUsers();
-    await createInitialCategories();
     await createInitialReviews();
     await createInitialOrders();
     await createInitialOrderItems();
