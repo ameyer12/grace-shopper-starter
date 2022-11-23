@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from "react-router";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from "./components/Navbar";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 
