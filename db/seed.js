@@ -338,7 +338,6 @@ async function buildDB() {
   }
 }
 
-
 buildDB()
   .catch(console.error)
   .finally(() => client.end())
