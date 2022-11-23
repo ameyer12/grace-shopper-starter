@@ -1,18 +1,62 @@
 const { client } = require('./');
+const bcrypt = require('bcrypt');
 
 async function createUser({email, password}) {
-    try {
+  const SALT_COUNT = 10;
+  const hashedPassword = await bcrypt.hash(password, SALT_COUNT)
+  try {
       const { rows: [user]} = await client.query(`
         INSERT INTO users (email, password)
         VALUES ($1, $2)
         RETURNING *;
-      `, [email, password])
-      
+      `, [email, hashedPassword])
+      if(hashedPassword) {
+        console.log('hashedPassword is here')
+        delete user.password
+        return user;
+      }
+
       return user;
     }
     catch(error) {
       console.log('error in createUser adapter function')
       console.log(error)
+    }
+  }
+
+  async function getUser({email, password}) {
+    if (!email || !password) {
+      console.log('error3')
+      return;
+    }
+
+    try {
+      const user = await getUserByEmail(email);
+      if(!user) {
+        return;
+      }
+      console.log(user)
+      const hashedPassword = user.password;
+      const passwordsMatch = await bcrypt.compare(password, hashedPassword)
+
+      if (passwordsMatch) {
+        console.log('working')
+        const { rows: [user] } = await client.query(`
+        SELECT id, email
+        FROM users
+        WHERE email = "${email} AND password = ${hashedPassword}";
+        `)
+
+        return user;
+      } else {
+        console.log(passwordsMatch)
+        console.log('hashedPassword:', hashedPassword)
+        console.log('password:', password)
+        return null;
+      }
+    } catch(error) {
+      console.log('error1')
+      throw error;
     }
   }
 
@@ -23,14 +67,7 @@ async function createUser({email, password}) {
       FROM users
       WHERE email = $1
       `, [email]);
-
-      if (!user) {
-        throw {
-          name: 'UserNotFoundError',
-          message: 'No user found with that email'
-        }
-      }
-
+      
       return user;
     } catch(error) {
       throw error;
@@ -74,6 +111,7 @@ async function createUser({email, password}) {
   module.exports = {
     createUser,
     getAllUsers,
+    getUser,
     getUserByEmail,
     getUserById
   }

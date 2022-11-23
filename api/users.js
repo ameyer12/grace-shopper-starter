@@ -2,9 +2,11 @@ const express = require('express');
 const usersRouter = express.Router();
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET = 'neverTell' } = process.env;
+const bcrypt = require('bcrypt');
 const {
     createUser,
-    getUserByEmail
+    getUserByEmail,
+    getUser
 } = require('../db/users');
 
 usersRouter.get('/', (req, res, next) => {
@@ -47,6 +49,41 @@ usersRouter.post('/register', async (req, res, next) => {
  
     } catch ({name, message}) {
         next({name, message})
+        console.log('error!!!!')
+    }
+})
+
+usersRouter.post('/login', async (req, res, next) => {
+    const {email, password} = req.body;
+
+    if (!email || !password) {
+        next({
+            name: 'MissingCredentialsError',
+            message: 'Please supply both an email and a password'
+        });
+    }
+    async function comparePasswords(plainTextPassword, hash) {
+        const results = await bcrypt.compare(plainTextPassword, hash)
+        return results;
+    }
+
+    try {
+        const user = await getUserByEmail(email);
+        if (user && comparePasswords(password, '10')) {
+            const token = jwt.sign({id: user.id, email: user.email}, JWT_SECRET, { expiresIn: '1w' });
+            res.send({
+                user,
+                message: 'Login successful',
+                token
+            });
+        } else {
+            next({
+                name: 'IncorrectCredentialsError',
+                message: 'Email or Password is incorrect'
+            });
+        }
+    } catch(error) {
+        next(error);
     }
 })
 
