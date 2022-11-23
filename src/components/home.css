@@ -1,4 +1,151 @@
 .home {
-    background-color: #DADADA;
-    height: 90vh;
+    position: absolute;
+    height: 93%;
+    width: 100%;
+    background-color: #dadada;
+    overflow: auto;
+}
+
+.home-page-h1 {
+    position: absolute;
+    padding-bottom: 5%;
+    top: 15%;
+    left: 5;
+    margin-left: 13.5%;
+    margin-right: 55%;
+}
+
+.home-page-p {
+    position: absolute;
+    padding-top: 0.5%;
+    top: 25%;
+    left: 5;
+    margin-left: 13.5%;
+    margin-right: 55%;
+}
+
+.home-page-p-browse-callout{
+    margin-left: 20%;
+    font-size: 20pt;
+}
+
+.home-page-image {
+    width: 50%;
+    margin-bottom: 3%;
+}
+
+.home-page-image-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #BC4639;
+    height: 100%;
+    width: 50%;
+    right: 0;
+}
+
+.btn {
+    position: absolute;
+    background-color: #BC4639;
+    margin-left: 20.5%;
+    margin-right: 55%;
+    top: 40%;
+}
+
+.btn:hover {
+    background-color: white;
+}
+
+/* 
+@media screen and (min-width: 863px){
+    .home-page-image-container {
+        height: 100vh;
+    }
+
+    .home {
+        background-color: #DADADA;
+        height: 100vh;
+    }
+} */
+
+@media screen and (max-height: 470px){
+    .home-page-image-container {
+        background-color: #dadada;
+    }
+
+    .home-page-p {
+        padding-top: 8%;
+    }
+
+    .btn {
+        display: none;
+    }
+}
+
+@media screen and (min-height: 745px){
+    .btn {
+        position: absolute;
+        background-color: #BC4639;
+        margin-left: 20.5%;
+        margin-right: 55%;
+        top: 40%;
+    }
+}
+
+@media screen and (max-height: 845px){
+    .btn {
+        top: 45%;
+    }
+    .home-page-p {
+        padding-top: 4%;
+    }
+}
+
+@media screen and (max-height: 570px){
+    .btn {
+        top: 68%;
+    }
+    .home-page-p {
+        padding-top: 8%;
+    }
+}
+
+@media screen and (max-height: 580px){
+    .btn {
+        top: 68%;
+    }
+    .home-page-p {
+        padding-top: 8%;
+    }
+}
+
+@media screen and (max-height: 525px){
+    .btn {
+        top: 70%;
+    }
+}
+
+@media screen and (max-width: 1118px){
+    .btn {
+        margin-left: 18%;
+    }
+}
+
+@media screen and (max-width: 759px){
+    .btn {
+        margin-left: 16%;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .btn {
+        top: 47%;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .btn {
+      display: none;
+    }
 }

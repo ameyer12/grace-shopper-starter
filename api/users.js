@@ -13,8 +13,6 @@ usersRouter.get('/', (req, res, next) => {
     res.send('USERS')
   })
 
-
-
 //POST /api/users/register
 usersRouter.post('/register', async (req, res, next) => {
 
