@@ -1,9 +1,9 @@
 import React from 'react';
 import './style.css';
-import { registerUser, /*getNewPageThatLoadsWithLogin*/ } from "../api";
+import { registerUser, getHome } from "../api";
 import { Snackbar } from "@mui/material";
 
-const Register = ({ setToken, navigate, setUsername, username, setPassword, password, /*setNewPageThatLoadsWithLogin,*/ setOpen, open, }) => {
+const Register = ({ setToken, navigate, setUsername, username, setPassword, password, setHome, setOpen, open, }) => {
 
 
     const handleSubmit = async () => {
@@ -19,10 +19,10 @@ const Register = ({ setToken, navigate, setUsername, username, setPassword, pass
             if (results.token) {
                 setToken(results.token)
                 window.localStorage.setItem('token', results.token) 
-                const userResults = await /*getNewPageThatLoadsWithLogin*/(results.token, username)
-                let users/*personalizedData*/ = userResults.data
-                /*setNewPageThatLoadsWithLogin*/(users/*NewPageThatLoadsWithLogin*/)
-                // navigate('/NewPageThatLoadsWithLogin')
+                const userResults = await getHome(results.token, username)
+                let usersHome = userResults.data
+                setHome(usersHome)
+                navigate('Home')
             } else {
                 console.log("error registering user")
             }

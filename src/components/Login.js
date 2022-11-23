@@ -3,7 +3,7 @@ import './style.css';
 import { loginUser } from "../api";
 import { Snackbar } from "@mui/material";
 
-const Login = ({setUsername, username, setPassword, password, navigate, setToken, /*setNewPageThatLoadsWithLogin,*/ setOpen, open, token}) => {
+const Login = ({setUsername, username, setPassword, password, navigate, setToken, setHome, setOpen, open, token}) => {
 
     const handleSubmit = async () => {
         const results = await loginUser(username, password);
@@ -15,8 +15,8 @@ const Login = ({setUsername, username, setPassword, password, navigate, setToken
             window.localStorage.setItem('token', results.token) 
             const userResults = await getMe(results.token)
             console.log ('token is: ', results.token, 'user is: ', userResults.username)
-            /*setNewPageThatLoadsWithLogin*/ (await /*getNewPageThatLoadsWithLogin*/(results.token, username))
-            // navigate('/NewPageThatLoadsWithLogin') 
+            setHome (await getHome(results.token, username))
+            navigate('/Home') 
         } else {
             setOpen(true)
             let form = document.querySelector('form')

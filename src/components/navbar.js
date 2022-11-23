@@ -65,6 +65,37 @@ const Navbar = ({ logout, token }) => {
      
 //     </header>
 //   )
+// }
+
+// return (
+//   <header>
+//     <nav className="navbar">
+//       <Link className="link" to='/'>Home</Link>
+//       <Link className="link" to='/orderItems'>Shop</Link>
+//       <Link className="link" to='/reviews'>Blog</Link>
+//       <Link className="link" to='/products'>About</Link>
+
+
+// {
+// token ?(
+// <>
+// <Link className="link" to='/' 
+//         onClick={ () => {
+//           logout()
+//       }}>Logout</Link>
+// </>
+    
+// ): (<>
+// <Link className="link" to='/register'>Register</Link>
+// <Link className="link" to='/login'>Login</Link>
+
+// </>
+// )
+// }
+//     </nav>
+   
+//   </header>
+// )
 }
 
 export default Navbar;
