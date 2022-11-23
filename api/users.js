@@ -47,6 +47,7 @@ usersRouter.post('/register', async (req, res, next) => {
  
     } catch ({name, message}) {
         next({name, message})
+        console.log('error!!!!')
     }
 })
 

@@ -24,13 +24,6 @@ async function createUser({email, password}) {
       WHERE email = $1
       `, [email]);
 
-      if (!user) {
-        throw {
-          name: 'UserNotFoundError',
-          message: 'No user found with that email'
-        }
-      }
-
       return user;
     } catch(error) {
       throw error;
