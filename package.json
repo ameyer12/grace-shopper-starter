@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start-build": "node ./db/seed.js && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "nodemon index.js",
     "seed:dev": "nodemon ./db/seed.js",
