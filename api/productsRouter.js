@@ -22,8 +22,9 @@ productsRouter.post('/', async (req, res, next) => {
 
     try {
       console.log("attempting function")
+      console.log("hello")
 
-      const product = createProduct(req.body)
+      const product = await createProduct(req.body)
 
       res.send({
         product

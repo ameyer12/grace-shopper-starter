@@ -5,11 +5,12 @@ import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import { Shop } from './components';
-import { getProducts } from "./api"
+import { getProducts, getOrders } from "./api"
 
 const App = () => {
 
   console.log(getProducts())
+  console.log(getOrders())
 
     return (
       <div>
