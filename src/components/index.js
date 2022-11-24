@@ -1,5 +1,6 @@
-export {default as Home} from "./home";
-export {default as Login} from "./login";
-export {default as Register} from "./register";
+export {default as Home} from "./Home";
+export {default as Login} from "./Login";
+export {default as Register} from "./Register";
 export {default as Navbar} from "./navbar";
 export {default as Footer} from "./Footer";
+export {default as Shop} from "./Shop";

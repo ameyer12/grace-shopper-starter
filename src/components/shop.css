@@ -1,0 +1,7 @@
+.shop {
+    position: absolute;
+    height: 93%;
+    width: 100%;
+    background-color: #dadada;
+    overflow: scroll;
+}

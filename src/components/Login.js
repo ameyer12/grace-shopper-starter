@@ -1,58 +1,61 @@
 import React from 'react';
 import './style.css';
 import { loginUser } from "../api";
-import { Snackbar } from "@mui/material";
+// import { Snackbar } from "@mui/material";
 
 const Login = ({setUsername, username, setPassword, password, navigate, setToken, setHome, setOpen, open, token}) => {
 
-    const handleSubmit = async () => {
-        const results = await loginUser(username, password);
-        console.log('results submitting user: ', results)
+    // const handleSubmit = async () => {
+    //     const results = await loginUser(username, password);
+    //     console.log('results submitting user: ', results)
 
         
-        if (results.token) {
-            setToken(results.token)
-            window.localStorage.setItem('token', results.token) 
-            const userResults = await getMe(results.token)
-            console.log ('token is: ', results.token, 'user is: ', userResults.username)
-            setHome (await getHome(results.token, username))
-            navigate('/Home') 
-        } else {
-            setOpen(true)
-            let form = document.querySelector('form')
-            form.reset()
-        }
-    }
+    //     if (results.token) {
+    //         setToken(results.token)
+    //         window.localStorage.setItem('token', results.token) 
+    //         const userResults = await getMe(results.token)
+    //         console.log ('token is: ', results.token, 'user is: ', userResults.username)
+    //         setHome (await getHome(results.token, username))
+    //         navigate('/Home') 
+    //     } else {
+    //         setOpen(true)
+    //         let form = document.querySelector('form')
+    //         form.reset()
+    //     }
+    // }
     
     return (
-        <form className='loginForm' onSubmit = {(event)=> {
-            event.preventDefault();
-                handleSubmit()
-            }
-        }>
-            <Snackbar 
-                open={open}
-                anchorOrigin= {{vertical: "top", horizontal: "center"}}
-                message='Username or Password is incorrect, please try again' 
-                autoHideDuration={2000} 
-                onClose={() => setOpen(false)}
-                >
-            </Snackbar>
-            <div className="loginForm">
-            <input className="usernameEntry"
-            type='text'
-            placeholder="Enter Username"
-            onChange={(event) => setUsername(event.target.value)}>
-            </input>
-            <input className="passwordEntry"
-            type='password'
-            placeholder="Enter Password"
-            onChange={(event) => setPassword(event.target.value) }>
-            </input>
+        <div>
+            <h1>Logging in</h1>
+        </div>
+        // <form className='loginForm' onSubmit = {(event)=> {
+        //     event.preventDefault();
+        //         handleSubmit()
+        //     }
+        // }>
+        //     <Snackbar 
+        //         open={open}
+        //         anchorOrigin= {{vertical: "top", horizontal: "center"}}
+        //         message='Username or Password is incorrect, please try again' 
+        //         autoHideDuration={2000} 
+        //         onClose={() => setOpen(false)}
+        //         >
+        //     </Snackbar>
+        //     <div className="loginForm">
+        //     <input className="usernameEntry"
+        //     type='text'
+        //     placeholder="Enter Username"
+        //     onChange={(event) => setUsername(event.target.value)}>
+        //     </input>
+        //     <input className="passwordEntry"
+        //     type='password'
+        //     placeholder="Enter Password"
+        //     onChange={(event) => setPassword(event.target.value) }>
+        //     </input>
 
-            <button type='submit'>Submit</button>
-            </div>
-        </form>
+        //     <button type='submit'>Submit</button>
+        //     </div>
+        // </form>
     )
 }
 

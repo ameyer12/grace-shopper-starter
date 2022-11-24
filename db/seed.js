@@ -108,43 +108,71 @@ async function createInitialProducts() {
     console.log('Creating Products')
     await createProduct({
       title:
-        "The first most amazing product",
+        "Beige Crewneck Sweater",
       description:
-        "Description for the first most amazing product ever....",
+        "100% cotton. Ribbed collar, cuffs, and hem.",
       price:
-        1,
+        60,
       inventory:
-        2,
+        27,
       image:
-        "Example image",
+        "https://i.postimg.cc/fyZ51QKY/pexels-ron-lach-9594089.jpg",
       categories: [1 , 2 , 3]
     });
 
     await createProduct({
       title:
-        "The second most amazing product",
+        "Assorted Sock Box",
       description:
-        "Description for the second most amazing product ever....",
+        "80% Cotton, 17% Polyester, 3% Spandex. Heavyweight fabric.",
       price:
-        1,
+        20,
       inventory:
-        2,
+        16,
       image:
-        "Example image",
+        "https://i.postimg.cc/d3Hd6bSs/pexels-ron-lach-9594145.jpg",
       categories: [ 2, 3]
     });
 
     await createProduct({
       title:
-        "The third most amazing product",
+        "Olive Green Button-Down Shirt",
       description:
-        "Description for the third most amazing product ever....",
+        "100% Cotton. Button-down collar.",
       price:
-        1,
+        40,
       inventory:
-        2,
+        32,
       image:
-        "Example image",
+        "https://i.postimg.cc/dQbTs9PS/pexels-ron-lach-9594940.jpg",
+      categories: [4]
+    });
+
+    await createProduct({
+      title:
+        "Cream Crop-Top",
+      description:
+        "90% cotton and 10% spandex. Ribbed cloth",
+      price:
+        25,
+      inventory:
+        9,
+      image:
+        "https://i.postimg.cc/nV4nmK9W/pexels-ron-lach-9594418.jpg",
+      categories: [4]
+    });
+
+    await createProduct({
+      title:
+        "Jordan 1 Low",
+      description:
+        "White/Black/Gym Red. Leather upper and rubber outsole.",
+      price:
+        110,
+      inventory:
+        12,
+      image:
+        "https://i.postimg.cc/PJ33DFWZ/pexels-hamza-nouasria-12725052.jpg",
       categories: [4]
     });
 

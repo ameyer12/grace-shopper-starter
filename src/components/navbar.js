@@ -17,7 +17,7 @@ const Navbar = ({ logout, token }) => {
             <a class="nav-link" href="/">Home</a>
           </li>
           <li id="shop-link" class="nav-item">
-            <a class="nav-link" href="#">Shop</a>
+            <a class="nav-link" href="/shop">Shop</a>
           </li>
           <li id="blog-link" class="nav-item">
             <a class="nav-link" href="#">Blog</a>
