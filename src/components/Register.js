@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
-import { registerUser, getHome } from "../api";
-import { Snackbar } from "@mui/material";
+// import { registerUser, getHome } from "../api";
+// import { Snackbar } from "@mui/material";
 
 const Register = ({ setToken, navigate, setUsername, username, setPassword, password, setHome, setOpen, open, }) => {
 

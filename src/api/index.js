@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-
 const baseURL = 'http://localhost:3001/api'
 
 export const getProducts = async () => {
@@ -10,7 +7,7 @@ export const getProducts = async () => {
         const results = await response.json();
 
         console.log(results)
-  
+
         return (results)
     } catch (error) {
         console.log("couldn't get activities")
@@ -23,8 +20,6 @@ export const getOrders = async () => {
         const response = await fetch(`${baseURL}/orders`)
 
         const results = await response.json();
-
-        console.log(results)
   
         return (results)
     } catch (error) {

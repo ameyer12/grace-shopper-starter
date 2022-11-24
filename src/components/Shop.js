@@ -1,11 +1,25 @@
 import React from 'react';
 import './shop.css';
 
-const Shop = () => {
+const Shop = ({products}) => {
     return (
-        <div className="shop" >
-            <h1>This is the shop page</h1>
+        <div className="shop">
+        <h1 className='shop-page-h1'>Shop All</h1>
+        <div className='products-container'> {
+            products.map((currentItem, index) => { 
+                return <li className="card" key={index}>
+                            <img className="product-image" src={currentItem.image} alt={currentItem.description}/>
+                            <p className='product-title'>
+                                {currentItem.title}
+                                <br></br>
+                                ${currentItem.price}
+                                <br></br>
+                            </p>
+                        </li>
+            })}
         </div>
+        <div className='spacing-div'></div>
+    </div>
     )
 }
 

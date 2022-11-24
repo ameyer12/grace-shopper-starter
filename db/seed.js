@@ -176,6 +176,77 @@ async function createInitialProducts() {
       categories: [4]
     });
 
+    await createProduct({
+      title:
+        "Nike Hat",
+      description:
+        "Black/Gym Red. Adjustable size.",
+      price:
+        20,
+      inventory:
+        8,
+      image:
+        "https://i.postimg.cc/nV6TsqK5/pexels-aman-jakhar-1124465.jpg",
+      categories: [4]
+    });
+
+    await createProduct({
+      title:
+        "Round Sunglasses",
+      description:
+        "Black gradient. Metal frame.",
+      price:
+        75,
+      inventory:
+        10,
+      image:
+        "https://i.postimg.cc/LXR509P2/pexels-asim-alnamat-343720.jpg",
+      categories: [4]
+    });
+
+    await createProduct({
+      title:
+        "Jeans",
+      description:
+        "Two colors available. 100% denim.",
+      price:
+        60,
+      inventory:
+        35,
+      image:
+        "https://i.postimg.cc/02mp3QMJ/pexels-mica-asato-1082528.jpg",
+      categories: [4]
+    });
+
+    await createProduct({
+      title:
+        "37mm Watch",
+      description:
+        "Leather band. 37mm face.",
+      price:
+        190,
+      inventory:
+        13,
+      image:
+        "https://i.postimg.cc/kGGTKdfv/pexels-anthony-derosa-236915.jpg",
+      categories: [4]
+    });
+
+    await createProduct({
+      title:
+        "Leather Dress Shoes",
+      description:
+        "Genuine leather. Wide-range of sizes available.",
+      price:
+        105,
+      inventory:
+        13,
+      image:
+        "https://i.postimg.cc/L5jGnSXQ/pexels-donna-9965910.jpg",
+      categories: [4]
+    });
+
+
     console.log('Finished creating Products')
   }
   catch (ex) {

@@ -5,3 +5,40 @@
     background-color: #dadada;
     overflow: scroll;
 }
+
+.shop-page-h1 {
+    font-size: 20pt;
+    margin-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 1.5%;
+    border-bottom: 1px solid gray;
+}
+
+.product-image {
+    width: 16rem;
+    height: 15rem;
+    margin-right: 18%;
+}
+
+.spacing-div {
+    padding: 3%;
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-left: 2%;
+    margin-top: 1.5%;
+    margin-right: 2%;
+}
+
+.card {
+    background-color: #dadada;
+    border: none;
+}
+
+.product-title {
+    font-size: 10pt;
+    margin-top: 7%;
+}

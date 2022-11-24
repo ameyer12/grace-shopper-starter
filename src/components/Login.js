@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import { loginUser } from "../api";
+// import { loginUser } from "../api";
 // import { Snackbar } from "@mui/material";
 
 const Login = ({setUsername, username, setPassword, password, navigate, setToken, setHome, setOpen, open, token}) => {
