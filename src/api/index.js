@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const baseURL = 'https://grace-shopper-x3lx.onrender.com/api'
+const baseURL = 'http://localhost:3001/api'
 
 export const getProducts = async () => {
     try {
