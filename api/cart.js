@@ -3,7 +3,7 @@ const { requireUser } = require('./utils');
 const { getUsersCart, editCartItem, deleteCartItem, addCartItem } = require('../db/cart')
 const cartRouter = express.Router()
 
-cartRouter.get('/user', requireUser, async (req, res, next) => {
+cartRouter.get('/', requireUser, async (req, res, next) => {
     const { userId } = req.user.id
     try {
         const usersCart = await getUsersCart(userId)

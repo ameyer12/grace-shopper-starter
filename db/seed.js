@@ -171,9 +171,9 @@ async function createInitialUsers() {
     console.log('Creating Users')
     await createUser({
       email:
-        "First User",
+        "testuser@email.com",
       password:
-        "Password1"
+        "Tester456!"
     });
 
     await createUser({
