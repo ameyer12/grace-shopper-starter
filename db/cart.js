@@ -3,7 +3,7 @@ const { client } = require('./');
 async function getUsersCart(userId) {
     try {
         const {rows: cart} = await client.query(`
-        SELECT * FROM users_carts
+        SELECT * FROM user_carts
         WHERE "userId"=$1;
         `, [userId])
 
@@ -15,21 +15,24 @@ async function getUsersCart(userId) {
 
 async function addCartItem({itemId, userId, qty}) {
     try {
+
         const { rows: item} = await client.query(`
-        INSERT INTO users_carts("itemId", "userId", qty)
+        INSERT INTO user_carts("itemId", "userId", qty)
         VALUES($1, $2, $3)
         RETURNING *;
         `, [itemId, userId, qty])
+
+        return item
     } catch(ex) {
-        console.log('error adding cart item')
+        console.log('error adding cart item', ex)
     }
 }
 
 async function editCartItem({itemId, userId, qty}) {
     try {
           const { rows: [item] } = await client.query(`
-          UPDATE users_carts
-          SET "qty"=$1,
+          UPDATE user_carts
+          SET "qty"=$1
           WHERE "userId"=${userId}
           AND
           "itemId"=${itemId}
@@ -38,7 +41,7 @@ async function editCartItem({itemId, userId, qty}) {
         
           return item;
     } catch(ex) {
-        console.log('error editing cart item')
+        console.log('error editing cart item', ex)
     }
 }
 
@@ -46,7 +49,7 @@ async function deleteCartItem({itemId, userId}) {
     try {
         const {rows: cart } = await client.query(`
           DELETE
-          FROM users_carts
+          FROM user_carts
           WHERE "itemId" = $1
           AND "userId" = $2
           RETURNING *
