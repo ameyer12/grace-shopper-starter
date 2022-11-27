@@ -43,7 +43,6 @@ async function getCategoryByCategoryName(cat) {
 
 async function addCategoryToProduct({categoryId, productId}) {
     try{
-        console.log(categoryId, productId)
         const {rows: category} = await client.query(`
         INSERT INTO product_categories ("categoryId", "productId")
         VALUES ($1, $2)

@@ -12,6 +12,7 @@ async function dropTables() {
     console.log('Dropping Tables')
     // add code here
     await client.query(`
+      DROP TABLE IF EXISTS user_carts;
       DROP TABLE IF EXISTS product_categories;
       DROP TABLE IF EXISTS reviews;
       DROP TABLE IF EXISTS "orderItems";
@@ -49,7 +50,8 @@ async function createTables() {
         CREATE TABLE users (
           id SERIAL PRIMARY KEY,
           email VARCHAR(255) UNIQUE NOT NULL,
-          password VARCHAR(255) NOT NULL
+          password VARCHAR(255) NOT NULL,
+          "isAdmin" BOOLEAN DEFAULT FALSE
           );  
           `)
     // users needs, check for valid email
@@ -78,6 +80,15 @@ async function createTables() {
             );
             `)
     // should be ok
+    await client.query(`
+            CREATE TABLE user_carts (
+              id SERIAL PRIMARY KEY,
+              "userId" INTEGER REFERENCES users( id ),
+              "itemId" INTEGER references products( id ),
+              "qty" INTEGER
+              );
+              `)
+
     await client.query(`
             CREATE TABLE orders (
               id SERIAL PRIMARY KEY,
