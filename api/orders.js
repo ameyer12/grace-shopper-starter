@@ -80,7 +80,7 @@ ordersRouter.delete('/:orderId', requireUser, async (req, res, next) => {
 })
 
 ordersRouter.use((error, req, res, next) => {
-    console.log('error occurred')
+    console.log('error occurred in orders')
     res.send({
       name: error.name,
       message: error.message
