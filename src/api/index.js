@@ -6,11 +6,8 @@ export const getProducts = async () => {
 
         const results = await response.json();
 
-        console.log(results)
-
         return (results)
     } catch (error) {
-        console.log("couldn't get activities")
         throw error
     }
 }
@@ -23,7 +20,29 @@ export const getOrders = async () => {
   
         return (results)
     } catch (error) {
-        console.log("couldn't get activities")
         throw error
+    }
+}
+
+export const loginUser = async (email, password) => {
+    try {
+        const response = await fetch(`${baseURL}/users/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                    email,
+                    password
+            })
+        })
+
+        const results = await response.json();
+        console.log(results)
+
+        return results;
+    } catch (err) {
+        console.log('Error logging in user');
+        throw err;
     }
 }

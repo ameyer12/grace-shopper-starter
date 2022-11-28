@@ -10,8 +10,8 @@ const Home = ({navigate}) => {
                     The Closet was founded in 2022. We aim to deliver simple and timeless styles that empower people to look good and feel good. 
                 </p>
                 <button 
-                type="button" 
-                class="btn"
+                type="button"
+                className="btn"
                 onClick={() => {
                     navigate("/shop")
                 }}

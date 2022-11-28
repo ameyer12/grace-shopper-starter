@@ -62,7 +62,7 @@
         padding-top: 8%;
     }
 
-    .btn {
+    .home-page-h1-container > .btn {
         display: none;
     }
 }
@@ -145,7 +145,7 @@
 }
 
 @media screen and (max-width: 600px){
-    .btn {
+    .home-page-h1-container > .btn {
       display: none;
     }
 }
