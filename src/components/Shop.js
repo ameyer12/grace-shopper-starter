@@ -14,6 +14,7 @@ const Shop = ({products}) => {
                                 <br></br>
                                 ${currentItem.price}
                                 <br></br>
+                                <a className="product-link" href={`/products/${currentItem.id}`}>View Item</a>
                             </p>
                         </li>
             })}

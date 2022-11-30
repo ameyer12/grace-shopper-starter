@@ -1,0 +1,77 @@
+.register {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93%;
+    width: 100%;
+    background-color: #dadada;
+    overflow: scroll;
+}
+
+
+#register-form {
+    margin-bottom: 15%;
+    margin-left: 0.5%;
+    height: 22rem;
+    width: 20rem;
+    background-color: white;
+}
+
+.form-group {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    margin-top: 2%;
+}
+
+#register-page-button {
+    border: none;
+    margin-top: 39%;
+    margin-left: 0.1%;
+    width: 18rem;
+}
+
+.register-h1 {
+    font-size: 20pt;
+    margin-top: 3%;
+    margin-bottom: 5%;
+    border-bottom: 1pt solid #BC4639;
+}
+
+#register-form-id > .btn:hover {
+    background-color: #dadada;
+}
+
+.sign-up-message {
+    margin-top: 30%;
+}
+
+#register-alert {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    display: none;
+}
+
+#register-alert > button {
+    background-color: transparent;
+    position: absolute;
+    right: 0rem;
+    left: 6rem;
+    top: 0.52rem;
+    border: none;
+}
+
+#exampleInputPassword2 {
+    margin-top: 5%;
+}
+
+.swal-button {
+    background-color: #BC4639;
+}
+
+.swal-button:hover {
+    background-color: #dadada !important;
+    color: black;
+}

@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import { Shop, Login } from './components';
-import { getProducts, loginUser } from "./api"
+import { Shop, Login, Register, SingleProduct } from './components';
+import { getProducts, loginUser, registerUser, getSingleProduct } from "./api"
 
 const App = () => {
 
@@ -30,6 +30,8 @@ const App = () => {
               <Route path="/" element={<Home navigate={navigate} />} />
               <Route path="/shop" element={<Shop products={products} />} />
               <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} />} />
+              <Route path="/register" element={<Register registerUser={registerUser} navigate={navigate} />} />
+              <Route path="products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} />} />
           </Routes>
           <Footer />
       </div>

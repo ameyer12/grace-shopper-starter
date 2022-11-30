@@ -1,0 +1,31 @@
+.single-product-body {
+    height: 93vh;
+    background-color: #dadada;
+}
+
+.single-product-image {
+    position: absolute;
+    top: 13.6%;
+    left: 10%;
+    width: 40rem;
+    height: 35rem;
+}
+
+.single-product-title {
+    position: absolute;
+    font-size: 20pt;
+    top: 13.6%;
+    right: 21.4%;
+}
+
+.single-product-price {
+    position: absolute;
+    top: 20%;
+    right: 33%;
+}
+
+.single-product-description {
+    position: absolute;
+    top: 25%;
+    right: 13%;
+}

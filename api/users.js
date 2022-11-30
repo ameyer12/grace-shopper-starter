@@ -24,7 +24,9 @@ usersRouter.post('/register', async (req, res, next) => {
                 name: 'UserExistsError',
                 message: 'A user with that email already exists'
             });
-        } else {
+        }
+        
+        else {
             const user = await createUser({
                 email,
                 password

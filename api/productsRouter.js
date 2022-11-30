@@ -47,6 +47,19 @@ productsRouter.delete('/:productId', async (req, res, next) => {
   }
 });
 
+productsRouter.get('/:productId', async (req, res, next) => {
+  try {
+      const product = await getProductById(req.params.productId);
+      
+      res.send({
+        product
+      })
+      
+  } catch ({ name, message }) {
+      res.send({name, message})
+  }
+});
+
 productsRouter.get('/category/:catId', async (req, res, next) => { //getting products by category
   try {
     const catId = req.params.catId

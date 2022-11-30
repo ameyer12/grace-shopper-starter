@@ -42,3 +42,12 @@
     font-size: 10pt;
     margin-top: 7%;
 }
+
+.product-link {
+    text-decoration: none;
+    color: grey;
+}
+
+.product-link:hover {
+    color: #BC4639;
+}

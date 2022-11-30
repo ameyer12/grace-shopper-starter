@@ -47,22 +47,6 @@
     margin-top: 30%;
 }
 
-#login-alert {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    display: none;
-}
-
-#login-alert > button {
-    background-color: transparent;
-    position: absolute;
-    right: 0rem;
-    left: 6rem;
-    top: 0.52rem;
-    border: none;
-}
-
 .swal-button {
     background-color: #BC4639;
 }
@@ -70,4 +54,51 @@
 .swal-button:hover {
     background-color: #dadada !important;
     color: black;
+}
+
+#account-page {
+    display: flex; 
+    justify-content: center;
+    text-align: center;
+    background-color: #dadada;
+    height: 93vh;
+}
+
+#account-page-p {
+    align-self: center;
+    margin-bottom: 28rem;
+    padding-bottom: 5%;
+}
+
+#sign-out-button {
+    border: none;
+    position: absolute;
+    margin-top: 2rem;
+    margin-right: 50%;
+    margin-left: 50%;
+    background-color: #dadada;
+    color: #BC4639;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+#profile-card {
+    position: absolute;
+    background-color: white;
+    height: 11.6rem;
+    width: 20rem;
+    top: 25%;
+}
+
+.card-text {
+    border-bottom: 1pt solid;
+}
+
+.card-text:hover {
+    cursor: pointer;
+    color: #BC4639;
+}
+
+#sign-out-button:hover {
+    color: white;
 }
