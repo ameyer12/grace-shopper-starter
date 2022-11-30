@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import { Shop, Login } from './components';
 import { getProducts, loginUser } from "./api"
+import SingleProductView from './components/SingleProductView';
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
           <Routes>
               <Route path="/" element={<Home navigate={navigate} />} />
               <Route path="/shop" element={<Shop products={products} />} />
+              <Route path="/shop/product/:productId" element={<SingleProductView products={products} />} />
               <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} />} />
           </Routes>
           <Footer />
