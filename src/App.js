@@ -9,9 +9,12 @@ import { getProducts, loginUser } from "./api"
 import SingleProductView from './components/SingleProductView';
 
 const App = () => {
-
+  const [cart, setCart] = useState([{
+    itemId: null,
+    qty: null
+  }])
   const [products, setProducts] = useState([]);
-
+  const [user, setUser] = useState({})
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
@@ -20,13 +23,28 @@ const App = () => {
     setProducts(results)
   }
 
+  const getCart = async () => {
+    if(user) {
+      const storedCart = JSON.parse(JSON.stringify(window.localStorage.getItem('cart')) || "[]")
+      if(!storedCart) {
+        window.localStorage.setItem('cart', JSON.stringify(cart))
+        return
+      }
+      setCart(storedCart)
+      window.localStorage.setItem('cart', JSON.stringify(cart))
+    }
+  }
+
+  useEffect(() => {
+    getCart()
+  }, [])
   useEffect(() => {
     fetchProducts()
   }, [])
 
     return (
       <div>
-          <Navbar />
+          <Navbar cart={cart} setCart={setCart}/>
           <Routes>
               <Route path="/" element={<Home navigate={navigate} />} />
               <Route path="/shop" element={<Shop products={products} />} />
