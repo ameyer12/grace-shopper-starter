@@ -12,12 +12,14 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     function editCart(qty, idx) {
         cart[idx].qty = qty
         setCart(cart)
+        window.localStorage.setItem('cart', JSON.stringify(cart))
         setReload(!reload)
         console.log(cart) 
     }
     function removeFromCart(productId) {
         const newCart = cart.filter((item) => item.itemId !== productId)
         setCart(newCart)
+        window.localStorage.setItem('cart', JSON.stringify(newCart))
         setReload(!reload)
     }
     return (
