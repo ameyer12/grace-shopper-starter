@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import { Shop, Login, SingleProductView, AddToCartButton } from './components';
-import { getProducts, loginUser } from "./api"
+import { Shop, Login, SingleProductView, AddToCartButton, Register, SingleProduct } from './components';
+import { getProducts, loginUser, registerUser, getSingleProduct } from "./api"
 
 
 const App = () => {

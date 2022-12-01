@@ -7,3 +7,4 @@ export {default as Shop} from "./Shop";
 export {default as SingleProductView} from "./SingleProductView";
 export {default as SimpleCartMenu} from "./SimpleCartMenu";
 export {default as AddToCartButton} from "./AddToCartButton"
+export {default as SingleProduct} from "./SingleProduct"

@@ -46,7 +46,6 @@ export const loginUser = async (email, password) => {
     }
 }
 
-<<<<<<< HEAD
 export const registerUser = async (email, password) => {
     try {
         const response = await fetch(`${baseURL}/users/register`, {
@@ -84,18 +83,4 @@ export const getSingleProduct = async (productId) => {
         console.log('Error logging in user');
         throw err;
     }
-=======
-export const getProductById = async (id) => {
-    try {
-        const response = await fetch(`${baseURL}/products/${id}`)
-        
-        const results = await response.json()
-
-        return results;
-    }
-    catch(ex) {
-        console.log('error getting product by id', ex)
-    }
-
->>>>>>> ejSimpleCart
 }
