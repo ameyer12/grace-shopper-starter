@@ -15,7 +15,7 @@ const AddToCartButton = ({cart, setCart, itemId}) => {
         if(itemInCart(itemId)) {
             return
         }
-        if(!cart[0]) {
+        if(cart.length === 0) {
             setCart([itemObject])
             window.localStorage.setItem('cart', JSON.stringify([itemObject]))
             return

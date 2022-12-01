@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-
+import './SimpleCartMenu.css';
 
 const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     const [reload, setReload] = useState(false)
@@ -27,7 +27,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
           </li>
         <div className='cartMenu'>
         <ul>
-            {cart[0] ? ( cart.map((item, idx) => {
+            {cart.length > 0 ? ( cart.map((item, idx) => {
                 const currentProduct = fetchProduct(item.itemId)
               
                 return ( <li key={idx}>
