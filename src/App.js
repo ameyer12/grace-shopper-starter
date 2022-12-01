@@ -10,8 +10,8 @@ import SingleProductView from './components/SingleProductView';
 
 const App = () => {
   const [cart, setCart] = useState([{
-    itemId: null,
-    qty: null
+    itemId: 1,
+    qty: 3
   }])
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState({})
@@ -30,7 +30,7 @@ const App = () => {
         window.localStorage.setItem('cart', JSON.stringify(cart))
         return
       }
-      setCart(storedCart)
+      setCart(JSON.parse(storedCart))
       window.localStorage.setItem('cart', JSON.stringify(cart))
     }
   }
@@ -44,7 +44,7 @@ const App = () => {
 
     return (
       <div>
-          <Navbar cart={cart} setCart={setCart}/>
+          <Navbar cart={cart} setCart={setCart} products={products}/>
           <Routes>
               <Route path="/" element={<Home navigate={navigate} />} />
               <Route path="/shop" element={<Shop products={products} />} />

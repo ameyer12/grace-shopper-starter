@@ -5,7 +5,7 @@ import './navbar.css'
 import SimpleCartMenu from './SimpleCartMenu';
 
 
-const Navbar = ({ logout, token, cart, setCart }) => {
+const Navbar = ({ logout, token, cart, setCart, products }) => {
   const [showCart, setShowCart] = useState(false)
 
   return (
@@ -35,7 +35,7 @@ const Navbar = ({ logout, token, cart, setCart }) => {
 
           <li className="nav-item">
             <button style={{border: 'none'}} id="cart-link"className="nav-link" onClick={() => setShowCart(!showCart)}><i className="material-icons">shopping_cart</i></button>
-          </li> : <SimpleCartMenu setShowCart={setShowCart} showCart={showCart} cart={cart}/>
+          </li> : <SimpleCartMenu setShowCart={setShowCart} showCart={showCart} cart={cart} products={products} setCart={setCart}/>
           }
         </ul>
       </div>

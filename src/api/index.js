@@ -46,3 +46,17 @@ export const loginUser = async (email, password) => {
         throw err;
     }
 }
+
+export const getProductById = async (id) => {
+    try {
+        const response = await fetch(`${baseURL}/products/${id}`)
+        
+        const results = await response.json()
+
+        return results;
+    }
+    catch(ex) {
+        console.log('error getting product by id', ex)
+    }
+
+}
