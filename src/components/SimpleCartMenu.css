@@ -1,0 +1,9 @@
+.cartMenu {
+    float: left;
+    overflow: hidden;
+    position: absolute;
+    top: 6vh;
+    right: 4vw; 
+    z-index: 1;
+    background-color: white;
+}
