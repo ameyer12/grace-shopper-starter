@@ -9,10 +9,7 @@ import { getProducts, loginUser } from "./api"
 
 
 const App = () => {
-  const [cart, setCart] = useState([{
-    itemId: null,
-    qty: null
-  }])
+  const [cart, setCart] = useState([{}])
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState({})
   const navigate = useNavigate();

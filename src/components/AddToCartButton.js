@@ -10,18 +10,18 @@ const AddToCartButton = ({cart, setCart, itemId}) => {
             return false
         } else return true
     }
-    
+
     function addToCart() {
         if(itemInCart(itemId)) {
             return
         }
-        if(!cart[0].itemId) {
+        if(!cart[0]) {
             setCart([itemObject])
-            window.localStorage.setItem('cart', JSON.stringify(cart))
+            window.localStorage.setItem('cart', JSON.stringify([itemObject]))
             return
         }
         setCart([...cart, itemObject])
-        window.localStorage.setItem('cart', JSON.stringify(cart))
+        window.localStorage.setItem('cart', JSON.stringify([...cart, itemObject]))
     }
 
     const itemObject = {

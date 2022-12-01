@@ -27,7 +27,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
           </li>
         <div className='cartMenu'>
         <ul>
-            {cart[0].itemId ? ( cart.map((item, idx) => {
+            {cart[0] ? ( cart.map((item, idx) => {
                 const currentProduct = fetchProduct(item.itemId)
               
                 return ( <li key={idx}>
