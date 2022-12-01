@@ -5,7 +5,6 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     const [reload, setReload] = useState(false)
 
     function fetchProduct(id) {
-        console.log(products)
         const currentProduct = products.find((product) => product.id === id)
         return currentProduct
     }
@@ -14,7 +13,6 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
         setCart(cart)
         window.localStorage.setItem('cart', JSON.stringify(cart))
         setReload(!reload)
-        console.log(cart) 
     }
     function removeFromCart(productId) {
         const newCart = cart.filter((item) => item.itemId !== productId)
@@ -29,10 +27,10 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
           </li>
         <div className='cartMenu'>
         <ul>
-            {cart[0] ? ( cart.map((item, idx) => {
+            {cart[0].itemId ? ( cart.map((item, idx) => {
                 const currentProduct = fetchProduct(item.itemId)
-                console.log(currentProduct)
-                return ( <li key={item.qty}>
+              
+                return ( <li key={idx}>
                     <p>{currentProduct.title}</p>
                     <p>quantity: {item.qty}</p>
                     { item.qty > 1 

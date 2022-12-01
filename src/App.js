@@ -4,14 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import { Shop, Login } from './components';
+import { Shop, Login, SingleProductView, AddToCartButton } from './components';
 import { getProducts, loginUser } from "./api"
-import SingleProductView from './components/SingleProductView';
+
 
 const App = () => {
   const [cart, setCart] = useState([{
-    itemId: 1,
-    qty: 3
+    itemId: null,
+    qty: null
   }])
   const [products, setProducts] = useState([]);
   const [user, setUser] = useState({})
@@ -47,7 +47,7 @@ const App = () => {
           <Navbar cart={cart} setCart={setCart} products={products}/>
           <Routes>
               <Route path="/" element={<Home navigate={navigate} />} />
-              <Route path="/shop" element={<Shop products={products} />} />
+              <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} />} />
               <Route path="/shop/product/:productId" element={<SingleProductView products={products} />} />
               <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} />} />
           </Routes>
