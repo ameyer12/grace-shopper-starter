@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './SimpleCartMenu.css';
-import { editUserCart } from '../api';
+import { editUserCart, removeFromUserCart } from '../api';
 
 const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     const [reload, setReload] = useState(false)

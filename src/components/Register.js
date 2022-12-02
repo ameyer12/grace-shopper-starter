@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import swal from 'sweetalert';
 import './register.css';
 
-const Register = ({ registerUser, setToken }) => {
+const Register = ({ registerUser }) => {
 
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
-
+    const [token, setToken] = useState("");
+   
     const handleRegister = async () => {
 
         try {
