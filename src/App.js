@@ -38,7 +38,7 @@ const App = () => {
   }, [])
   useEffect(() => {
     fetchProducts()
-  }, [fetchProducts])
+  }, [])
 
     return (
       <div>
