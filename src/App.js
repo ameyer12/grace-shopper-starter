@@ -23,7 +23,7 @@ const App = () => {
   const getCart = async () => {
     const storedCart = JSON.parse(JSON.stringify(window.localStorage.getItem('cart')) || "[]")
     const token = window.localStorage.getItem('token')
-    if(token) {
+    if(token !== 'null') {
       const userCart = await getUserCart(token)
       console.log(userCart)
     }

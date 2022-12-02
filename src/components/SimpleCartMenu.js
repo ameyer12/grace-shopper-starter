@@ -4,18 +4,32 @@ import { editUserCart, removeFromUserCart } from '../api';
 
 const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     const [reload, setReload] = useState(false)
-
+    
+    const token = window.localStorage.getItem('token')
+    async function removeDbCart(itemId) {
+        await removeFromUserCart(token, {itemId})
+    }
+    async function editDbCart({itemId}) {
+        await editUserCart(token, {itemId})
+    }
     function fetchProduct(id) {
         const currentProduct = products.find((product) => product.id === id)
         return currentProduct
     }
     function editCart(qty, idx) {
+        
+        if(token !== 'null') {
+            editDbCart(cart[idx])
+        }
         cart[idx].qty = qty
         setCart(cart)
         window.localStorage.setItem('cart', JSON.stringify(cart))
         setReload(!reload)
     }
     function removeFromCart(productId) {
+        if(token !== 'null') {
+            removeDbCart(productId)
+        }
         const newCart = cart.filter((item) => item.itemId !== productId)
         setCart(newCart)
         window.localStorage.setItem('cart', JSON.stringify(newCart))
