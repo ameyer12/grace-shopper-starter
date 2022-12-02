@@ -28,6 +28,8 @@ const App = () => {
         return
       }
       window.localStorage.setItem('cart', JSON.stringify(cart))
+    } else {
+      
     }
   }
 
@@ -36,7 +38,7 @@ const App = () => {
   }, [])
   useEffect(() => {
     fetchProducts()
-  }, [])
+  }, [fetchProducts])
 
     return (
       <div>
