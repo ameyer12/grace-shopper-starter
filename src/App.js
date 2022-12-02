@@ -12,27 +12,22 @@ const App = () => {
   const [cart, setCart] = useState([])
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  const [userCart, setUserCart] = useState([])
   console.log(cart)
   const fetchProducts = async () => {
     const results = await getProducts()
 
     setProducts(results)
   }
-  const fetchDbCart = async (token) => {
-    const dbCart = await getUserCart(token)
-    setUserCart(dbCart)
-  }
-
+ 
   const getCart = async () => {
     const storedCart = JSON.parse(window.localStorage.getItem('cart'))
-    console.log(storedCart)
     const token = window.localStorage.getItem('token')
+    let userCart = []
     if(token !== 'null') {
+      const dbCart = await getUserCart(token)
+      userCart = dbCart
       console.log('getting cart user cart')
-      await fetchDbCart(token)
     }
-    console.log(userCart)
     if(token === 'null') {
       if(storedCart.length !== 0) {
         setCart(storedCart)
@@ -77,7 +72,7 @@ const App = () => {
               <Route path="/" element={<Home navigate={navigate} />} />
               <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} />} />
               <Route path="/shop/product/:productId" element={<SingleProductView products={products} />} />
-              <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} />} />
+              <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} setCart={setCart} />} />
               <Route path="/register" element={<Register registerUser={registerUser} navigate={navigate} />} />
               <Route path="products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} />} />
           </Routes>
