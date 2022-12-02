@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 
 const AddToCartButton = ({cart, setCart, itemId}) => {
     const [quantity, setQuantity] = useState(1)
@@ -30,10 +32,10 @@ const AddToCartButton = ({cart, setCart, itemId}) => {
     }
     return (
         <>
-            <span>{ quantity > 1 
-                    ? <button onClick={() => setQuantity(quantity - 1)}>-</button>
-                    : <button>-</button>} quantity: {quantity}<button onClick={() => {setQuantity(quantity + 1)}}>+</button></span>
-            <button onClick={() => addToCart()}>Add To Cart</button>
+            <span className='qtyButtons'>{ quantity > 1 
+                    ? <Button variant="text" id="qtyBtn" onClick={() => setQuantity(quantity - 1)}><i className="material-icons">remove</i></Button>
+                    : <Button variant="text" id="qtyBtn"><i className="material-icons">remove</i></Button>} {quantity} <Button variant="text" id="qtyBtn" onClick={() => {setQuantity(quantity + 1)}}><i className="material-icons">add</i></Button></span>
+            <Button variant="outlined" className="addToCartBtn" onClick={() => addToCart()}>Add To Cart</Button>
         </>
     )
 }

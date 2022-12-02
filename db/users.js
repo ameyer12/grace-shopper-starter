@@ -11,7 +11,6 @@ async function createUser({email, password}) {
         RETURNING *;
       `, [email, hashedPassword])
       if(hashedPassword) {
-        console.log('hashedPassword is here')
         delete user.password
         return user;
       }
@@ -26,7 +25,6 @@ async function createUser({email, password}) {
 
   async function getUser({email, password}) {
     if (!email || !password) {
-      console.log('error3')
       return;
     }
 
@@ -40,7 +38,6 @@ async function createUser({email, password}) {
       const passwordsMatch = await bcrypt.compare(password, hashedPassword)
 
       if (passwordsMatch) {
-        console.log('working')
         const { rows: [user] } = await client.query(`
         SELECT id, email
         FROM users
@@ -49,13 +46,9 @@ async function createUser({email, password}) {
 
         return user;
       } else {
-        console.log(passwordsMatch)
-        console.log('hashedPassword:', hashedPassword)
-        console.log('password:', password)
         return null;
       }
     } catch(error) {
-      console.log('error1')
       throw error;
     }
   }
