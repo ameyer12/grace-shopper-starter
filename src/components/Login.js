@@ -48,6 +48,7 @@ const Login = ({navigate, loginUser}) => {
     const handleLogout = async () => {
         try {
             window.localStorage.token = null;
+            window.localStorage.setItem('cart', JSON.stringify([]))
             navigate("/")
         } catch (error) {
             throw error;

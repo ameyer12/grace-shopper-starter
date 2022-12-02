@@ -94,9 +94,9 @@ export const getUserCart = async (token) => {
             },
         })
 
-        const results = response.json();
-
-        return results;
+        const results = await response.json();
+        console.log(results)
+        return results.data;
     } catch (err) {
         console.log('error getting user cart', err)
     }
@@ -116,7 +116,7 @@ export const addToUserCart = async (token, {itemId, qty}) => {
         })
         })
 
-        const results = response.json();
+        const results = await response.json();
 
         return results;
     } catch (err) {
@@ -138,7 +138,7 @@ export const editUserCart = async (token, {itemId, qty}) => {
         })
         })
 
-        const results = response.json();
+        const results = await response.json();
 
         return results;
     } catch (err) {
@@ -156,7 +156,7 @@ export const removeFromUserCart = async (token, {itemId}) => {
             }
         })
 
-        const results = response.json();
+        const results = await response.json();
 
         return results;
     } catch (err) {

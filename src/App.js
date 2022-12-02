@@ -5,42 +5,67 @@ import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import { Shop, Login, SingleProductView, AddToCartButton, Register, SingleProduct } from './components';
-import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart } from "./api"
+import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart, addToUserCart } from "./api"
 
 
 const App = () => {
   const [cart, setCart] = useState([])
   const [products, setProducts] = useState([]);
-  const [user, setUser] = useState(true)
   const navigate = useNavigate();
-
+  const [userCart, setUserCart] = useState([])
+  console.log(cart)
   const fetchProducts = async () => {
     const results = await getProducts()
 
     setProducts(results)
   }
+  const fetchDbCart = async (token) => {
+    const dbCart = await getUserCart(token)
+    setUserCart(dbCart)
+  }
 
   const getCart = async () => {
-    const storedCart = JSON.parse(JSON.stringify(window.localStorage.getItem('cart')) || "[]")
+    const storedCart = JSON.parse(window.localStorage.getItem('cart'))
+    console.log(storedCart)
     const token = window.localStorage.getItem('token')
     if(token !== 'null') {
-      const userCart = await getUserCart(token)
-      console.log(userCart)
+      console.log('getting cart user cart')
+      await fetchDbCart(token)
     }
-    if(!user) {
+    console.log(userCart)
+    if(token === 'null') {
       if(storedCart.length !== 0) {
-        setCart(JSON.parse(storedCart))
+        setCart(storedCart)
         return
       }
       window.localStorage.setItem('cart', JSON.stringify(cart))
-    } else if(storedCart.length !== 0) {
-      
+    } else if(storedCart.length !== 0 && userCart.length !== 0) {
+      let i = 0;
+      while(storedCart.length - 1 >= i) {
+        const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
+        if(itemInCart === undefined) {
+          userCart.push(storedCart[i])
+          await addToUserCart(token, storedCart[i])
+          setCart(userCart)
+        }
+        i++
+      }
+    } else if(storedCart.length === 0 && userCart.length !== 0) {
+      setCart(userCart)
+    } else if(storedCart.length !== 0 && userCart.length === 0) {
+      setCart(storedCart)
+      let i = 0
+      while(storedCart.length - 1 >= i) {
+        await addToUserCart(token, storedCart[i])
+        i++
+      }
     }
+    window.localStorage.setItem('cart', JSON.stringify(cart))
   }
 
   useEffect(() => {
     getCart()
-  }, [user])
+  }, [])
   useEffect(() => {
     fetchProducts()
   }, [])

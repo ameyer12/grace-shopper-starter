@@ -17,7 +17,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
         return currentProduct
     }
     function editCart(qty, idx) {
-        
+
         if(token !== 'null') {
             editDbCart(cart[idx])
         }
@@ -35,6 +35,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
         window.localStorage.setItem('cart', JSON.stringify(newCart))
         setReload(!reload)
     }
+    console.log(cart)
     return (
         <>
           <li className="nav-item">
