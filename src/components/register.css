@@ -47,22 +47,6 @@
     margin-top: 30%;
 }
 
-#register-alert {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    display: none;
-}
-
-#register-alert > button {
-    background-color: transparent;
-    position: absolute;
-    right: 0rem;
-    left: 6rem;
-    top: 0.52rem;
-    border: none;
-}
-
 #exampleInputPassword2 {
     margin-top: 5%;
 }

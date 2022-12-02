@@ -11,21 +11,54 @@
     height: 35rem;
 }
 
-.single-product-title {
+#single-product-page-card {
     position: absolute;
+    width:25%;
+    right: 10%;
+    top: 13.7%;
+}
+
+.single-product-title {
     font-size: 20pt;
-    top: 13.6%;
-    right: 21.4%;
 }
 
 .single-product-price {
-    position: absolute;
-    top: 20%;
-    right: 33%;
+    font-size: 16pt;
 }
 
-.single-product-description {
-    position: absolute;
-    top: 25%;
-    right: 13%;
+.accordion {
+    margin-top: 37%;
+    padding-top: 1rem;
+}
+
+.accordion-item {
+    border: none;
+}
+
+.accordion-button {
+    background-color: #dadada;
+    border-bottom: 1pt solid black;
+    border-left: 2.5pt solid #dadada;
+    border-right: 2.5pt solid #dadada;
+}
+
+.accordion-body {
+    background-color: #dadada;;
+}
+
+#add-to-cart-button {
+    background-color: black;
+    border: none;
+    width: 18rem;
+    margin-left: 55%;
+    align-self: center;
+}
+
+#add-to-cart-button:hover {
+    background-color: #BC4639;
+}
+
+#select-size-form {
+    background-color: #dadada;
+    border: 0.5pt solid black;
 }
