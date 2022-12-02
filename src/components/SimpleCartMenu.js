@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './SimpleCartMenu.css';
+import Button from '@mui/material/Button';
 
 const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     const [reload, setReload] = useState(false)
@@ -34,9 +35,9 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
                     <p>{currentProduct.title}</p>
                     <p>quantity: {item.qty}</p>
                     { item.qty > 1 
-                    ? <button onClick={() => editCart(item.qty - 1, idx)}>-</button>
-                    : <button onClick={() => removeFromCart(item.itemId)}>remove item</button>}
-                    <button onClick={() => editCart(item.qty + 1, idx)}>+</button>
+                    ? <Button variant="text" id="qtyBtn" onClick={() => editCart(item.qty - 1, idx)}><i className="material-icons">remove</i></Button>
+                    : <Button onClick={() => removeFromCart(item.itemId)}>remove item</Button>}
+                    <Button variant="text" id="qtyBtn" onClick={() => editCart(item.qty + 1, idx)}><i className="material-icons">add</i></Button>
                     
                 </li> )
             }) )
