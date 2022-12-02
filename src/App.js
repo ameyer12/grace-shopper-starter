@@ -23,11 +23,10 @@ const App = () => {
   const getCart = async () => {
     if(user) {
       const storedCart = JSON.parse(JSON.stringify(window.localStorage.getItem('cart')) || "[]")
-      if(!storedCart) {
-        window.localStorage.setItem('cart', JSON.stringify(cart))
+      if(storedCart.length !== 0) {
+        setCart(JSON.parse(storedCart))
         return
       }
-      setCart(JSON.parse(storedCart))
       window.localStorage.setItem('cart', JSON.stringify(cart))
     }
   }
