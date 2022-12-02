@@ -4,8 +4,7 @@
     width: 100%;
     background-color: #dadada;
     overflow: scroll;
-}
-
+} 
 .home-page-h1 {
     position: absolute;
     padding-bottom: 5%;
@@ -13,6 +12,7 @@
     left: 5;
     margin-left: 13.5%;
     margin-right: 55%;
+    padding-bottom: 20rem;
 }
 
 .home-page-p {
@@ -27,6 +27,7 @@
 .home-page-image {
     width: 50%;
     margin-bottom: 8%;
+    padding-top: 1rem;
 }
 
 .home-page-image-container {
@@ -40,7 +41,7 @@
     right: 0;
 }
 
-.btn {
+#home-page-button {
     position: absolute;
     background-color: #BC4639;
     margin-left: 20.6%;
@@ -49,9 +50,9 @@
     
 }
 
-.btn:hover {
+#home-page-button:hover {
     background-color: white;
-}
+} 
 
 @media screen and (max-height: 470px){
     .home-page-image-container {
@@ -68,7 +69,7 @@
 }
 
 @media screen and (min-height: 745px) and (min-width: 595px){
-    .btn {
+    #home-page-button  {
         position: absolute;
         background-color: #BC4639;
         margin-left: 20.5%;
@@ -78,7 +79,7 @@
 }
 
 @media screen and (max-height: 845px){
-    .btn {
+    #home-page-button  {
         top: 47%;
     }
     .home-page-p {
@@ -87,7 +88,7 @@
 }
 
 @media screen and (max-height: 570px){
-    .btn {
+    #home-page-button  {
         top: 68%;
     }
     .home-page-p {
@@ -96,7 +97,7 @@
 }
 
 @media screen and (max-height: 580px){
-    .btn {
+    #home-page-button  {
         top: 68%;
     }
     .home-page-p {
@@ -105,7 +106,7 @@
 }
 
 @media screen and (max-height: 680px){
-    .btn {
+    #home-page-button  {
         top: 65%;
     }
     .home-page-p {
@@ -114,26 +115,26 @@
 }
 
 @media screen and (max-height: 525px){
-    .btn {
+    #home-page-button  {
         top: 70%;
     }
 }
 
 @media screen and (max-width: 1118px){
-    .btn {
+    #home-page-button  {
         margin-left: 18%;
     }
 }
 
 @media screen and (max-width: 759px){
-    .btn {
+    #home-page-button  {
         margin-left: 16%;
         top: 49%;
     }
 }
 
 @media screen and (max-width: 550px){
-    .btn {
+    #home-page-button  {
         top: 47%;
     }
 }
@@ -148,4 +149,40 @@
     .home-page-h1-container > .btn {
       display: none;
     }
+    .home-page-image {
+        width: 70%;
+        height: auto;
+        padding-bottom: 10rem;
+    }
 }
+
+
+@media screen and (max-width: 850px) and (min-height: 850px){
+    .home-page-image {
+      margin-bottom: 50%;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .home-page-image-container {
+        display: none;
+    }
+    .home-page-h1, .home-page-p {
+        width: 70%;
+        margin-left: 20%;
+        margin-right: 20%;
+        padding-bottom: 15rem;
+    }
+}
+
+/* @media screen and (max-height: 650px){
+    .home-page-image-container {
+        display: none;
+    }
+    .home-page-h1, .home-page-p {
+        width: 70%;
+        margin-left: 20%;
+        margin-right: 20%;
+        padding-bottom: 15rem;
+    }
+} */

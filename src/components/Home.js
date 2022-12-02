@@ -11,6 +11,7 @@ const Home = ({navigate}) => {
                 </p>
                 <button 
                 type="button"
+                id="home-page-button"
                 className="btn"
                 onClick={() => {
                     navigate("/shop")

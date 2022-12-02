@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useNavigation } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import { Shop, Login, Register, SingleProduct } from './components';
+import { Shop, Login, Register, SingleProduct, AddToCartButton } from './components';
 import { getProducts, loginUser, registerUser, getSingleProduct } from "./api"
 
 
+
 const App = () => {
-
+  const [cart, setCart] = useState([])
   const [products, setProducts] = useState([]);
-
+  const [user, setUser] = useState({})
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
@@ -20,16 +21,38 @@ const App = () => {
     setProducts(results)
   }
 
+  //commented out because it was giving me a bug. Gonna check it out later
+  const getCart = async () => {
+    try {
+      if(user) {
+        // const storedCart = JSON.parse(JSON.stringify(window.localStorage.getItem('cart')) || "[]")
+      //   if(storedCart.length !== 0) {
+      //     setCart(JSON.parse(storedCart))
+      //     return
+      //   }
+      //   window.localStorage.setItem('cart', JSON.stringify(cart))
+      // } else {
+        
+      }
+        } catch (error) {
+      throw error
+    }
+  }
+
+  useEffect(() => {
+    getCart()
+  }, [])
+
   useEffect(() => {
     fetchProducts()
   }, [])
 
     return (
       <div>
-          <Navbar />
+          <Navbar cart={cart} setCart={setCart} products={products}/>
           <Routes>
               <Route path="/" element={<Home navigate={navigate} />} />
-              <Route path="/shop" element={<Shop products={products} />} />
+              <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton}/>} />
               <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} />} />
               <Route path="/register" element={<Register registerUser={registerUser} navigate={navigate} />} />
               <Route path="/products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} />} />

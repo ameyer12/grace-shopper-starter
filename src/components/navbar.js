@@ -1,10 +1,13 @@
 import './style.css';
-import React from 'react';
+import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import './navbar.css'
+import SimpleCartMenu from './SimpleCartMenu';
 
 
-const Navbar = ({ logout, token }) => {
+const Navbar = ({ logout, token, cart, setCart, products }) => {
+  const [showCart, setShowCart] = useState(false)
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light" style={{background: "white"}}>
       <a className="navbar-brand" href="/">The Closet</a>
@@ -28,9 +31,12 @@ const Navbar = ({ logout, token }) => {
           <li className="nav-item">
             <a id="profile-link" className="nav-link" href="/login"><i className="material-icons">person</i></a>
           </li>
+          {!showCart ?
+
           <li className="nav-item">
-            <a id="cart-link"className="nav-link" href="#"><i className="material-icons">shopping_cart</i></a>
-          </li>
+            <button style={{border: 'none', backgroundColor: 'white'}} id="cart-link"className="nav-link" onClick={() => setShowCart(!showCart)}><i className="material-icons">shopping_cart</i></button>
+          </li> : <SimpleCartMenu setShowCart={setShowCart} showCart={showCart} cart={cart} products={products} setCart={setCart}/>
+          }
         </ul>
       </div>
     </nav>

@@ -1,21 +1,23 @@
 .single-product-body {
-    height: 93vh;
+    height: 100vh;
     background-color: #dadada;
+    display: flex;
+    overflow: scroll;    
 }
 
 .single-product-image {
-    position: absolute;
-    top: 13.6%;
-    left: 10%;
-    width: 40rem;
-    height: 35rem;
+    margin-top: 3%;
+    margin-left: 7%;
+    width: 50%;
+    height: 70%;
 }
 
 #single-product-page-card {
-    position: absolute;
-    width:25%;
-    right: 10%;
-    top: 13.7%;
+    display: flex;
+    margin-left: 10%;
+    width: 25%;
+    margin-top: 5%;
+    padding-bottom: 37rem;
 }
 
 .single-product-title {
@@ -27,7 +29,7 @@
 }
 
 .accordion {
-    margin-top: 37%;
+    margin-top: 10%;
     padding-top: 1rem;
 }
 
@@ -47,18 +49,39 @@
 }
 
 #add-to-cart-button {
-    background-color: black;
     border: none;
-    width: 18rem;
-    margin-left: 55%;
+    background-color:black;
+    width: 100%;
+    margin-top: 20%;
     align-self: center;
 }
 
 #add-to-cart-button:hover {
-    background-color: #BC4639;
+    background-color: #BC4639 !important;
 }
 
 #select-size-form {
     background-color: #dadada;
     border: 0.5pt solid black;
+}
+
+
+@media screen and (max-width: 775px){
+    .single-product-body {
+        flex-direction: column;
+    }
+    .single-product-image {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    #single-product-page-card {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    /* .accordion {
+        display: none;
+    } */
 }

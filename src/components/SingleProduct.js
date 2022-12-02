@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import './singleproduct.css';
+import 'bootstrap'
 
 const SingleProduct= ({getSingleProduct}) => {
 
@@ -13,6 +14,8 @@ const SingleProduct= ({getSingleProduct}) => {
         setSingleProduct(results)
     }
 
+    console.log(singleProduct)
+
     useEffect(() => {
         fetchSingleProduct()
     }, [])
@@ -21,16 +24,26 @@ const SingleProduct= ({getSingleProduct}) => {
     let description = null;
     let image = null;
     let price = null;
+    let inventory = null;
 
     Object.values(singleProduct).map((currentItem) => {
-        title = currentItem[0].title;
-        description = currentItem[0].description;
-        image = currentItem[0].image;
-        price = currentItem[0].price;
+        title = currentItem.title;
+        description = currentItem.description;
+        image = currentItem.image;
+        price = currentItem.price;
+    
+        if(currentItem.inventory === 0) {
+            inventory = "No";
+        } else {
+            inventory = "Yes";
+        }
     })
+
+    console.log(inventory)
+
     return (
         <div className="single-product-body">
-            <img className="single-product-image" src={image} alt="Product image" width="500" height="600"/>
+            <img className="single-product-image" src={image} alt="Product image"/>
             <div className="card" id="single-product-page-card">
                 <h1 className="single-product-title">{title}</h1>
                 <p className="single-product-price">${price}</p>
@@ -43,7 +56,6 @@ const SingleProduct= ({getSingleProduct}) => {
                             <option>XL</option>
                             <option>XXL</option>
                         </select>
-                </div>
                 <button 
                 type="submit"
                 id="add-to-cart-button" 
@@ -74,12 +86,13 @@ const SingleProduct= ({getSingleProduct}) => {
                         </h2>
                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                           in stock goes here
+                            {inventory}
                         </div>
                         </div>
                     </div>
                 </div>
             </div>
+                </div>
         </div>
     )
 }

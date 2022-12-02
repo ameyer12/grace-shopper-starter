@@ -1,7 +1,7 @@
 import React from 'react';
 import './shop.css';
 
-const Shop = ({products}) => {
+const Shop = ({products, setCart, cart, AddToCartButton}) => {
     return (
         <div className="shop">
         <h1 className='shop-page-h1'>Shop All</h1>
@@ -16,6 +16,7 @@ const Shop = ({products}) => {
                                 <br></br>
                                 <a className="product-link" href={`/products/${currentItem.id}`}>View Item</a>
                             </p>
+                            {/* <AddToCartButton setCart={setCart} cart={cart} itemId={currentItem.id}/> */}
                         </li>
             })}
         </div>

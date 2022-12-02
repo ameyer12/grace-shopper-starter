@@ -1,11 +1,12 @@
 html, body {
-    height: 100%;
+    height: 100% !important;
     width: 100%;
-    margin: 0;
+    margin: 0%;
 }
 
 * {
     font-family: din-condensed, sans-serif;
     font-style: normal;
-    font-weight: 300;                                   
+    font-weight: 300;                           
 }
+
