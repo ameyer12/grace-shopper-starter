@@ -11,7 +11,8 @@ import { getProducts, loginUser, registerUser, getSingleProduct } from "./api"
 const App = () => {
   const [cart, setCart] = useState([])
   const [products, setProducts] = useState([]);
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState(true)
+  const [token, setToken] = useState("");
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
@@ -21,21 +22,21 @@ const App = () => {
   }
 
   const getCart = async () => {
-    if(user) {
-      const storedCart = JSON.parse(JSON.stringify(window.localStorage.getItem('cart')) || "[]")
+    const storedCart = JSON.parse(JSON.stringify(window.localStorage.getItem('cart')) || "[]")
+    if(!user) {
       if(storedCart.length !== 0) {
         setCart(JSON.parse(storedCart))
         return
       }
       window.localStorage.setItem('cart', JSON.stringify(cart))
-    } else {
+    } else if(storedCart.length !== 0) {
       
     }
   }
 
   useEffect(() => {
     getCart()
-  }, [])
+  }, [user])
   useEffect(() => {
     fetchProducts()
   }, [fetchProducts])
@@ -47,8 +48,8 @@ const App = () => {
               <Route path="/" element={<Home navigate={navigate} />} />
               <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} />} />
               <Route path="/shop/product/:productId" element={<SingleProductView products={products} />} />
-              <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} />} />
-              <Route path="/register" element={<Register registerUser={registerUser} navigate={navigate} />} />
+              <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} setToken={setToken} />} />
+              <Route path="/register" element={<Register registerUser={registerUser} navigate={navigate} setToken={setToken} />} />
               <Route path="products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} />} />
           </Routes>
           <Footer />

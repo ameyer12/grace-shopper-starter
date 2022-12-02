@@ -84,3 +84,66 @@ export const getSingleProduct = async (productId) => {
         throw err;
     }
 }
+
+export const getUserCart = async (token) => {
+    try {
+        const response = await fetch(`${baseURL}/cart`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+
+        const results = response.json();
+
+        return results;
+    } catch (err) {
+        console.log('error getting user cart', err)
+    }
+}
+
+export const addToUserCart = async (token, {itemId, qty}) => {
+    try {
+        const response = await fetch(`${baseURL}/cart`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                itemId,
+                qty
+        })
+        })
+
+        const results = response.json();
+
+        return results;
+    } catch (err) {
+        console.log('error adding to user cart', err)
+    }
+}
+
+export const editUserCart = async (token, {itemId, qty}) => {
+    try {
+        const response = await fetch(`${baseURL}/cart`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                itemId,
+                qty
+        })
+        })
+
+        const results = response.json();
+
+        return results;
+    } catch (err) {
+        console.log('error editing user cart', err)
+    }
+}
+
+

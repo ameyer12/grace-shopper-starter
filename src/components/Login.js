@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import './login.css';
 
-const Login = ({navigate, loginUser}) => {
+const Login = ({navigate, loginUser, setToken}) => {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
 
     console.log(window.localStorage.token)
 
