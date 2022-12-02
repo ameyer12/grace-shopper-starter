@@ -146,4 +146,24 @@ export const editUserCart = async (token, {itemId, qty}) => {
     }
 }
 
+export const removeFromUserCart = async (token, {itemId}) => {
+    try {
+        const response = await fetch(`${baseURL}/cart/${itemId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        const results = response.json();
+
+        return results;
+    } catch (err) {
+        console.log('error removing from user cart', err)
+    }
+}
+
+
+
 
