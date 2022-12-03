@@ -19,7 +19,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     }
     function editCart(qty, idx) {
 
-        if(token !== 'null') {
+        if(token) {
             editDbCart(cart[idx])
         }
         cart[idx].qty = qty
@@ -28,7 +28,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
         setReload(!reload)
     }
     function removeFromCart(productId) {
-        if(token !== 'null') {
+        if(token) {
             removeDbCart(productId)
         }
         const newCart = cart.filter((item) => item.itemId !== productId)
