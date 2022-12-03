@@ -1,7 +1,13 @@
 import React, {useEffect, useState} from 'react';
+import { addToUserCart } from '../api';
 
 const AddToCartButton = ({cart, setCart, itemId}) => {
     const [quantity, setQuantity] = useState(1)
+    const token = window.localStorage.getItem('token')
+
+    const addDbCart = async () => {
+        await addToUserCart(token, itemObject)
+    }
 
     function itemInCart(itemId) {
         const item = cart.find((item) => item.itemId === itemId)
@@ -15,13 +21,16 @@ const AddToCartButton = ({cart, setCart, itemId}) => {
         if(itemInCart(itemId)) {
             return
         }
+        if(token !== 'null') {
+            addDbCart()
+        }
         if(cart.length === 0) {
             setCart([itemObject])
             window.localStorage.setItem('cart', JSON.stringify([itemObject]))
             return
         }
-        setCart([...cart, itemObject])
         window.localStorage.setItem('cart', JSON.stringify([...cart, itemObject]))
+        setCart([...cart, itemObject])
     }
 
     const itemObject = {

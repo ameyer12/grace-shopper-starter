@@ -9,7 +9,7 @@ const Register = ({ registerUser }) => {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [token, setToken] = useState("");
-
+   
     const handleRegister = async () => {
 
         try {
