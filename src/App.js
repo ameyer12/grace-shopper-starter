@@ -21,10 +21,10 @@ const App = () => {
   }
  
   const getCart = async () => { // I think it should work now, let me know if you still have errors -Elpidio
-    const storedCart = JSON.parse(window.localStorage.getItem('cart'))
+    const storedCart = JSON.parse(window.localStorage.getItem('cart')) || []
     const token = window.localStorage.getItem('token')
     let userCart = []
-    if(token !== 'null') {
+    if(!token) {
       const dbCart = await getUserCart(token)
       userCart = dbCart
       console.log('getting cart user cart')
