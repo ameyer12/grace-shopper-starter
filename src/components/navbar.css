@@ -5,6 +5,12 @@
 }
 
 
+@media screen and (min-width: 992px) and (max-width: 1050px) {
+    #home-link{
+        margin-right: 0.5%
+    }
+}
+
 @media screen and (max-width: 992px) {
     .nav-link{
         margin-left: 1%

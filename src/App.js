@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate, useNavigation } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import { Shop, Login, SingleProductView, AddToCartButton, Register, SingleProduct } from './components';
+import { Shop, Login, Register, SingleProduct, AddToCartButton } from './components';
 import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart, addToUserCart } from "./api"
+
 
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
     setProducts(results)
   }
  
-  const getCart = async () => {
+  const getCart = async () => { // I think it should work now, let me know if you still have errors -Elpidio
     const storedCart = JSON.parse(window.localStorage.getItem('cart'))
     const token = window.localStorage.getItem('token')
     let userCart = []
@@ -61,6 +62,7 @@ const App = () => {
   useEffect(() => {
     getCart()
   }, [])
+
   useEffect(() => {
     fetchProducts()
   }, [])
@@ -70,11 +72,10 @@ const App = () => {
           <Navbar cart={cart} setCart={setCart} products={products}/>
           <Routes>
               <Route path="/" element={<Home navigate={navigate} />} />
-              <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} />} />
-              <Route path="/shop/product/:productId" element={<SingleProductView products={products} />} />
+              <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton}/>} />
               <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} setCart={setCart} />} />
               <Route path="/register" element={<Register registerUser={registerUser} navigate={navigate} />} />
-              <Route path="products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} />} />
+              <Route path="/products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} />} />
           </Routes>
           <Footer />
       </div>

@@ -58,36 +58,35 @@
 
 #account-page {
     display: flex; 
+    flex-direction: column;
     justify-content: center;
     text-align: center;
     background-color: #dadada;
     height: 93vh;
+    width: 100%;
+    padding-bottom: 10%;
 }
 
 #account-page-p {
     align-self: center;
-    margin-bottom: 28rem;
-    padding-bottom: 5%;
+    padding-bottom: 0.5%;
+
 }
 
 #sign-out-button {
     border: none;
-    position: absolute;
-    margin-top: 2rem;
-    margin-right: 50%;
-    margin-left: 50%;
     background-color: #dadada;
     color: #BC4639;
     text-decoration: underline;
     white-space: nowrap;
+    margin-top:0.8%;
 }
 
 #profile-card {
-    position: absolute;
     background-color: white;
-    height: 11.6rem;
+    height: auto;
     width: 20rem;
-    top: 25%;
+    align-self: center;
 }
 
 .card-text {
@@ -101,4 +100,13 @@
 
 #sign-out-button:hover {
     color: white;
+}
+
+@media screen and (max-height: 480px){
+    #account-page-p{
+        padding-top: 15rem;
+    }
+    #sign-out-button{
+        padding-bottom: 5rem;
+    }
 }

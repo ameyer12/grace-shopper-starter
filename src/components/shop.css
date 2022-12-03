@@ -36,6 +36,7 @@
 .card {
     background-color: #dadada;
     border: none;
+    margin-top: 1rem;
 }
 
 .product-title {
@@ -50,4 +51,14 @@
 
 .product-link:hover {
     color: #BC4639;
+}
+
+.qtyButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#qtyBtn:hover {
+    background-color: rgb(187, 187, 187);
 }
