@@ -13,7 +13,6 @@ const App = () => {
   const [cart, setCart] = useState([])
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-  console.log(cart)
   const fetchProducts = async () => {
     const results = await getProducts()
 
@@ -69,7 +68,7 @@ const App = () => {
 
     return (
       <div>
-          <Navbar cart={cart} setCart={setCart} products={products}/>
+          <Navbar cart={cart} setCart={setCart} products={products} navigate={navigate}/>
           <Routes>
               <Route path="/" element={<Home navigate={navigate} />} />
               <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton}/>} />
