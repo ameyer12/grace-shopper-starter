@@ -49,6 +49,7 @@ const Login = ({navigate, loginUser, setCart}) => {
         try {
             window.localStorage.token = null;
             window.localStorage.setItem('cart', JSON.stringify([]))
+            setCart([])
             navigate("/")
         } catch (error) {
             throw error;
