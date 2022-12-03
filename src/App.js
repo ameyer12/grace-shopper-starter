@@ -13,6 +13,7 @@ const App = () => {
   const [cart, setCart] = useState([])
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  console.log(cart)
   const fetchProducts = async () => {
     const results = await getProducts()
 
@@ -20,10 +21,10 @@ const App = () => {
   }
  
   const getCart = async () => { // I think it should work now, let me know if you still have errors -Elpidio
-    const storedCart = JSON.parse(window.localStorage.getItem('cart'))
+    const storedCart = JSON.parse(window.localStorage.getItem('cart')) || []
     const token = window.localStorage.getItem('token')
     let userCart = []
-    if(token !== 'null') {
+    if(!token) {
       const dbCart = await getUserCart(token)
       userCart = dbCart
       console.log('getting cart user cart')
@@ -68,7 +69,7 @@ const App = () => {
 
     return (
       <div>
-          <Navbar cart={cart} setCart={setCart} products={products} navigate={navigate}/>
+          <Navbar cart={cart} setCart={setCart} products={products}/>
           <Routes>
               <Route path="/" element={<Home navigate={navigate} />} />
               <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton}/>} />
