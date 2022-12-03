@@ -2,9 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './SimpleCartMenu.css';
 import { editUserCart, removeFromUserCart } from '../api';
 import Button from '@mui/material/Button';
-import { Navigate } from 'react-router';
 
-const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart, navigate}) => {
+const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     const [reload, setReload] = useState(false)
     
     const token = window.localStorage.getItem('token')
@@ -37,20 +36,13 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart, navigat
         window.localStorage.setItem('cart', JSON.stringify(newCart))
         setReload(!reload)
     }
+    console.log(cart)
     return (
         <>
           <li className="nav-item">
             <button style={{border: 'none'}} id="cart-link"className="nav-link" onClick={() => setShowCart(!showCart)}><i className="material-icons">shopping_cart</i></button>
           </li>
         <div className='cartMenu'>
-            { cart.length !== 0 &&
-            <button type='submit' onClick={(ev) => {
-                ev.preventDefault()
-                console.log(cart)
-                navigate('/')
-            }}>Checkout</button>
-
-            }
         <ul>
             {(cart.length !== 0 && products.length !== 0) ? ( cart.map((item, idx) => {
                 const currentProduct = fetchProduct(item.itemId)
