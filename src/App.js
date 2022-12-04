@@ -7,7 +7,50 @@ import Footer from "./components/Footer";
 import { Shop, Login, Register, SingleProduct, AddToCartButton } from './components';
 import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart, addToUserCart } from "./api"
 
-
+const getCart = async (setCart) => { // I think it should work now, let me know if you still have errors -Elpidio
+  const localCart = window.localStorage.cart
+  const storedCart = JSON.parse(localCart)
+  const token = window.localStorage.token
+  let userCart = []
+  if(token && token !== 'null') {
+    const dbCart = await getUserCart(token)
+    console.log(dbCart)
+    userCart = dbCart
+    console.log('getting cart user cart')
+  }
+  if(token === "null") {
+    if(storedCart.length !== 0) {
+      setCart(storedCart)
+      return
+    }
+    window.localStorage.setItem('cart', JSON.stringify([]))
+  } else if(storedCart.length !== 0 && userCart.length !== 0) {
+    let i = 0;
+    console.log('here')
+    while(storedCart.length - 1 >= i) {
+      const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
+      if(itemInCart === undefined) {
+        userCart.push(storedCart[i])
+        await addToUserCart(token, storedCart[i])
+        console.log(userCart, 'testing cart')
+      }
+      i++
+    }
+    setCart(userCart)
+    window.localStorage.setItem('cart', JSON.stringify(userCart))
+  } else if(storedCart.length === 0 && userCart.length !== 0) {
+    setCart(userCart)
+    window.localStorage.setItem('cart', JSON.stringify(userCart))
+  } else if(storedCart.length !== 0 && userCart.length === 0) {
+    setCart(storedCart)
+    let i = 0
+    while(storedCart.length - 1 >= i) {
+      await addToUserCart(token, storedCart[i])
+      i++
+    }
+    window.localStorage.setItem('cart', JSON.stringify(storedCart))
+  }
+}
 
 const App = () => {
   const [cart, setCart] = useState([])
@@ -20,49 +63,49 @@ const App = () => {
     setProducts(results)
   }
  
-  const getCart = async () => { // I think it should work now, let me know if you still have errors -Elpidio
-    const storedCart = JSON.parse(window.localStorage.getItem('cart'))
-    const token = window.localStorage.getItem('token')
-    let userCart = []
-    if(token && token !== 'null') {
-      const dbCart = await getUserCart(token)
-      console.log(dbCart)
-      userCart = dbCart
-      console.log('getting cart user cart')
-    }
-    if(!token) {
-      if(storedCart.length !== 0) {
-        setCart(storedCart)
-        return
-      }
-      window.localStorage.setItem('cart', JSON.stringify(cart))
-    } else if(storedCart.length !== 0 && userCart.length !== 0) {
-      let i = 0;
-      while(storedCart.length - 1 >= i) {
-        const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
-        if(itemInCart === undefined) {
-          userCart.push(storedCart[i])
-          await addToUserCart(token, storedCart[i])
-          setCart(userCart)
-        }
-        i++
-      }
-    } else if(storedCart.length === 0 && userCart.length !== 0) {
-      setCart(userCart)
-    } else if(storedCart.length !== 0 && userCart.length === 0) {
-      setCart(storedCart)
-      let i = 0
-      while(storedCart.length - 1 >= i) {
-        await addToUserCart(token, storedCart[i])
-        i++
-      }
-    }
-    window.localStorage.setItem('cart', JSON.stringify(cart))
-  }
+  // const getCart = async () => { // I think it should work now, let me know if you still have errors -Elpidio
+  //   const storedCart = JSON.parse(window.localStorage.getItem('cart'))
+  //   const token = window.localStorage.getItem('token')
+  //   let userCart = []
+  //   if(token && token !== 'null') {
+  //     const dbCart = await getUserCart(token)
+  //     console.log(dbCart)
+  //     userCart = dbCart
+  //     console.log('getting cart user cart')
+  //   }
+  //   if(!token) {
+  //     if(storedCart.length !== 0) {
+  //       setCart(storedCart)
+  //       return
+  //     }
+  //     window.localStorage.setItem('cart', JSON.stringify(cart))
+  //   } else if(storedCart.length !== 0 && userCart.length !== 0) {
+  //     let i = 0;
+  //     while(storedCart.length - 1 >= i) {
+  //       const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
+  //       if(itemInCart === undefined) {
+  //         userCart.push(storedCart[i])
+  //         await addToUserCart(token, storedCart[i])
+  //         setCart(userCart)
+  //       }
+  //       i++
+  //     }
+  //   } else if(storedCart.length === 0 && userCart.length !== 0) {
+  //     setCart(userCart)
+  //   } else if(storedCart.length !== 0 && userCart.length === 0) {
+  //     setCart(storedCart)
+  //     let i = 0
+  //     while(storedCart.length - 1 >= i) {
+  //       await addToUserCart(token, storedCart[i])
+  //       i++
+  //     }
+  //   }
+  //   window.localStorage.setItem('cart', JSON.stringify(cart))
+  // }
 
   useEffect(() => {
-    getCart()
-  }, [])
+    getCart(setCart)
+  }, [setCart, getCart])
 
   useEffect(() => {
     fetchProducts()

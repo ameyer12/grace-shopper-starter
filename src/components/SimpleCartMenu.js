@@ -7,6 +7,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     const [reload, setReload] = useState(false)
     
     const token = window.localStorage.getItem('token')
+    console.log(token, typeof token)
     async function removeDbCart(itemId) {
         await removeFromUserCart(token, {itemId})
     }
@@ -19,7 +20,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     }
     function editCart(qty, idx) {
 
-        if(token) {
+        if(token && token !== 'null') {
             editDbCart(cart[idx])
         }
         cart[idx].qty = qty
@@ -28,7 +29,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
         setReload(!reload)
     }
     function removeFromCart(productId) {
-        if(token) {
+        if(token && token !== 'null') {
             removeDbCart(productId)
         }
         const newCart = cart.filter((item) => item.itemId !== productId)
