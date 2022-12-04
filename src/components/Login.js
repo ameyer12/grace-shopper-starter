@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import swal from 'sweetalert';
 import './login.css';
 
-const Login = ({navigate, loginUser, setCart}) => {
+const Login = ({navigate, loginUser, setCart, setToken}) => {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [token, setToken] = useState("");
+
 
     console.log(window.localStorage.token)
 
@@ -49,6 +49,7 @@ const Login = ({navigate, loginUser, setCart}) => {
         try {
             window.localStorage.token = null;
             window.localStorage.setItem('cart', JSON.stringify([]))
+            setCart([])
             navigate("/")
         } catch (error) {
             throw error;
