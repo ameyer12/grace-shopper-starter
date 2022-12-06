@@ -93,6 +93,7 @@ export const getUserCart = async (token) => {
         })
 
         const results = await response.json();
+
         return results.data;
     } catch (err) {
         console.log('error getting user cart', err)

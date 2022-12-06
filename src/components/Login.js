@@ -7,9 +7,6 @@ const Login = ({navigate, loginUser, setCart, setToken}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
-    console.log(window.localStorage.token)
-
     const handleLogin = async () => {
 
         try {

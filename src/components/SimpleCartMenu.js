@@ -7,7 +7,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     const [reload, setReload] = useState(false)
     
     const token = window.localStorage.getItem('token')
-    console.log(token, typeof token)
+    // console.log(token, typeof token)
     async function removeDbCart(itemId) {
         await removeFromUserCart(token, {itemId})
     }
@@ -37,7 +37,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
         window.localStorage.setItem('cart', JSON.stringify(newCart))
         setReload(!reload)
     }
-    console.log(cart)
+
     return (
         <>
           <li className="nav-item">

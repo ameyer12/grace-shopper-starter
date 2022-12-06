@@ -7,50 +7,6 @@ import Footer from "./components/Footer";
 import { Shop, Login, Register, SingleProduct, AddToCartButton } from './components';
 import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart, addToUserCart } from "./api"
 
-const getCart = async (setCart, token) => { // I think it should work now, let me know if you still have errors -Elpidio
-  const localCart = window.localStorage.cart || '[]'
-  const storedCart = JSON.parse(localCart)
-
-  let userCart = []
-  console.log(token)
-  if(token && token !== 'null') {
-    const dbCart = await getUserCart(token)
-    userCart = dbCart
-  }
-  if(token === "null") {
-    if(storedCart.length !== 0) {
-      setCart(storedCart)
-      return
-    }
-    window.localStorage.setItem('cart', JSON.stringify([]))
-  } else if(storedCart.length !== 0 && userCart.length !== 0) {
-    let i = 0;
-    while(storedCart.length - 1 >= i) {
-      const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
-      if(itemInCart === undefined) {
-        userCart.push(storedCart[i])
-        await addToUserCart(token, storedCart[i])
-        console.log(userCart, 'testing cart')
-      }
-      i++
-    }
-    setCart(userCart)
-    window.localStorage.setItem('cart', JSON.stringify(userCart))
-  } else if(storedCart.length === 0 && userCart.length !== 0) {
-    setCart(userCart)
-    window.localStorage.setItem('cart', JSON.stringify(userCart))
-  } else if(storedCart.length !== 0 && userCart.length === 0) {
-    console.log('here')
-    setCart(storedCart)
-    let i = 0
-    while(storedCart.length - 1 >= i) {
-      console.log(storedCart[i])
-      await addToUserCart(token, storedCart[i])
-      i++
-    }
-    window.localStorage.setItem('cart', JSON.stringify(storedCart))
-  }
-}
 
 const App = () => {
   const [token, setToken] = useState(window.localStorage.getItem('token'));
@@ -63,49 +19,67 @@ const App = () => {
     setProducts(results)
   }
  
-  const getCart = async () => { // I think it should work now, let me know if you still have errors -Elpidio
-    const storedCart = JSON.parse(window.localStorage.getItem('cart'))
-    const token = window.localStorage.getItem('token')
-    let userCart = []
-    if(token && token !== 'null') {
-      const dbCart = await getUserCart(token)
-      console.log(dbCart)
-      userCart = dbCart
-      console.log('getting cart user cart')
-    }
-    if(!token) {
-      if(storedCart.length !== 0) {
-        setCart(storedCart)
-        return
+  const getCart = async (setCart, token) => { // I think it should work now, let me know if you still have errors -Elpidio
+    const localCart = window.localStorage.cart || '[]'
+    const storedCart = JSON.parse(localCart)
+  
+    let userCart = [];
+
+    let storedCartLength = null;
+    let userCartLength = userCart.length;
+
+    Object.values(storedCart).map((currentItem) => {
+      console.log(storedCart.length)
+      storedCartLength = storedCart.length;
+  })
+
+    try {
+      if(token && token !== 'null') {
+        const dbCart = await getUserCart(token)
+        userCart = dbCart
       }
-      window.localStorage.setItem('cart', JSON.stringify(cart))
-    } else if(storedCart.length !== 0 && userCart.length !== 0) {
-      let i = 0;
-      while(storedCart.length - 1 >= i) {
-        const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
-        if(itemInCart === undefined) {
-          userCart.push(storedCart[i])
-          await addToUserCart(token, storedCart[i])
-          setCart(userCart)
+
+      if(token === "null") {
+        if(storedCartLength !== 0) {
+          setCart(storedCart)
+          return
         }
-        i++
-      }
-    } else if(storedCart.length === 0 && userCart.length !== 0) {
-      setCart(userCart)
-    } else if(storedCart.length !== 0 && userCart.length === 0) {
-      setCart(storedCart)
-      let i = 0
-      while(storedCart.length - 1 >= i) {
-        await addToUserCart(token, storedCart[i])
-        i++
-      }
+        console.log(window.localStorage)
+        window.localStorage.setItem('cart', JSON.stringify([]))
+      } else if(storedCartLength !== 0 && userCartLength !== 0) {
+        let i = 0;
+        while(storedCart.length - 1 >= i) {
+          const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
+          if(itemInCart === undefined) {
+            userCart.push(storedCart[i])
+            await addToUserCart(token, storedCart[i])
+            console.log(userCart, 'testing cart')
+          }
+          i++
+        }
+        setCart(userCart)
+        window.localStorage.setItem('cart', JSON.stringify(userCart))
+      } else if(storedCartLength === 0 && userCartLength !== 0) {
+        setCart(userCart)
+        window.localStorage.setItem('cart', JSON.stringify(userCart))
+      } else if(storedCartLength !== 0 && userCartLength === 0) {
+        setCart(storedCart)
+        let i = 0
+        while(storedCartLength - 1 >= i) {
+          await addToUserCart(token, storedCart[i])
+          i++
+        }
+        window.localStorage.setItem('cart', JSON.stringify(storedCart))
+      }      
+    } catch (error) {
+      throw error
     }
-    window.localStorage.setItem('cart', JSON.stringify(cart))
   }
 
   useEffect(() => {
     getCart(setCart, token)
-  }, [setCart, getCart, token])
+  }, [setCart, token])
+
 
   useEffect(() => {
     fetchProducts()

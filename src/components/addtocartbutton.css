@@ -12,3 +12,9 @@
 .addToCartBtn:hover {
     background-color: #BC4639 !important;
 }
+
+@media screen and (max-width: 775px){
+    .addToCartBtn {
+        margin-left: 37.6% !important;
+    }
+}

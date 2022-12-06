@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { addToUserCart } from '../api';
 import './singleproduct.css';
 import 'bootstrap'
 
-const SingleProduct= ({getSingleProduct,  AddToCartButton, setCart, cart}) => {
+const SingleProduct= ({getSingleProduct, AddToCartButton, setCart, cart}) => {
 
     const [singleProduct, setSingleProduct] = useState({});
 
@@ -13,8 +14,6 @@ const SingleProduct= ({getSingleProduct,  AddToCartButton, setCart, cart}) => {
         const results = await getSingleProduct(productId)
         setSingleProduct(results)
     }
-
-    console.log(singleProduct)
 
     useEffect(() => {
         fetchSingleProduct()
@@ -66,7 +65,7 @@ const SingleProduct= ({getSingleProduct,  AddToCartButton, setCart, cart}) => {
                     // handleRegister();
                 }}
                 >Add To Cart</button> */}
-                        {<AddToCartButton setCart={setCart} cart={cart} /> /*put back in for testing*/}  
+                        {<AddToCartButton setCart={setCart} cart={cart} itemId={id} />}  
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
