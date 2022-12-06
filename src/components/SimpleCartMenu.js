@@ -7,28 +7,28 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     const [reload, setReload] = useState(false)
     
     const token = window.localStorage.getItem('token')
+    // console.log(token, typeof token)
     async function removeDbCart(itemId) {
         await removeFromUserCart(token, {itemId})
     }
-    async function editDbCart({itemId}) {
-        await editUserCart(token, {itemId})
+    async function editDbCart({itemId, qty}) {
+        await editUserCart(token, {itemId, qty})
     }
     function fetchProduct(id) {
         const currentProduct = products.find((product) => product.id === id)
         return currentProduct
     }
     function editCart(qty, idx) {
-
-        if(token) {
+        cart[idx].qty = qty
+        if(token && token !== 'null') {
             editDbCart(cart[idx])
         }
-        cart[idx].qty = qty
         setCart(cart)
         window.localStorage.setItem('cart', JSON.stringify(cart))
         setReload(!reload)
     }
     function removeFromCart(productId) {
-        if(token) {
+        if(token && token !== 'null') {
             removeDbCart(productId)
         }
         const newCart = cart.filter((item) => item.itemId !== productId)
@@ -36,7 +36,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
         window.localStorage.setItem('cart', JSON.stringify(newCart))
         setReload(!reload)
     }
-    console.log(cart)
+
     return (
         <>
           <li className="nav-item">

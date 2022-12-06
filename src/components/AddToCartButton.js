@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { addToUserCart } from '../api';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
+import './addtocartbutton.css'
 
 const AddToCartButton = ({cart, setCart, itemId}) => {
     const [quantity, setQuantity] = useState(1)

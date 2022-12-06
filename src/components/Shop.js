@@ -16,7 +16,7 @@ const Shop = ({products, setCart, cart, AddToCartButton}) => {
                                 <br></br>
                                 <a className="product-link" href={`/products/${currentItem.id}`}>View Item</a>
                             </p>
-                            {<AddToCartButton setCart={setCart} cart={cart} itemId={currentItem.id}/> /*put back in for testing*/}  
+                            {/* {<AddToCartButton setCart={setCart} cart={cart} itemId={currentItem.id}/> /*put back in for testing*/}
                         </li>
             })}
         </div>

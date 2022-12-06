@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3001/api'
+const baseURL = 'http://localhost:3004/api'
 
 export const getProducts = async () => {
     try {
@@ -72,8 +72,6 @@ export const registerUser = async (email, password) => {
 export const getSingleProduct = async (productId) => {
     try {
         const response = await fetch(`${baseURL}/products/${productId}`);
-
-        // console.log(response)
         
         const results = await response.json();
 
@@ -95,6 +93,7 @@ export const getUserCart = async (token) => {
         })
 
         const results = await response.json();
+
         return results.data;
     } catch (err) {
         console.log('error getting user cart', err)

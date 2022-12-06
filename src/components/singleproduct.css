@@ -63,6 +63,7 @@
 #select-size-form {
     background-color: #dadada;
     border: 0.5pt solid black;
+    margin-bottom: 5%;
 }
 
 
@@ -80,8 +81,4 @@
         margin-left: 5%;
         margin-right: 5%;
     }
-
-    /* .accordion {
-        display: none;
-    } */
 }
