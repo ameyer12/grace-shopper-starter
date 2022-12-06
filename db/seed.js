@@ -85,7 +85,7 @@ async function createTables() {
               id SERIAL PRIMARY KEY,
               "userId" INTEGER REFERENCES users( id ),
               "itemId" INTEGER references products( id ) UNIQUE NOT NULL,
-              "qty" INTEGER
+              "qty" INTEGER NOT NULL
               );
               `)
 

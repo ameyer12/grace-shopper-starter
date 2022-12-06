@@ -11,19 +11,18 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
     async function removeDbCart(itemId) {
         await removeFromUserCart(token, {itemId})
     }
-    async function editDbCart({itemId}) {
-        await editUserCart(token, {itemId})
+    async function editDbCart({itemId, qty}) {
+        await editUserCart(token, {itemId, qty})
     }
     function fetchProduct(id) {
         const currentProduct = products.find((product) => product.id === id)
         return currentProduct
     }
     function editCart(qty, idx) {
-
+        cart[idx].qty = qty
         if(token && token !== 'null') {
             editDbCart(cart[idx])
         }
-        cart[idx].qty = qty
         setCart(cart)
         window.localStorage.setItem('cart', JSON.stringify(cart))
         setReload(!reload)

@@ -14,11 +14,12 @@ const getCart = async (setCart, token) => { // I think it should work now, let m
 
   let userCart = []
   console.log(token)
-  if(token && token !== 'null') {
+  if(token && token !== 'null' && token !== 'undefined') {
     const dbCart = await getUserCart(token)
+    console.log(dbCart)
     userCart = dbCart
   }
-  if(token === "null") {
+  if(token === "null" || token === 'undefined') {
     if(storedCart.length !== 0) {
       setCart(storedCart)
       return
