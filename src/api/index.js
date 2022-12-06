@@ -72,8 +72,6 @@ export const registerUser = async (email, password) => {
 export const getSingleProduct = async (productId) => {
     try {
         const response = await fetch(`${baseURL}/products/${productId}`);
-
-        // console.log(response)
         
         const results = await response.json();
 

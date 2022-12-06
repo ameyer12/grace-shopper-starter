@@ -20,49 +20,50 @@ const App = () => {
     setProducts(results)
   }
  
-  const getCart = async () => { // I think it should work now, let me know if you still have errors -Elpidio
-    const storedCart = JSON.parse(window.localStorage.getItem('cart'))
-    const token = window.localStorage.getItem('token')
-    let userCart = []
-    if(token && token !== 'null') {
-      const dbCart = await getUserCart(token)
-      console.log(dbCart)
-      userCart = dbCart
-      console.log('getting cart user cart')
-    }
-    if(!token) {
-      if(storedCart.length !== 0) {
-        setCart(storedCart)
-        return
-      }
-      window.localStorage.setItem('cart', JSON.stringify(cart))
-    } else if(storedCart.length !== 0 && userCart.length !== 0) {
-      let i = 0;
-      while(storedCart.length - 1 >= i) {
-        const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
-        if(itemInCart === undefined) {
-          userCart.push(storedCart[i])
-          await addToUserCart(token, storedCart[i])
-          setCart(userCart)
-        }
-        i++
-      }
-    } else if(storedCart.length === 0 && userCart.length !== 0) {
-      setCart(userCart)
-    } else if(storedCart.length !== 0 && userCart.length === 0) {
-      setCart(storedCart)
-      let i = 0
-      while(storedCart.length - 1 >= i) {
-        await addToUserCart(token, storedCart[i])
-        i++
-      }
-    }
-    window.localStorage.setItem('cart', JSON.stringify(cart))
-  }
+  // const getCart = async () => { // I think it should work now, let me know if you still have errors -Elpidio
+  //   const storedCart = JSON.parse(window.localStorage.getItem('cart'))
+  //   const token = window.localStorage.getItem('token')
+  //   let userCart = []
+  //   if(token && token !== 'null') {
+  //     const dbCart = await getUserCart(token)
+  //     console.log(dbCart)
+  //     userCart = dbCart
+  //     console.log('getting cart user cart')
+  //   }
+  //   if(!token) {
+  //     if(storedCart.length !== 0) {
+  //       setCart(storedCart)
+  //       console.log(storedCart)
+  //       return
+  //     }
+  //     window.localStorage.setItem('cart', JSON.stringify(cart))
+  //   } else if(storedCart.length !== 0 && userCart.length !== 0) {
+  //     let i = 0;
+  //     while(storedCart.length - 1 >= i) {
+  //       const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
+  //       if(itemInCart === undefined) {
+  //         userCart.push(storedCart[i])
+  //         await addToUserCart(token, storedCart[i])
+  //         setCart(userCart)
+  //       }
+  //       i++
+  //     }
+  //   } else if(storedCart.length === 0 && userCart.length !== 0) {
+  //     setCart(userCart)
+  //   } else if(storedCart.length !== 0 && userCart.length === 0) {
+  //     setCart(storedCart)
+  //     let i = 0
+  //     while(storedCart.length - 1 >= i) {
+  //       await addToUserCart(token, storedCart[i])
+  //       i++
+  //     }
+  //   }
+  //   window.localStorage.setItem('cart', JSON.stringify(cart))
+  // }
 
-  useEffect(() => {
-    getCart()
-  }, [])
+  // useEffect(() => {
+  //   getCart()
+  // }, [])
 
   useEffect(() => {
     fetchProducts()
@@ -76,7 +77,7 @@ const App = () => {
               <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton}/>} />
               <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} setCart={setCart} />} />
               <Route path="/register" element={<Register registerUser={registerUser} navigate={navigate} />} />
-              <Route path="/products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} />} />
+              <Route path="/products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} />} />
           </Routes>
           <Footer />
       </div>

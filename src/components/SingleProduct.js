@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import './singleproduct.css';
 import 'bootstrap'
 
-const SingleProduct= ({getSingleProduct}) => {
+const SingleProduct= ({getSingleProduct,  AddToCartButton, setCart, cart}) => {
 
     const [singleProduct, setSingleProduct] = useState({});
 
@@ -20,6 +20,7 @@ const SingleProduct= ({getSingleProduct}) => {
         fetchSingleProduct()
     }, [])
 
+    let id = null;
     let title = null;
     let description = null;
     let image = null;
@@ -27,6 +28,7 @@ const SingleProduct= ({getSingleProduct}) => {
     let inventory = null;
 
     Object.values(singleProduct).map((currentItem) => {
+        id = currentItem.id;
         title = currentItem.title;
         description = currentItem.description;
         image = currentItem.image;
@@ -38,8 +40,6 @@ const SingleProduct= ({getSingleProduct}) => {
             inventory = "Yes";
         }
     })
-
-    console.log(inventory)
 
     return (
         <div className="single-product-body">
@@ -56,15 +56,17 @@ const SingleProduct= ({getSingleProduct}) => {
                             <option>XL</option>
                             <option>XXL</option>
                         </select>
-                <button 
+                {/* <button 
                 type="submit"
                 id="add-to-cart-button" 
                 className="btn btn-primary"
                 onClick={(ev) => {
                     ev.preventDefault();
+                    console.log(id)
                     // handleRegister();
                 }}
-                >Add To Cart</button>
+                >Add To Cart</button> */}
+                        {<AddToCartButton setCart={setCart} cart={cart} /> /*put back in for testing*/}  
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
