@@ -14,16 +14,16 @@ const getCart = async (setCart, token) => { // I think it should work now, let m
 
   let userCart = []
   console.log(token)
-  if(token === "null" || token === 'undefined' || !token) {
-    if(storedCart.length !== 0) {
-      setCart(storedCart)
-      return
-    }
   if(token && token !== 'null' && token !== 'undefined') {
     const dbCart = await getUserCart(token)
     console.log(dbCart)
     userCart = dbCart
   }
+  if(token === "null" || token === 'undefined' || token === undefined) {
+    if(storedCart.length !== 0) {
+      setCart(storedCart)
+      return
+    }
     window.localStorage.setItem('cart', JSON.stringify([]))
   } else if(storedCart.length !== 0 && userCart.length !== 0) {
     let i = 0;
