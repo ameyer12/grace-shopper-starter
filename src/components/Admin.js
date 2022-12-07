@@ -8,7 +8,7 @@ const Admin = ({navigate}) => {
                 id="admin-page-button" 
                 className="btn btn-primary"
                 onClick={() => {
-                   navigate("/admin/userData")
+                   navigate("/admin/userdata")
                 }}
             >View User Information</button>
             <button 
@@ -17,7 +17,7 @@ const Admin = ({navigate}) => {
                 className="btn btn-primary"
                 onClick={(ev) => {
                     ev.preventDefault();
-                    // handleRegister();
+                    navigate("/admin/createproduct")
                 }}
             >Create Product</button>
             <button 

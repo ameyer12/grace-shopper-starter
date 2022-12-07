@@ -433,7 +433,7 @@ async function createInitialOrderItems() {
 async function buildDB() {
   try {
     // need to add something here
-    client.connect();
+    // client.connect();
     await dropTables();
     await createTables();
     await createInitialCategories();
@@ -447,7 +447,6 @@ async function buildDB() {
     console.log('Error building the DB')
   }
 }
-
 buildDB()
   .catch(console.error)
   .finally(() => client.end())

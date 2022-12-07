@@ -62,3 +62,14 @@
 #qtyBtn:hover {
     background-color: rgb(187, 187, 187);
 }
+
+.delete-button {
+    text-decoration: none;
+    color: grey;
+    margin-left: 5%;
+}
+
+.delete-button:hover {
+    color: #BC4639;
+    cursor: pointer;
+}

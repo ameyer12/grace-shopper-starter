@@ -9,4 +9,5 @@ export {default as AddToCartButton} from "./AddToCartButton";
 export {default as SingleProduct} from "./SingleProduct";
 export {default as Admin} from "./Admin";
 export {default as AdminUserData} from "./AdminUserData";
+export {default as AdminCreateProduct} from "./AdminCreateProduct";
 

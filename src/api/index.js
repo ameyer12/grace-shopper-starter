@@ -40,6 +40,53 @@ export const getProducts = async () => {
     }
 }
 
+export const createProduct = async (title, description, price, categories, inventory, image) => {
+    try {
+        const response = await fetch(`${baseURL}/products`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                    title,
+                    description,
+                    price, 
+                    categories,
+                    inventory, 
+                    image
+            })
+        })
+
+        console.log(response)
+        const results = await response.json();
+
+        return (results)
+    } catch (error) {
+        throw error
+    }
+}
+
+export const deleteProduct = async (token, productId) => {
+    try {
+        const response = await fetch(`${baseURL}/products/${productId}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+
+        })
+
+        const results = await response.json();
+
+        console.log(results)
+
+        return results;
+    } catch (error) {
+        throw error
+    }
+}
+
 export const getOrders = async () => {
     try {
         const response = await fetch(`${baseURL}/orders`)

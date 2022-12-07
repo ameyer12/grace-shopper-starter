@@ -18,6 +18,7 @@ async function createProduct({title, description, price, inventory, image, categ
       return await addCategoryToProduct(categoryFields)
     })
     product.categories = categories
+
     return product;
   }
   catch(error) {
@@ -69,7 +70,6 @@ async function getProductByTitle(id) {
     throw error
   }
 }
-
 
 
 async function deleteProduct(id) {
