@@ -7,6 +7,7 @@
     "start-build": "node ./db/seed.js && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "nodemon index.js",
+    "start-deploy": "node index.js",
     "seed:dev": "nodemon ./db/seed.js",
     "seed": "node ./db/seed.js",
     "start": "react-scripts start",
