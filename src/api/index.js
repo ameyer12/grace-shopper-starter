@@ -1,5 +1,19 @@
 const baseURL = 'http://localhost:3004/api'
 
+export const getUser = async () => {
+    try {
+        const response = await fetch(`${baseURL}/users`)
+
+        const results = await response.json();
+
+        console.log(results)
+
+        return (results)
+    } catch (error) {
+        throw error
+    }
+}
+
 export const getProducts = async () => {
     try {
         const response = await fetch(`${baseURL}/products`)

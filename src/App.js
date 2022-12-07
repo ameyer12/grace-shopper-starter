@@ -8,51 +8,51 @@ import { Shop, Login, Register, SingleProduct, AddToCartButton } from './compone
 import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart, addToUserCart } from "./api"
 
 
-const getCart = async (setCart, token) => { // I think it should work now, let me know if you still have errors -Elpidio
-  const localCart = window.localStorage.cart || '[]'
-  const storedCart = JSON.parse(localCart)
+// const getCart = async (setCart, token) => { // I think it should work now, let me know if you still have errors -Elpidio
+//   const localCart = window.localStorage.cart || '[]'
+//   const storedCart = JSON.parse(localCart)
 
-  let userCart = []
-  console.log(token)
-  if(token && token !== 'null' && token !== 'undefined') {
-    const dbCart = await getUserCart(token)
-    console.log(dbCart)
-    userCart = dbCart
-  }
-  if(token === "null" || token === 'undefined' || token === undefined) {
-    if(storedCart.length !== 0) {
-      setCart(storedCart)
-      return
-    }
-    window.localStorage.setItem('cart', JSON.stringify([]))
-  } else if(storedCart.length !== 0 && userCart.length !== 0) {
-    let i = 0;
-    while(storedCart.length - 1 >= i) {
-      const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
-      if(itemInCart === undefined) {
-        userCart.push(storedCart[i])
-        await addToUserCart(token, storedCart[i])
-        console.log(userCart, 'testing cart')
-      }
-      i++
-    }
-    setCart(userCart)
-    window.localStorage.setItem('cart', JSON.stringify(userCart))
-  } else if(storedCart.length === 0 && userCart.length !== 0) {
-    setCart(userCart)
-    window.localStorage.setItem('cart', JSON.stringify(userCart))
-  } else if(storedCart.length !== 0 && userCart.length === 0) {
-    console.log('here')
-    setCart(storedCart)
-    let i = 0
-    while(storedCart.length - 1 >= i) {
-      console.log(storedCart[i])
-      await addToUserCart(token, storedCart[i])
-      i++
-    }
-    window.localStorage.setItem('cart', JSON.stringify(storedCart))
-  }
-}
+//   let userCart = []
+//   // console.log(token)
+//   if(token && token !== 'null' && token !== 'undefined') {
+//     const dbCart = await getUserCart(token)
+//     console.log(dbCart)
+//     userCart = dbCart
+//   }
+//   if(token === "null" || token === 'undefined' || token === undefined) {
+//     if(storedCart.length !== 0) {
+//       setCart(storedCart)
+//       return
+//     }
+//     window.localStorage.setItem('cart', JSON.stringify([]))
+//   } else if(storedCart.length !== 0 && userCart.length !== 0) {
+//     let i = 0;
+//     while(storedCart.length - 1 >= i) {
+//       const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
+//       if(itemInCart === undefined) {
+//         userCart.push(storedCart[i])
+//         await addToUserCart(token, storedCart[i])
+//         console.log(userCart, 'testing cart')
+//       }
+//       i++
+//     }
+//     setCart(userCart)
+//     window.localStorage.setItem('cart', JSON.stringify(userCart))
+//   } else if(storedCart.length === 0 && userCart.length !== 0) {
+//     setCart(userCart)
+//     window.localStorage.setItem('cart', JSON.stringify(userCart))
+//   } else if(storedCart.length !== 0 && userCart.length === 0) {
+//     console.log('here')
+//     setCart(storedCart)
+//     let i = 0
+//     while(storedCart.length - 1 >= i) {
+//       console.log(storedCart[i])
+//       await addToUserCart(token, storedCart[i])
+//       i++
+//     }
+//     window.localStorage.setItem('cart', JSON.stringify(storedCart))
+//   }
+// }
 
 
 
@@ -69,9 +69,9 @@ const App = () => {
  
   
 
-  useEffect(() => {
-    getCart(setCart, token)
-  }, [setCart, token])
+  // useEffect(() => {
+  //   getCart(setCart, token)
+  // }, [setCart, token])
 
 
   useEffect(() => {

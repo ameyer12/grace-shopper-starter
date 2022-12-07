@@ -69,7 +69,9 @@ usersRouter.post('/login', async (req, res, next) => {
 
     try {
         const user = await getUserByEmail(email);
+
         if (user && comparePasswords(password, '10')) {
+
             const token = jwt.sign({id: user.id, email: user.email}, JWT_SECRET, { expiresIn: '1w' });
             res.send({
                 user,
@@ -79,7 +81,7 @@ usersRouter.post('/login', async (req, res, next) => {
         } else {
             next({
                 name: 'IncorrectCredentialsError',
-                message: 'Email or Password is incorrect'
+                message: 'Email or Password is incorrect',
             });
         }
     } catch(error) {

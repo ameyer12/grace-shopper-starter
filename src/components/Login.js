@@ -7,16 +7,18 @@ const Login = ({navigate, loginUser, setCart, setToken}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+
     const handleLogin = async () => {
 
         try {
             const results = await loginUser(email, password);
+            console.log(results)
     
             setToken(results.token)
 
             window.localStorage.setItem('token', results.token)
-
-            if(results.token != null) {
+            
+            if(results.message == "Login successful") {
                 swal({
                     icon: "success",
                 })
