@@ -1,18 +1,32 @@
-const baseURL = 'http://localhost:3004/api'
+const baseURL = 'http://localhost:3005/api'
 
-export const getUser = async () => {
+// export const getUser = async (email, password) => {
+//     try {
+//         const response = await fetch(`${baseURL}/users`)
+
+//         const results = await response.json();
+
+//         console.log(results)
+
+//         return (results)
+//     } catch (error) {
+//         throw error
+//     }
+// }
+
+export const getAllUsers = async () => {
     try {
         const response = await fetch(`${baseURL}/users`)
+        console.log(response)
 
         const results = await response.json();
-
-        console.log(results)
 
         return (results)
     } catch (error) {
         throw error
     }
 }
+
 
 export const getProducts = async () => {
     try {

@@ -6,12 +6,24 @@ const bcrypt = require('bcrypt');
 const {
     createUser,
     getUserByEmail,
-    getUser
+    getUser,
+    getAllUsers
 } = require('../db/users');
 
-usersRouter.get('/', (req, res, next) => {
-    res.send('USERS')
-  })
+usersRouter.get('/', async (req, res, next) => {
+
+    const users = await getAllUsers();
+
+    console.log(users)
+
+    try {
+        res.send(users)
+
+    } catch ({name, message}) {
+        res.send({name, message})
+    }
+})
+
 
 //POST /api/users/register
 usersRouter.post('/register', async (req, res, next) => {

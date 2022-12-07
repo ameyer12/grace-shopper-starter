@@ -5,5 +5,8 @@ export {default as Navbar} from "./navbar";
 export {default as Footer} from "./Footer";
 export {default as Shop} from "./Shop";
 export {default as SimpleCartMenu} from "./SimpleCartMenu";
-export {default as AddToCartButton} from "./AddToCartButton"
-export {default as SingleProduct} from "./SingleProduct"
+export {default as AddToCartButton} from "./AddToCartButton";
+export {default as SingleProduct} from "./SingleProduct";
+export {default as Admin} from "./Admin";
+export {default as AdminUserData} from "./AdminUserData";
+

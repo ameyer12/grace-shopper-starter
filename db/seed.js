@@ -272,14 +272,14 @@ async function createInitialUsers() {
       email:
         "fakeemail@gmail.com",
       password:
-        "123456"
+        "123456",
     });
 
     await createUser({
       email:
         "Second user",
       password:
-        "Password2"
+        "Password2",
     });
 
     await createUser({
@@ -288,7 +288,7 @@ async function createInitialUsers() {
       password:
         "Password3"
     });
-
+  
     console.log('Finished creating Users')
   }
   catch (ex) {

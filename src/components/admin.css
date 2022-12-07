@@ -1,0 +1,19 @@
+.admin {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93%;
+    width: 100%;
+    background-color: #dadada;
+    overflow: scroll;
+}
+
+#admin-page-button {
+    border: none;
+    margin-bottom: 7%;
+    margin-left: 2%;
+    width: 18rem;
+    background-color: #BC4639;
+
+}

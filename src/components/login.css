@@ -84,6 +84,15 @@
     margin-top:0.8%;
 }
 
+#admin-button {
+    border: none;
+    background-color: #dadada;
+    color: #BC4639;
+    text-decoration: underline;
+    white-space: nowrap;
+    margin-top:0.8%;
+}
+
 #profile-card {
     background-color: white;
     height: auto;

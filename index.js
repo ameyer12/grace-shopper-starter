@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const server = express();
-const PORT = 3004;
+const PORT = 3005;
 
 server.use(morgan("dev"));
 server.use(express.json());
