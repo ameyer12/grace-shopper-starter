@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3005/api'
+const baseURL = 'https://grace-shopper-server.onrender.com/api'
 
 // export const getUser = async (email, password) => {
 //     try {
