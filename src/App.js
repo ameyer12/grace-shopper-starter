@@ -12,29 +12,28 @@ const getCart = async (setCart, token) => { // I think it should work now, let m
   
   const localCart = window.localStorage.cart || '[]'
 
-  console.log(localCart)
-
   const storedCart = JSON.parse(localCart)
-  // console.log(storedCart)
-  // console.log(storedCart.length)
+
+  const storedCartLength = storedCart.length || 0;
+
   let userCart = []
-  // console.log(token)
+
+  const userCartLength = userCart.length || 0;
+
   if(token && token !== 'null' && token !== 'undefined' && token !== null) {
     const dbCart = await getUserCart(token)
     console.log(dbCart)
     userCart = dbCart
   }
-  // console.log(storedCart.length)
   if(token === "null" || token === 'undefined' || token === null) {
-    if(storedCart.length !== 0) {
+    if(storedCartLength !== 0) {
       setCart(storedCart)
       return
     }
-    // console.log(storedCart.length)
     window.localStorage.setItem('cart', JSON.stringify([]))
-  } else if(storedCart.length !== 0 && userCart.length !== 0) {
+  } else if(storedCartLength !== 0 &&  userCartLength !== 0) {
     let i = 0;
-    while(storedCart.length - 1 >= i) {
+    while(storedCartLength - 1 >= i) {
       const itemInCart = userCart.find((item) => item.itemId === storedCart[i].itemId)
       if(itemInCart === undefined) {
         userCart.push(storedCart[i])
@@ -45,14 +44,14 @@ const getCart = async (setCart, token) => { // I think it should work now, let m
     }
     setCart(userCart)
     window.localStorage.setItem('cart', JSON.stringify(userCart))
-  } else if(storedCart.length === 0 && userCart.length !== 0) {
+  } else if(storedCartLength === 0 && userCartLength !== 0) {
     setCart(userCart)
     window.localStorage.setItem('cart', JSON.stringify(userCart))
-  } else if(storedCart.length !== 0 && userCart.length === 0) {
+  } else if(storedCartLength !== 0 && userCartLength === 0) {
     console.log('here')
     setCart(storedCart)
     let i = 0
-    while(storedCart.length - 1 >= i) {
+    while(storedCartLength - 1 >= i) {
       console.log(storedCart[i])
       await addToUserCart(token, storedCart[i])
       i++
@@ -81,7 +80,7 @@ const App = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [location.pathname, products])
+  }, [location.pathname])
 
     return (
       <div>

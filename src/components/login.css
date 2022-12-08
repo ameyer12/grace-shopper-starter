@@ -60,6 +60,7 @@
 
 #account-page {
     display: flex; 
+    position: absolute;
     flex-direction: column;
     justify-content: center;
     text-align: center;

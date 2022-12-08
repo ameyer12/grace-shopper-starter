@@ -33,7 +33,6 @@ async function createUser({email, password}) {
       if(!user) {
         return;
       }
-      console.log(user)
       const hashedPassword = user.password;
       const passwordsMatch = await bcrypt.compare(password, hashedPassword)
 

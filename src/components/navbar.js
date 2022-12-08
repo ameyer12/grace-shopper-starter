@@ -33,7 +33,7 @@ const Navbar = ({ logout, token, cart, setCart, products }) => {
           </li>
           {!showCart ?
 
-          <li className="nav-item">
+          <li className="nav-item" id="cart-button">
             <button style={{border: 'none', backgroundColor: 'white'}} id="cart-link"className="nav-link" onClick={() => setShowCart(!showCart)}><i className="material-icons">shopping_cart</i></button>
           </li> : <SimpleCartMenu setShowCart={setShowCart} showCart={showCart} cart={cart} products={products} setCart={setCart}/>
           }

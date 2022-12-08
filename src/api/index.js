@@ -1,5 +1,7 @@
 const baseURL = 'https://grace-shopper-server.onrender.com/api'
 
+// const baseURL = 'http://localhost:3005/api';
+
 // export const getUser = async (email, password) => {
 //     try {
 //         const response = await fetch(`${baseURL}/users`)
@@ -110,6 +112,8 @@ export const loginUser = async (email, password) => {
         })
 
         const results = await response.json();
+
+        console.log(results)
 
         return results;
     } catch (err) {
