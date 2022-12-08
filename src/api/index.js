@@ -1,4 +1,33 @@
-const baseURL = 'http://localhost:3005/api'
+const baseURL = 'https://grace-shopper-server.onrender.com/api'
+
+// const baseURL = 'http://localhost:3005/api';
+
+// export const getUser = async (email, password) => {
+//     try {
+//         const response = await fetch(`${baseURL}/users`)
+
+//         const results = await response.json();
+
+//         console.log(results)
+
+//         return (results)
+//     } catch (error) {
+//         throw error
+//     }
+// }
+
+export const getAllUsers = async () => {
+    try {
+        const response = await fetch(`${baseURL}/users`)
+
+        const results = await response.json();
+
+        return (results)
+    } catch (error) {
+        throw error
+    }
+}
+
 
 export const getProducts = async () => {
     try {
@@ -8,6 +37,51 @@ export const getProducts = async () => {
 
         return (results)
     } catch (error) {
+        throw error
+    }
+}
+
+export const createProduct = async (title, description, price, categories, inventory, image) => {
+    try {
+        const response = await fetch(`${baseURL}/products`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                    title,
+                    description,
+                    price, 
+                    categories,
+                    inventory, 
+                    image
+            })
+        })
+
+        const results = await response.json();
+
+        return (results)
+    } catch (error) {
+        throw error
+    }
+}
+
+export const deleteProduct = async (productId) => {
+    try {
+        console.log(productId)
+        const response = await fetch(`${baseURL}/products/${productId}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+
+        });
+
+        const results = await response.json();
+
+        return results;
+    } catch (error) {
+        console.log(error)
         throw error
     }
 }
@@ -38,6 +112,8 @@ export const loginUser = async (email, password) => {
         })
 
         const results = await response.json();
+
+        console.log(results)
 
         return results;
     } catch (err) {

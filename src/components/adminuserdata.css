@@ -1,0 +1,38 @@
+.admin-user-data {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 93%;
+    width: 100%;
+    background-color: #dadada;
+    overflow: scroll;
+}
+
+#user-data-card {
+    background-color: white;
+}
+
+.routine-card-p {
+    margin-left: 2.9%;
+    width: 50rem;
+}
+
+.card-header {
+    background-color: #BC4639;
+    color: white;
+}
+
+#routine-card-email {
+    margin-top: 1%;
+}
+
+#return-to-admin-dashboard {
+    border: none;
+    background-color: #dadada;
+    color: #BC4639;
+    text-decoration: underline;
+    white-space: nowrap;
+    margin-top:0.8%;
+}

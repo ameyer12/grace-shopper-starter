@@ -1,9 +1,22 @@
-.navbar-brand {
-    color: #BC4639;
-    margin-left: 5.5%;
-    flex-grow: 3;
+.navbar {
+    padding: 1%;
 }
 
+.navbar-brand {
+    color: #BC4639;
+    margin-left: 2.5%;
+    flex-grow: 3;
+    margin-top: -3%;
+    margin-bottom: -3%;
+}
+
+ul.navbar-nav a:hover { 
+    color: #BC4639; 
+}
+
+ul.navbar-nav a:active { 
+    color: #BC4639 !important; 
+}
 
 @media screen and (min-width: 992px) and (max-width: 1050px) {
     #home-link{
@@ -21,7 +34,7 @@
     #home-link {
         position: absolute;
         padding-right: 0.4%;
-        right: 54%;
+        right: 54.3%;
         bottom: 10%;
     }
     
@@ -43,7 +56,7 @@
     #about-link {
         position: absolute;
         padding-left: 1%;
-        right: 41.3%;
+        right: 41.4%;
         bottom: 10%;
     }
 
@@ -61,12 +74,4 @@
         right: 5%;
         bottom: 0.1%;
     }
-}
-
-ul.navbar-nav a:hover { 
-    color: #BC4639; 
-}
-
-ul.navbar-nav a:active { 
-    color: #BC4639 !important; 
 }

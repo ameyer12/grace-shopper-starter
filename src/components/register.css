@@ -27,9 +27,10 @@
 
 #register-page-button {
     border: none;
-    margin-top: 39%;
+    margin-top: 5%;
     margin-left: 0.1%;
     width: 18rem;
+    background-color: #BC4639;
 }
 
 .register-h1 {
@@ -43,10 +44,6 @@
     background-color: #dadada;
 }
 
-.sign-up-message {
-    margin-top: 30%;
-}
-
 #exampleInputPassword2 {
     margin-top: 5%;
 }
@@ -58,4 +55,8 @@
 .swal-button:hover {
     background-color: #dadada !important;
     color: black;
+}
+
+.form-check {
+    margin-top: 2%;
 }

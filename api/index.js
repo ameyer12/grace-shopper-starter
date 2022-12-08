@@ -1,7 +1,7 @@
 const express = require('express');
 const apiRouter = express.Router();
 const jwt = require('jsonwebtoken');
-const {  getUserById } = require('../db/users');
+const { getUserById } = require('../db/users');
 
 
 apiRouter.use(async (req, res, next) => {

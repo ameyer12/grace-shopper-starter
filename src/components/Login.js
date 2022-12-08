@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router';
 import swal from 'sweetalert';
 import './login.css';
 
@@ -6,17 +7,26 @@ const Login = ({navigate, loginUser, setCart, setToken}) => {
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [isAdmin, setIsAdmin] = useState(false);
+    
     const handleLogin = async () => {
 
         try {
             const results = await loginUser(email, password);
-    
+
+            if(results.message == "Login successful" && results.user.id === 1) {
+                results.user.isAdmin = true
+                window.localStorage.setItem('isAdmin', JSON.stringify(true))
+                setIsAdmin(true)
+            } else if(results.message == "Login successful" && results.user.id !== 1){
+                window.localStorage.setItem('isAdmin', JSON.stringify("false"))
+            }     
+
             setToken(results.token)
-
+            
             window.localStorage.setItem('token', results.token)
-
-            if(results.token != null) {
+            
+            if(results.message == "Login successful") {
                 swal({
                     icon: "success",
                 })
@@ -45,6 +55,7 @@ const Login = ({navigate, loginUser, setCart, setToken}) => {
     const handleLogout = async () => {
         try {
             window.localStorage.token = null;
+            window.localStorage.isAdmin = "";
             window.localStorage.setItem('cart', JSON.stringify([]))
             setCart([])
             navigate("/")
@@ -98,7 +109,8 @@ const Login = ({navigate, loginUser, setCart, setToken}) => {
                 </form>
             </div>
           )
-    } else {
+    } 
+    else if (window.localStorage.token !== "null" && window.localStorage.token !== "undefined" && window.localStorage.isAdmin != "true"){
         return (
             <div id="account-page">
                 <p id="account-page-p">My Account</p>
@@ -119,6 +131,35 @@ const Login = ({navigate, loginUser, setCart, setToken}) => {
                 }}
                 >Sign Out</button>
             </div>
+        ) 
+    } else if(window.localStorage.isAdmin == "true") {
+        return(
+        <div id="account-page">
+            <p id="account-page-p">My Account</p>
+            <div id="profile-card" className="card">
+                <div className="card-body">
+                    <p className="card-text">Order history</p>
+                    <p className="card-text">Reservation History</p>
+                    <p className="card-text">Manage Addresses</p>
+                    <p className="card-text">Account Details</p>
+                </div>
+            </div>
+            <button
+                id="admin-button" 
+                className="btn btn-primary"
+                onClick={() => {
+                    navigate("/admin")
+                }}
+            >Admin Dashboard</button>
+            <button
+            type="submit"
+            id="sign-out-button" 
+            className="btn btn-primary"
+            onClick={() => {
+                handleLogout()
+            }}
+            >Sign Out</button>
+        </div>
         )
     }
 }

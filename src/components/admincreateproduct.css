@@ -1,0 +1,46 @@
+.create-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 93%;
+    width: 100%;
+    background-color: #dadada;
+    overflow: scroll;
+}
+
+
+#create-post-form {
+    margin-bottom: 15%;
+    margin-left: 0.5%;
+    height: 36rem;
+    width: 25rem;
+    background-color: white;
+}
+
+#return-to-admin-page {
+    margin-top: 1%;
+    border: none;
+    background-color: #dadada;
+    color: #BC4639;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+
+#create-post-button {
+    border: none;
+    margin-top: 5%;
+    margin-left: 0.15%;
+    width: 22.5rem;
+    background-color: #BC4639;
+}
+
+#create-post-id {
+    margin-top: -4%;
+}
+
+label {
+    padding-top: 2%;
+    padding-bottom: 0.5%;
+}

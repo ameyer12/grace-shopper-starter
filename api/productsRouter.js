@@ -1,6 +1,7 @@
 const express = require('express');
 const { getAllCategories, getProductsByCategoryId } = require('../db/categories')
 const { getAllProducts, createProduct, getProductById, deleteProduct } = require('../db/products')
+const { requireUser } = require("./utils")
 
 const productsRouter = express.Router();
 
@@ -17,7 +18,7 @@ productsRouter.get('/', async (req, res, next) => {
 })
 
 productsRouter.get('/:productId', async (req, res, next) => {
-  const product = await getProductById(req.params.productId)
+  const product = await getProductById(req.params.productId);
 
   try {
     res.send(product)
@@ -48,11 +49,13 @@ productsRouter.post('/', async (req, res, next) => {
 
 })
 
-productsRouter.delete('/:productId', async (req, res, next) => {
+productsRouter.delete('/:productId', requireUser, async (req, res, next) => {
   try {
       const product = await getProductById(req.params.productId);
 
-      await deleteProduct(req.params.productId)
+      const removeProduct = await deleteProduct(req.params.productId);
+      
+      res.send(removeProduct);
 
   } catch ({ name, message }) {
       res.send({name, message})

@@ -6,12 +6,24 @@ const bcrypt = require('bcrypt');
 const {
     createUser,
     getUserByEmail,
-    getUser
+    getUser,
+    getAllUsers
 } = require('../db/users');
 
-usersRouter.get('/', (req, res, next) => {
-    res.send('USERS')
-  })
+usersRouter.get('/', async (req, res, next) => {
+
+    const users = await getAllUsers();
+
+    console.log(users)
+
+    try {
+        res.send(users)
+
+    } catch ({name, message}) {
+        res.send({name, message})
+    }
+})
+
 
 //POST /api/users/register
 usersRouter.post('/register', async (req, res, next) => {
@@ -62,14 +74,19 @@ usersRouter.post('/login', async (req, res, next) => {
             message: 'Please supply both an email and a password'
         });
     }
+
     async function comparePasswords(plainTextPassword, hash) {
+        console.log(plaintextPassword, hash, "Passwords")
         const results = await bcrypt.compare(plainTextPassword, hash)
         return results;
     }
 
+
     try {
         const user = await getUserByEmail(email);
-        if (user && comparePasswords(password, '10')) {
+
+        if (user && comparePasswords(password, user.password)) {
+
             const token = jwt.sign({id: user.id, email: user.email}, JWT_SECRET, { expiresIn: '1w' });
             res.send({
                 user,
@@ -79,13 +96,14 @@ usersRouter.post('/login', async (req, res, next) => {
         } else {
             next({
                 name: 'IncorrectCredentialsError',
-                message: 'Email or Password is incorrect'
+                message: 'Email or Password is incorrect',
             });
         }
     } catch(error) {
         next(error);
     }
 })
+
 
 usersRouter.use((error, req, res, next) => { // error handler
     console.log('error occurred')
