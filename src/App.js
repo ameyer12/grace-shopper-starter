@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useNavigate } from "react-router";
+import { Route, Routes, useNavigate, useLocation } from "react-router";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
 import { Shop, Login, Register, SingleProduct, AddToCartButton, Admin, AdminUserData, AdminCreateProduct } from './components';
-import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart, addToUserCart, getAllUsers, createProduct, deleteProduct} from "./api"
+import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart, addToUserCart, getAllUsers, createProduct} from "./api"
 
 
 const getCart = async (setCart, token) => { // I think it should work now, let me know if you still have errors -Elpidio
@@ -67,6 +67,7 @@ const App = () => {
   const [cart, setCart] = useState([])
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const fetchProducts = async () => {
     const results = await getProducts()
@@ -79,22 +80,21 @@ const App = () => {
   }, [setCart, token])
 
   useEffect(() => {
-    fetchProducts()
-  }, [])
-
+    fetchProducts();
+  }, [location.pathname, products])
 
     return (
       <div>
           <Navbar cart={cart} setCart={setCart} products={products}/>
           <Routes>
               <Route path="/" element={<Home navigate={navigate} />} />
-              <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} deleteProduct={deleteProduct}/>} />
+              <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} />} />
               <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} setCart={setCart} setToken={setToken} />} />
               <Route path="/register" element={<Register registerUser={registerUser} navigate={navigate} />} />
               <Route path="/admin" element={<Admin navigate={navigate} />} />
               <Route path="/admin/userdata" element={<AdminUserData navigate={navigate} getAllUsers={getAllUsers} />} />
-              <Route path="/admin/createproduct" element={<AdminCreateProduct navigate={navigate} createProduct={createProduct}/>} />
-              <Route path="/products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} />} />
+              <Route path="/admin/createproduct" element={<AdminCreateProduct navigate={navigate} createProduct={createProduct} fetchProducts={fetchProducts} getProducts={getProducts} setProducts={setProducts} />} />
+              <Route path="/products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} getProducts={getProducts} setProducts={setProducts} />} />
           </Routes>
           <Footer />
       </div>

@@ -20,15 +20,6 @@ const Admin = ({navigate}) => {
                     navigate("/admin/createproduct")
                 }}
             >Create Product</button>
-            <button 
-                type="submit"
-                id="admin-page-button" 
-                className="btn btn-primary"
-                onClick={(ev) => {
-                    ev.preventDefault();
-                    // handleRegister();
-                }}
-            >Edit Product</button>
         </div>
     )
 }

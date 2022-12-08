@@ -1,6 +1,6 @@
 import './style.css';
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import logoImage from "./The.jpg";
 import './navbar.css'
 import SimpleCartMenu from './SimpleCartMenu';
 
@@ -10,7 +10,7 @@ const Navbar = ({ logout, token, cart, setCart, products }) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light" style={{background: "white"}}>
-      <a className="navbar-brand" href="/">The Closet</a>
+      <a className="navbar-brand" href="/"><img id="brand-logo" src={logoImage} alt="The Closet Logo" width="100rem" height="100rem"/></a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -41,67 +41,6 @@ const Navbar = ({ logout, token, cart, setCart, products }) => {
       </div>
     </nav>
   )
-
-//We can use this as a reference when adding more functionality to the navbar
-
-//     <header>
-//       <nav className="navbar">
-//         <Link className="link" to='/'>Home</Link>
-//         {/* <Link className="link" to='/OtherTab'>OtherTab</Link> */}
-
-// {
-// token ?( // needs login to access
-//   <>
-// <Link className="link" to='/' 
-//           onClick={ () => {
-//             logout()
-//         }}>Logout</Link>
-        
-// {/* <Link className="link" to='/OtherTab'>OtherTab</Link> */}
-// </>
-      
-// ): (<>
-//   <Link className="link" to='/register'>Register</Link>
-//   <Link className="link" to='/login'>Login</Link>
-
-//   </>
-// )
-// }
-//       </nav>
-     
-//     </header>
-//   )
-// }
-
-// return (
-//   <header>
-//     <nav className="navbar">
-//       <Link className="link" to='/'>Home</Link>
-//       <Link className="link" to='/orderItems'>Shop</Link>
-//       <Link className="link" to='/reviews'>Blog</Link>
-//       <Link className="link" to='/products'>About</Link>
-
-
-// {
-// token ?(
-// <>
-// <Link className="link" to='/' 
-//         onClick={ () => {
-//           logout()
-//       }}>Logout</Link>
-// </>
-    
-// ): (<>
-// <Link className="link" to='/register'>Register</Link>
-// <Link className="link" to='/login'>Login</Link>
-
-// </>
-// )
-// }
-//     </nav>
-   
-//   </header>
-// )
 }
 
 export default Navbar;

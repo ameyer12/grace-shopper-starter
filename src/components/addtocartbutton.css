@@ -1,10 +1,11 @@
 .addToCartBtn {
     display: flex;
+    width: 100%;
     background-color: black !important;
     color: white !important;
     border-color: white !important ;
-    margin-left: 34.2% !important;
-    margin-right: 34.2% !important;
+    white-space:nowrap;
+    margin-bottom: 2% !important;
 }
 
 #qtyBtn {
@@ -13,10 +14,4 @@
 
 .addToCartBtn:hover {
     background-color: #BC4639 !important;
-}
-
-@media screen and (max-width: 775px){
-    .addToCartBtn {
-        margin-left: 37.6% !important;
-    }
 }

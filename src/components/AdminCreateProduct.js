@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './admincreateproduct.css';
 
-const AdminCreateProduct = ({navigate, createProduct}) => {
+const AdminCreateProduct = ({navigate, createProduct, setProducts, getProducts}) => {
 
-    // title, description, price, categories, inventory, image
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState(Number);
@@ -14,6 +13,10 @@ const AdminCreateProduct = ({navigate, createProduct}) => {
     const handleCreateProduct = async () => {
 
         const results = await createProduct(title, description, price, categories, inventory, image)
+
+        const refreshProducts = await getProducts();
+
+        setProducts(refreshProducts) 
     }
 
     return(
@@ -100,8 +103,9 @@ const AdminCreateProduct = ({navigate, createProduct}) => {
                 onClick={(ev) => {
                     ev.preventDefault();
                     handleCreateProduct();
+                    navigate("/shop");
                 }}
-                >Create Post</button>
+                >Create Product</button>
                 </div>
             </form>
         </div>

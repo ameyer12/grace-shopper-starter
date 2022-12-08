@@ -17,7 +17,6 @@ const baseURL = 'https://grace-shopper-server.onrender.com/api'
 export const getAllUsers = async () => {
     try {
         const response = await fetch(`${baseURL}/users`)
-        console.log(response)
 
         const results = await response.json();
 
@@ -57,7 +56,6 @@ export const createProduct = async (title, description, price, categories, inven
             })
         })
 
-        console.log(response)
         const results = await response.json();
 
         return (results)
@@ -66,23 +64,22 @@ export const createProduct = async (title, description, price, categories, inven
     }
 }
 
-export const deleteProduct = async (token, productId) => {
+export const deleteProduct = async (productId) => {
     try {
+        console.log(productId)
         const response = await fetch(`${baseURL}/products/${productId}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
             },
 
-        })
+        });
 
         const results = await response.json();
 
-        console.log(results)
-
         return results;
     } catch (error) {
+        console.log(error)
         throw error
     }
 }
