@@ -51,9 +51,9 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
                     <p>{currentProduct.title}</p>
                     <p>Quantity: {item.qty}</p>
                     { item.qty > 1 
-                    ? <Button variant="text" id="qtyBtn" onClick={() => editCart(item.qty - 1, idx)}><i className="material-icons">Remove</i></Button>
-                    : <Button onClick={() => removeFromCart(item.itemId)}>Remove Item</Button>}
-                    <Button variant="text" id="qtyBtn" onClick={() => editCart(item.qty + 1, idx)}><i className="material-icons">Add</i></Button>
+                    ? <Button variant="text" id="qtyBtn" onClick={() => editCart(item.qty - 1, idx)}><i className="material-icons">remove</i></Button>
+                    : <Button onClick={() => removeFromCart(item.itemId)}>remove item</Button>}
+                    <Button variant="text" id="qtyBtn" onClick={() => editCart(item.qty + 1, idx)}><i className="material-icons">add</i></Button>
                     
                 </li> )
             }) )
