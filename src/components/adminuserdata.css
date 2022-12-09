@@ -12,9 +12,11 @@
 
 #user-data-card {
     background-color: white;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
-.routine-card-p {
+.user-card-p {
     margin-left: 2.9%;
     width: 50rem;
 }
@@ -24,7 +26,7 @@
     color: white;
 }
 
-#routine-card-email {
+#user-card-email {
     margin-top: 1%;
 }
 

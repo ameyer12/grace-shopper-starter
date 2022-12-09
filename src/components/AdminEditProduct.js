@@ -51,6 +51,10 @@ const AdminEditProduct = ({navigate, products, setProducts, getProducts}) => {
 
             await updateProduct(updatedProduct)
 
+            const refreshProducts = await getProducts();
+
+            setProducts(refreshProducts) 
+
         } catch (error) {
             console.log(error)
             throw error
@@ -141,8 +145,7 @@ const AdminEditProduct = ({navigate, products, setProducts, getProducts}) => {
                 onClick={(ev) => {
                     ev.preventDefault();
                     handleEditProduct();
-                    // navigate("/shop");
-                    console.log("hi")
+                    navigate("/shop");
                 }}
                 >Edit Product</button>
                 </div>

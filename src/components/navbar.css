@@ -75,3 +75,34 @@ ul.navbar-nav a:active {
         bottom: 0.1%;
     }
 }
+
+@media screen and (min-width: 1500px) {
+    .navbar-brand {
+        padding-top: 1%;
+        padding-bottom: 1%
+    }
+    #home-link {
+        bottom: 16%;
+    }
+    
+    #shop-link {
+        bottom: 16%;
+    }
+
+    #blog-link {
+        bottom: 16%;
+    }
+
+    
+    #about-link {
+        bottom: 16%;
+    }
+
+    #profile-link {
+        bottom: 5%;
+    }
+
+    #cart-link {
+        bottom: 5%;
+    }
+}
