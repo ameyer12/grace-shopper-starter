@@ -11,7 +11,7 @@ const Shop = ({products, setCart, cart, AddToCartButton}) => {
             <div className='products-container'> {
                 products.map((currentItem, index) => { 
                     return <li className="card" key={index}>
-                                <img className="product-image" src={currentItem.image} alt={currentItem.description}/>
+                                <img className="product-image" src={currentItem.image} alt="product image"/>
                                 <p className='product-title'>
                                     {currentItem.title}
                                     <br></br>

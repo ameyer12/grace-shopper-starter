@@ -35,8 +35,8 @@ const AdminUserData = ({navigate, getAllUsers}) => {
                                     <div class="card-header">
                                         User Id: {currentItem.id}
                                     </div>
-                                    <div className='routine-card-p'>
-                                        <p id='routine-card-email'>Email: {currentItem.email}</p>
+                                    <div className='user-card-p'>
+                                        <p id='user-card-email'>Email: {currentItem.email}</p>
                                         <p>Password: {currentItem.password}</p>
                                     </div>
                                 </li>
@@ -44,6 +44,9 @@ const AdminUserData = ({navigate, getAllUsers}) => {
                 })
 
             }
+            <div className='spacing-div'>
+                <p></p>
+            </div>
         </div>
     )
 }

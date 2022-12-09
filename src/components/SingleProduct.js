@@ -21,8 +21,6 @@ const SingleProduct= ({getSingleProduct, AddToCartButton, setCart, cart, navigat
 
         const refreshProductPage = await getProducts();
 
-        console.log(refreshProductPage)
-
         setProducts(refreshProductPage);
     }
 
@@ -126,7 +124,7 @@ const SingleProduct= ({getSingleProduct, AddToCartButton, setCart, cart, navigat
                         onClick={(ev) => {
                             ev.preventDefault();
                             handleDeleteProduct();
-                            navigate("/shop");
+                            navigate("/");
                         }}                        
                         >Delete Item</a>
                 <div class="accordion" id="accordionExample">
