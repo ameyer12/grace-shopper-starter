@@ -76,7 +76,7 @@ usersRouter.post('/login', async (req, res, next) => {
     }
 
     async function comparePasswords(plainTextPassword, hash) {
-        console.log(plaintextPassword, hash, "Passwords")
+        console.log(plainTextPassword, hash, "Passwords")
         const results = await bcrypt.compare(plainTextPassword, hash)
         return results;
     }
@@ -85,7 +85,7 @@ usersRouter.post('/login', async (req, res, next) => {
     try {
         const user = await getUserByEmail(email);
 
-        if (user && comparePasswords(password, user.password)) {
+        if (user && await comparePasswords(password, user.password)) {
 
             const token = jwt.sign({id: user.id, email: user.email}, JWT_SECRET, { expiresIn: '1w' });
             res.send({
