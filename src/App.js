@@ -4,11 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import { Shop, Login, Register, SingleProduct, AddToCartButton, Admin, AdminUserData, AdminCreateProduct } from './components';
+import { Shop, Login, Register, SingleProduct, AddToCartButton, Admin, AdminUserData, AdminCreateProduct, AdminEditProduct } from './components';
 import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart, addToUserCart, getAllUsers, createProduct} from "./api"
 
 
-const getCart = async (setCart, token) => { // I think it should work now, let me know if you still have errors -Elpidio
+const getCart = async (setCart, token) => {
   
   const localCart = window.localStorage.cart || '[]'
 
@@ -22,7 +22,6 @@ const getCart = async (setCart, token) => { // I think it should work now, let m
 
   if(token && token !== 'null' && token !== 'undefined' && token !== null) {
     const dbCart = await getUserCart(token)
-    console.log(dbCart)
     userCart = dbCart
   }
   if(token === "null" || token === 'undefined' || token === null) {
@@ -94,6 +93,7 @@ const App = () => {
               <Route path="/admin/userdata" element={<AdminUserData navigate={navigate} getAllUsers={getAllUsers} />} />
               <Route path="/admin/createproduct" element={<AdminCreateProduct navigate={navigate} createProduct={createProduct} fetchProducts={fetchProducts} getProducts={getProducts} setProducts={setProducts} />} />
               <Route path="/products/:productId" element={<SingleProduct getSingleProduct={getSingleProduct} navigate={navigate} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} getProducts={getProducts} setProducts={setProducts} />} />
+              <Route path="/products/edit/:productId" element={<AdminEditProduct getSingleProduct={getSingleProduct} navigate={navigate} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} getProducts={getProducts} setProducts={setProducts} products={products}/>} />
           </Routes>
           <Footer />
       </div>

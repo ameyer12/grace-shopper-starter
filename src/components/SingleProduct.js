@@ -10,6 +10,7 @@ const SingleProduct= ({getSingleProduct, AddToCartButton, setCart, cart, navigat
 
     const { productId } = useParams();
 
+
     const fetchSingleProduct = async () => {
         const results = await getSingleProduct(productId);
         setSingleProduct(results);
@@ -114,7 +115,12 @@ const SingleProduct= ({getSingleProduct, AddToCartButton, setCart, cart, navigat
                             <option>XXL</option>
                         </select>
                     {<AddToCartButton setCart={setCart} cart={cart} itemId={id} />} 
-                    <a className="edit-and-delete-link">Edit Item</a> 
+                    <a 
+                        className="edit-and-delete-link"
+                        onClick={() => {
+                            navigate(`/products/edit/${productId}`)
+                        }}                   
+                    >Edit Item</a> 
                     <a 
                         className="edit-and-delete-link"
                         onClick={(ev) => {

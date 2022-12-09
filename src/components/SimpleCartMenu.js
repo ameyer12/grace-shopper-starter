@@ -57,7 +57,7 @@ const SimpleCartMenu = ({setShowCart, showCart, cart, products, setCart}) => {
                     
                 </li> )
             }) )
-            : <h1>no items</h1>
+            : <h1 className='no-items-message'>No items</h1>
         }
         </ul>
         </div>

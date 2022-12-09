@@ -1,7 +1,7 @@
-.create-product {
+.edit-product {
     display: flex;
-    position: relative;
     flex-direction: column;
+    position: relative;
     justify-content: center;
     align-items: center;
     height: 93%;
@@ -10,7 +10,8 @@
     overflow: scroll;
 }
 
-#create-product-form {
+
+#edit-product-form {
     margin-bottom: 15%;
     margin-left: 0.5%;
     height: 36rem;
@@ -19,16 +20,16 @@
 }
 
 #return-to-admin-page {
+    margin-top: 1%;
     border: none;
     background-color: #dadada;
     color: #BC4639;
     text-decoration: underline;
     white-space: nowrap;
-    padding-top: 0.3%;
 }
 
 
-#create-product-button {
+#edit-product-button {
     border: none;
     margin-top: 5%;
     margin-left: 0.15%;
@@ -36,7 +37,7 @@
     background-color: #BC4639;
 }
 
-#create-product-id {
+#edit-product-id {
     margin-top: -4%;
 }
 
