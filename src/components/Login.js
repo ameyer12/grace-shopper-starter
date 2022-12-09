@@ -116,7 +116,9 @@ const Login = ({navigate, loginUser, setCart, setToken}) => {
                 <p id="account-page-p">My Account</p>
                 <div id="profile-card" className="card">
                     <div className="card-body">
-                        <p className="card-text">Order history</p>
+                        <button type="button" className="btn" 
+                        onClick={() => {navigate("/Checkout")}}>Checkout</button>
+                        <p className="card-text"> </p>
                         <p className="card-text">Reservation History</p>
                         <p className="card-text">Manage Addresses</p>
                         <p className="card-text">Account Details</p>
@@ -138,7 +140,7 @@ const Login = ({navigate, loginUser, setCart, setToken}) => {
             <p id="account-page-p">My Account</p>
             <div id="profile-card" className="card">
                 <div className="card-body">
-                    <p className="card-text">Order history</p>
+                    <p className="card-text">Checkout</p>
                     <p className="card-text">Reservation History</p>
                     <p className="card-text">Manage Addresses</p>
                     <p className="card-text">Account Details</p>

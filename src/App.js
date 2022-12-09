@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
-import { Shop, Login, Register, SingleProduct, AddToCartButton, Admin, AdminUserData, AdminCreateProduct } from './components';
+import { Shop, Login, Register, SingleProduct, AddToCartButton, Admin, AdminUserData, AdminCreateProduct, Checkout } from './components';
 import { getProducts, loginUser, registerUser, getSingleProduct, getUserCart, addToUserCart, getAllUsers, createProduct} from "./api"
 
 
@@ -89,6 +89,7 @@ const App = () => {
               <Route path="/" element={<Home navigate={navigate} />} />
               <Route path="/shop" element={<Shop products={products} cart={cart} setCart={setCart} AddToCartButton={AddToCartButton} />} />
               <Route path="/login" element={<Login loginUser={loginUser} navigate={navigate} setCart={setCart} setToken={setToken} />} />
+              <Route path="/checkout" element={<Checkout navigate={navigate} />} />
               <Route path="/register" element={<Register registerUser={registerUser} navigate={navigate} />} />
               <Route path="/admin" element={<Admin navigate={navigate} />} />
               <Route path="/admin/userdata" element={<AdminUserData navigate={navigate} getAllUsers={getAllUsers} />} />
