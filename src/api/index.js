@@ -1,6 +1,6 @@
-// const baseURL = 'https://grace-shopper-server.onrender.com/api';
+const baseURL = 'https://grace-shopper-server.onrender.com/api';
 
-const baseURL = 'http://localhost:3005/api';
+// const baseURL = 'http://localhost:3005/api';
 
 export const getAllUsers = async () => {
     try {

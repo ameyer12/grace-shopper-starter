@@ -18,10 +18,11 @@ const SingleProduct= ({getSingleProduct, AddToCartButton, setCart, cart, navigat
 
     const handleDeleteProduct = async () => {
         const results = await deleteProduct(productId);
+        console.log(results)
 
-        const refreshProductPage = await getProducts();
+        const refreshProductsPage = await getProducts();
 
-        setProducts(refreshProductPage);
+        setProducts(refreshProductsPage);
     }
 
     useEffect(() => {

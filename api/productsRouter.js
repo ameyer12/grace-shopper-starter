@@ -49,7 +49,7 @@ productsRouter.post('/', async (req, res, next) => {
 
 })
 
-productsRouter.delete('/:productId', requireUser, async (req, res, next) => {
+productsRouter.delete('/:productId', async (req, res, next) => {
   try {
       const product = await getProductById(req.params.productId);
 
