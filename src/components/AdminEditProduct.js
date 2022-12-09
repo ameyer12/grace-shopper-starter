@@ -1,26 +1,64 @@
 import React, {useState, useEffect} from 'react';
-import './admincreateproduct.css';
+import { useParams } from 'react-router';
+import { updateProduct } from '../api'
+import './admineditproduct.css';
 
-const AdminCreateProduct = ({navigate, createProduct, setProducts, getProducts}) => {
 
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [price, setPrice] = useState(Number);
-    const [categories, setCategories] = useState(Number);
-    const [inventory, setInventory] = useState("");
-    const [image, setImage] = useState("");
+const AdminEditProduct = ({navigate, products, setProducts, getProducts}) => {
 
-    const handleCreateProduct = async () => {
+    const { productId } = useParams();
 
-        const results = await createProduct(title, description, price, categories, inventory, image)
+    let id = null;
+    let title = null;
+    let description = null;
+    let price = null;
+    // let categories = null;
+    let inventory = null;
+    let image = null; 
 
-        const refreshProducts = await getProducts();
+    Object.values(products.map((currentItem) => {
+        if(currentItem.id == productId) {
+            id = currentItem.id;
+            title = currentItem.title;
+            description = currentItem.description;
+            price = currentItem.price;
+            inventory = currentItem.inventory;
+            image = currentItem.image;
+        }
+    }))
 
-        setProducts(refreshProducts) 
+    const [newTitle, setNewTitle] = useState(title);
+    const [newDescription, setNewDescription] = useState(description);
+    const [newPrice, setNewPrice] = useState(price);
+    // const [newCategories, setNewCategories] = useState(categories);
+    const [newInventory, setNewInventory] = useState(inventory);
+    const [newImage, setNewImage] = useState(image);
+
+    const token = window.localStorage.token
+
+    const handleEditProduct = async () => {
+
+        try {
+            const updatedProduct = {
+                id: id,
+                title: newTitle,
+                description: newDescription,
+                price: newPrice,
+                inventory: newInventory,
+                image: newImage
+            };
+            console.log(updatedProduct)
+
+            await updateProduct(updatedProduct)
+
+        } catch (error) {
+            console.log(error)
+            throw error
+        }
     }
 
     return(
-        <div className='create-product'>
+        <div className='edit-product'>
             <button
                 type="submit"
                 id="return-to-admin-page" 
@@ -29,9 +67,9 @@ const AdminCreateProduct = ({navigate, createProduct, setProducts, getProducts})
                     navigate("/admin")
                 }}
             >Return to Admin Dashboard</button>
-            <form className="card" id="create-product-form">
+            <form className="card" id="edit-product-form">
                 <div className="form-group">
-                <h1 className='register-h1'>Create Product</h1>
+                <h1 className='register-h1'>Edit Product</h1>
                 <label for="exampleInputEmail1">Title</label>
                 <input 
                 type="username" 
@@ -41,11 +79,11 @@ const AdminCreateProduct = ({navigate, createProduct, setProducts, getProducts})
                 placeholder="Title"
                 onChange={(ev) => {
                     ev.preventDefault();
-                    setTitle(ev.target.value)
+                    setNewTitle(ev.target.value)
                 }}
                 />
                 </div>
-                <div id="create-product-id" className="form-group">
+                <div id="edit-product-id" className="form-group">
                 <label for="exampleInputPassword1">Description</label>
                 <input 
                 className="form-control" 
@@ -53,7 +91,7 @@ const AdminCreateProduct = ({navigate, createProduct, setProducts, getProducts})
                 placeholder="Description"
                 onChange={(ev) => {
                     ev.preventDefault();
-                    setDescription(ev.target.value)
+                    setNewDescription(ev.target.value)
                 }}
                 />
                 <label for="exampleInputPassword1">Price</label>
@@ -63,7 +101,7 @@ const AdminCreateProduct = ({navigate, createProduct, setProducts, getProducts})
                 placeholder="Price"
                 onChange={(ev) => {
                     ev.preventDefault();
-                    setPrice(ev.target.value)
+                    setNewPrice(ev.target.value)
                 }}
                 />
                 <label for="exampleInputPassword1">Categories</label>
@@ -73,7 +111,7 @@ const AdminCreateProduct = ({navigate, createProduct, setProducts, getProducts})
                 placeholder="Categories"
                 onChange={(ev) => {
                     ev.preventDefault();
-                    setCategories(ev.target.value)
+                    console.log(ev.target.value)
                 }}
                 />
                 <label for="exampleInputPassword1">Inventory</label>
@@ -83,7 +121,7 @@ const AdminCreateProduct = ({navigate, createProduct, setProducts, getProducts})
                 placeholder="Inventory"
                 onChange={(ev) => {
                     ev.preventDefault();
-                    setInventory(ev.target.value)
+                    setNewInventory(ev.target.value)
                 }}
                 />
                 <label for="exampleInputPassword1">Image URL</label>
@@ -93,23 +131,24 @@ const AdminCreateProduct = ({navigate, createProduct, setProducts, getProducts})
                 placeholder="Image URL"
                 onChange={(ev) => {
                     ev.preventDefault();
-                    setImage(ev.target.value)
+                    setNewImage(ev.target.value)
                 }}
                 />
                 <button 
                 type="submit"
-                id="create-product-button" 
+                id="edit-product-button" 
                 className="btn btn-primary"
                 onClick={(ev) => {
                     ev.preventDefault();
-                    handleCreateProduct();
-                    navigate("/shop");
+                    handleEditProduct();
+                    // navigate("/shop");
+                    console.log("hi")
                 }}
-                >Create Product</button>
+                >Edit Product</button>
                 </div>
             </form>
         </div>
     )
 }
 
-export default AdminCreateProduct;
+export default AdminEditProduct;

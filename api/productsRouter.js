@@ -1,6 +1,6 @@
 const express = require('express');
 const { getAllCategories, getProductsByCategoryId } = require('../db/categories')
-const { getAllProducts, createProduct, getProductById, deleteProduct } = require('../db/products')
+const { getAllProducts, createProduct, getProductById, deleteProduct, updateProduct } = require('../db/products')
 const { requireUser } = require("./utils")
 
 const productsRouter = express.Router();
@@ -59,6 +59,39 @@ productsRouter.delete('/:productId', requireUser, async (req, res, next) => {
 
   } catch ({ name, message }) {
       res.send({name, message})
+  }
+});
+
+
+productsRouter.patch('/:productId', async (req, res, next) => {
+  const { productId } = req.params
+  const { title, description, price, inventory, image } = req.body;
+  console.log(req.body)
+
+  try {
+    const product = await getProductById(productId);
+
+    if(product) {
+      const updatedProduct = await updateProduct(productId, {
+        id: productId,
+        title: title,
+        description: description,
+        price: price,
+        inventory: inventory,
+        image: image
+      });
+
+      res.send(updatedProduct)
+    } else {
+      res.send({
+        error: 'ProductUpdateError',
+        name: 'Error updating product',
+        message: `This product was not able to be udpated`,
+      })
+    }
+  } catch (error) {
+    console.log("error in API", error);
+    next(error);
   }
 });
 

@@ -70,6 +70,31 @@ async function getProductByTitle(id) {
     throw error
   }
 }
+async function updateProduct(id, fields = {}) {
+
+  try {
+    const setString = Object.keys(fields)
+      .map((key, index) => `"${key}"=$${index + 1}`)
+      .join(", ");
+
+    if (setString.length > 0) {
+      await client.query(
+        `
+         UPDATE products
+         SET ${setString}
+         WHERE id=${id}
+         RETURNING *;
+       `,
+        Object.values(fields)
+      );
+      
+      return await getProductById(id);
+
+    }
+  } catch (error) {
+    throw error;
+  }
+}
 
 
 async function deleteProduct(id) {
@@ -90,6 +115,7 @@ async function deleteProduct(id) {
 
 module.exports = {
   createProduct,
+  updateProduct,
   getAllProducts,
   getProductById,
   getProductByTitle,
