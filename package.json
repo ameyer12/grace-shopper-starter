@@ -11,7 +11,7 @@
     "seed:dev": "nodemon ./db/seed.js",
     "seed": "node ./db/seed.js",
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "CI= react-scripts build"
   },
   "keywords": [],
   "author": "",
