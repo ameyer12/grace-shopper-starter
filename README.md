@@ -1,0 +1,1 @@
+A full stack e-commerce clothing application. This project was developed as a group project, utilizing agile development practices. Tech stack: REACT, HTML/CSS, Bootstrap, Node, Express, PostgreSQL, Render.
